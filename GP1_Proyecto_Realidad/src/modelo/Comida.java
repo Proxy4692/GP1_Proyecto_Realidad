@@ -83,24 +83,24 @@ public class Comida {
     public class ComidaDAO {
 
     public void altaLogica(Comida comida) {
-        // Implementar la lógica para agregar una comida a la base de datos
+        // Implementar la logica para agregar una comida a la base de datos
     }
 
     public void bajaLogica(String codComida) {
-        // Implementar la lógica para marcar una comida como inactiva
+        // Implementar la logica para marcar una comida como inactiva
     }
 
     public Comida buscar(String codComida) {
-        // Implementar la lógica para buscar una comida por su código
+        // Implementar la logica para buscar una comida por  codigo
         return null;
     }
 
     public void actualizar(Comida comida) {
-        // Implementar la lógica para actualizar la información de una comida
+        // Implementar la logica para actualizar la informacion de una comida
     }
 
     public void borrar(String codComida) {
-        // Implementar la lógica para borrar una comida de la base de datos
+        // Implementar la logica para borrar una comida de la base de datos
     }
 
     public List<Comida> obtenerTodos() {
