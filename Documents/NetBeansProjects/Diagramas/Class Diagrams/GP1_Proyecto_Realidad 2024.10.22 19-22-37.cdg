@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="GP1_Proyecto_Realidad">
+  <ClassDiagramComponents>
+    <Class name="Conexion" package="conexion" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="URL" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="USER" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="PASSWORD" type="String" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getConnection" returnType="Connection" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Main" package="conexion" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Comida" package="modelo" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="codComida" type="String" visibility="private"/>
+        <Field name="nombreCompleto" type="String" visibility="private"/>
+        <Field name="caloriasPorPorcion" type="int" visibility="private"/>
+        <Field name="tipo" type="String" visibility="private"/>
+        <Field name="detalle" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="codComida"/>
+          <Argument type="String" name="nombreCompleto"/>
+          <Argument type="int" name="caloriasPorPorcion"/>
+          <Argument type="String" name="tipo"/>
+          <Argument type="String" name="detalle"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCodComida" returnType="String" visibility="public"/>
+        <Method name="setCodComida" returnType="void" visibility="public">
+          <Argument type="String" name="codComida"/>
+        </Method>
+        <Method name="getNombreCompleto" returnType="String" visibility="public"/>
+        <Method name="setNombreCompleto" returnType="void" visibility="public">
+          <Argument type="String" name="nombreCompleto"/>
+        </Method>
+        <Method name="getCaloriasPorPorcion" returnType="int" visibility="public"/>
+        <Method name="setCaloriasPorPorcion" returnType="void" visibility="public">
+          <Argument type="int" name="caloriasPorPorcion"/>
+        </Method>
+        <Method name="getTipo" returnType="String" visibility="public"/>
+        <Method name="setTipo" returnType="void" visibility="public">
+          <Argument type="String" name="tipo"/>
+        </Method>
+        <Method name="getDetalle" returnType="String" visibility="public"/>
+        <Method name="setDetalle" returnType="void" visibility="public">
+          <Argument type="String" name="detalle"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Dieta" package="modelo" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="codDieta" type="int" visibility="private"/>
+        <Field name="nombreD" type="String" visibility="private"/>
+        <Field name="fechaIni" type="LocalDate" visibility="private"/>
+        <Field name="fechaFin" type="LocalDate" visibility="private"/>
+        <Field name="pesoFinal" type="float" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+        <Field name="totalCalorias" type="int" visibility="private"/>
+        <Field name="paciente" type="Paciente" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="codDieta"/>
+          <Argument type="String" name="nombreD"/>
+          <Argument type="LocalDate" name="fechaIni"/>
+          <Argument type="LocalDate" name="fechaFin"/>
+          <Argument type="Paciente" name="paciente"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarPesoYFinalizar" returnType="void" visibility="public">
+          <Argument type="float" name="pesoFinal"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Paciente" package="modelo" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="nroPaciente" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="edad" type="int" visibility="private"/>
+        <Field name="altura" type="float" visibility="private"/>
+        <Field name="pesoActual" type="float" visibility="private"/>
+        <Field name="pesoBuscado" type="float" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="nroPaciente"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="float" name="altura"/>
+          <Argument type="float" name="pesoActual"/>
+          <Argument type="float" name="pesoBuscado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="seAcercaAlPeso" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PacienteService" package="servicios" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="agregarPaciente" returnType="void" visibility="public">
+          <Argument type="Paciente" name="paciente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GuiPrincipal" package="vistas" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="btnAgregarPaciente" type="JButton" visibility="private"/>
+        <Field name="txtNombre" type="JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="servicios.PacienteService" target="modelo.Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="paciente" source="modelo.Dieta" target="modelo.Paciente" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
