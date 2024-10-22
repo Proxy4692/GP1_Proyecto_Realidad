@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-    private static final String URL = "jdbc:mariadb://localhost:3306/nutricionista"; // Incluye el puerto y la base de datos
+    private static final String URL = "jdbc:mariadb://localhost:3306/GP1_nutricionista_DB"; // Incluye el puerto y la base de datos
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
