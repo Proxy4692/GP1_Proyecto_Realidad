@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Conexion {
+public class DatabaseConnection{
     private static final String URL = "jdbc:mariadb://localhost:3306/nutricionista"; // Incluye el puerto y la base de datos
     private static final String USER = "root";
     private static final String PASSWORD = "";
