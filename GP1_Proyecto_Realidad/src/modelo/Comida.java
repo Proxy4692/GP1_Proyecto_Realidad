@@ -88,16 +88,16 @@ public class Comida {
     }
 
     public Comida buscar(String codComida) {
-        //  busca una comida por codigo
+       
         return null;
     }
 
     public void actualizar(Comida comida) {
-        // actualiza la informacion de una comida
+       
     }
 
     public void borrar(String codComida) {
-        // borra una comida de la base de datos
+        
     }
 
     public List<Comida> obtenerTodos() {
