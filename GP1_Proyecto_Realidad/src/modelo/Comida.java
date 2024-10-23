@@ -13,10 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author elsap
- */
+
 public class Comida {
     
     private String codComida;
@@ -83,7 +80,7 @@ public class Comida {
     public class ComidaDAO {
 
     public void altaLogica(Comida comida) {
-        // Implementar la logica para agregar una comida a la base de datos
+        // Implementar la logica para agregar una comida 
     }
 
     public void bajaLogica(String codComida) {
