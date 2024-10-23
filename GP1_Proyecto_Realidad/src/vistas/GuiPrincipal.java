@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class GuiPrincipal extends JFrame{
     private JButton btnAgregarPaciente;
     private JTextField txtNombre, txtEdad, txtAltura, txtPesoActual, txtPesoBuscado;
+    
     public GuiPrincipal(){
         setTitle("Gestion de Dietas");
         setSize(800, 600);
