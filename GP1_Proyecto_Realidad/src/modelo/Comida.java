@@ -87,20 +87,20 @@ public class Comida {
     }
 
     public void bajaLogica(String codComida) {
-        // Implementar la logica para marcar una comida como inactiva
+       
     }
 
     public Comida buscar(String codComida) {
-        // Implementar la logica para buscar una comida por  codigo
+        // Implementar la logica para buscar una comida por codigo
         return null;
     }
 
     public void actualizar(Comida comida) {
-        // Implementar la logica para actualizar la informacion de una comida
+        // actualiza la informacion de una comida
     }
 
     public void borrar(String codComida) {
-        // Implementar la logica para borrar una comida de la base de datos
+        // borra una comida de la base de datos
     }
 
     public List<Comida> obtenerTodos() {
