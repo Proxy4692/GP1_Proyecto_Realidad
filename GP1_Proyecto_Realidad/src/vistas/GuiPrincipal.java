@@ -1,11 +1,13 @@
 package vistas;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GuiPrincipal extends JFrame{
     private JButton btnAgregarPaciente;
     private JTextField txtNombre, txtEdad, txtAltura, txtPesoActual, txtPesoBuscado;
+    
     public GuiPrincipal(){
         setTitle("Gestion de Dietas");
         setSize(800, 600);
