@@ -93,7 +93,7 @@ public class Comida {
     }
 
     public void actualizar(Comida comida) {
-       
+       //los actualiza
     }
 
     public void borrar(String codComida) {
