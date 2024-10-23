@@ -80,7 +80,7 @@ public class Comida {
     public class ComidaDAO {
 
     public void altaLogica(Comida comida) {
-        // Implementar la logica para agregar una comida 
+        // agrega una comida 
     }
 
     public void bajaLogica(String codComida) {
@@ -88,7 +88,7 @@ public class Comida {
     }
 
     public Comida buscar(String codComida) {
-        // Implementar la logica para buscar una comida por codigo
+        //  busca una comida por codigo
         return null;
     }
 
