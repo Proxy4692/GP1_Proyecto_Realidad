@@ -84,11 +84,11 @@ public class Comida {
     }
 
     public void bajaLogica(String codComida) {
-       
+       //da de baja una comida
     }
 
     public Comida buscar(String codComida) {
-       
+       //busca una comida en la base de datos
         return null;
     }
 

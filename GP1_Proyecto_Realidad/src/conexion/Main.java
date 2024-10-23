@@ -62,13 +62,13 @@ public class Main {
                     System.out.println(comida != null ? comida : "Comida no encontrada.");
                     break;
                 case 3:
-                    // Agregar logica para ingresar datos de comida
+                    //  ingresa datos de comida
                     break;
                 case 4:
-                    // Agregar logica para actualizar comida
+                    //  actualiza comida
                     break;
                 case 5:
-                    // Agregar logica para borrar comida
+                    // borra comida
                     break;
                 case 6:
                     System.out.println("Saliendo...");
