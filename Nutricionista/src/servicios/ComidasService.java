@@ -47,9 +47,9 @@ public class ComidasService {
             ps.setInt(1, comida.getCodComida()  );
             ps.setString(2, comida.getNombre());
             ps.setString(3, comida.getTipoComida());
-            ps.setInt(1, comida.getCaloriasPor100g());
-            ps.setString(2, comida.getDetalle());
-            ps.setBoolean(3, comida.isBaja());
+            ps.setInt(4, comida.getCaloriasPor100g());
+            ps.setString(5, comida.getDetalle());
+            ps.setBoolean(6, comida.isBaja());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
             if (mg.next()) {
