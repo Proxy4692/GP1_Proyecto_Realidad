@@ -598,17 +598,7 @@ public class TestClasesData {
         com.cargarDietasPosibles(6,1800,619,333,511,714,432,true);
         com.cargarDietasPosibles(7,1800,620,333,510,715,431,true);        
 
-
-
-        
-
-
-
-
     }
     
 
-    
-    
-    
 }
