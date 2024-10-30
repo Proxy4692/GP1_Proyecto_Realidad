@@ -8,9 +8,7 @@ import modelo.Pacientes;
 
 
 public class TestClasesData {
-
-
-    public static void main(String[] args) {
+    public static void main(String[] args){
         
         System.out.println("El siguiente test prueba todos los atributos de las clases service.");
         System.out.println("Para evitar conflictos al agregar registros duplicados, es importante que");
@@ -597,8 +595,5 @@ public class TestClasesData {
         com.cargarDietasPosibles(5,1800,620,333,510,715,431,true);
         com.cargarDietasPosibles(6,1800,619,333,511,714,432,true);
         com.cargarDietasPosibles(7,1800,620,333,510,715,431,true);        
-
     }
-    
-
 }
