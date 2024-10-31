@@ -1,10 +1,12 @@
 package servicios;
 
 import static conexion.Conexion.getConexion;
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.SQLException;
-import static modelo.Dietas;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DietasService{
     
@@ -31,6 +33,89 @@ public class DietasService{
         }catch(SQLException e){
             e.printStackTrace();
         }
+    }
+    
+    public void eliminarDieta(int codDieta){
+        String sql = "DELETE FROM Dieta WHERE codDieta = ?";
+        try(Connection connection = MySQLConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)){
+            
+            statement.setInt(1, codDieta);
+            statement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void actualizarDieta(Dieta dieta){
+        String sql = "UPDATE Dieta SET nombreD = ?, fechaIni = ?, fechaFin = ?, pesoFinal = ?, estado = ?, totalCalorias = ?, paciente_nroPaciente = ?, WHERE codDieta = ?";
+        try(Connection connection = MySQLConnection.getConnection();
+                PreparedStatement statement = connection.prepreStatement(sql)){
+            
+            statement.setString(1, dieta.getNombreD());
+            statement.setDate(2, dieta.getFechaIni());
+            statement.setDate(3, dieta.getFechaFin());
+            statement.setFloat(4, dieta.getPesoFinal());
+            statement.setBoolean(5, dieta.isEstado());
+            statement.setInt(6, dieta.getTotalCalorias());
+            statement.setInt(7, dieta.getPacienteNroPaciente());
+            statement.setInt(8, dieta.getCodDieta());
+            statement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void obtenerDietaPorCodigo(int codDieta){
+        String sql = "SELECT * FROM Dieta WHERE codDieta = ?";
+
+        try(Connection connection = MySQLConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, codDieta);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                dieta = new Dieta(
+                    resultSet.getInt("codDieta"),
+                    resultSet.getString("nombreD"),
+                    resultSet.getDate("fechaIni"),
+                    resultSet.getDate("fechaFin"),
+                    resultSet.getFloat("pesoFinal"),
+                    resultSet.getBoolean("estado"),
+                    resultSet.getInt("totalCalorias"),
+                    resultSet.getInt("paciente_nroPaciente")
+                );
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public List<Dieta> obtenerTodasLasDietas(){
+        String sql = "SELECT * FROM Dieta";
+        List<Dieta> dietas = new ArrayList<>();
+
+        try(Connection connection = MySQLConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)){
+
+            while(resultSet.next()){
+                Dieta dieta = new Dieta(
+                    resultSet.getInt("codDieta"),
+                    resultSet.getString("nombreD"),
+                    resultSet.getDate("fechaIni"),
+                    resultSet.getDate("fechaFin"),
+                    resultSet.getFloat("pesoFinal"),
+                    resultSet.getBoolean("estado"),
+                    resultSet.getInt("totalCalorias"),
+                    resultSet.getInt("paciente_nroPaciente")
+                );
+                dietas.add(dieta);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return dietas;
     }
     
 //    public void guardarDieta(Dietas dieta){
