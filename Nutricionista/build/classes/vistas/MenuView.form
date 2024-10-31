@@ -359,7 +359,7 @@
                   <Component id="jPDatos2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPDatos1" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLRDDiaria" max="32767" attributes="0"/>
                   <Component id="jPDatos5" max="32767" attributes="0"/>
