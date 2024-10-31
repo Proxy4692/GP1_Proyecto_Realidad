@@ -11,8 +11,7 @@ import java.util.List;
 import modelo.Alimentos;
 import modelo.Comidas;
 
-public class ComidasService {
-    
+public class ComidasService{
     private Connection con = null;
 
     public ComidasService(){
@@ -28,13 +27,13 @@ public class ComidasService {
             ps.setBoolean(3, alimento.isSelA());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Alimento guardado: "+alimento.getNombreA());
             }else{
                 System.out.println("Alimento no guardado: "+alimento.getNombreA());
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar el alimento: " + ex.getMessage());
         }
     }    
@@ -52,7 +51,7 @@ public class ComidasService {
             ps.setBoolean(6, comida.isBaja());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Comida guardada: "+comida.getNombre());
             }else{
                 System.out.println("Comida no guardada: "+comida.getNombre());
