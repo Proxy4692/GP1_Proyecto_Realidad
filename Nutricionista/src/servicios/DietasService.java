@@ -2,13 +2,35 @@ package servicios;
 
 import static conexion.Conexion.getConexion;
 import java.sql.Connection;
+import java.sql.SQLException;
+import static modelo.Dietas;
+import java.sql.PreparedStatement;
 
-public class DietasService {
+public class DietasService{
     
     private Connection con = null;
 
     public DietasService(){
         con = getConexion();
+    }
+    
+    //Crear nueva dieta
+    public void crearDieta(Dieta dieta){
+        String sql = "INSERT INTO Dieta (codDieta, nombreD, fechaIni, fechaFin, pesoFinal, estado, totalCalorias, paciente_nroPaciente) VALUES (?, ?, ?, ?, ?, ? ,? ,?)";
+        try(Connection connection = MySQLConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)){
+            
+            statement.setInt(1, dieta.getCodDieta());
+            statement.setInt(2, dieta.getNombreD());
+            statement.setInt(3, dieta.getFechaIni());
+            statement.setInt(4, dieta.getFechaFin());
+            statement.setInt(5, dieta.getPesoFinal());
+            statement.setInt(6, dieta.isEstado());
+            statement.setInt(7, dieta.getTotalCalorias());
+            statement.setInt(8, dieta.getPacienteNroPaciente());
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
     
 //    public void guardarDieta(Dietas dieta){
