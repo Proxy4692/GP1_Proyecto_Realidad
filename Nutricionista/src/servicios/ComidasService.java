@@ -11,8 +11,7 @@ import java.util.List;
 import modelo.Alimentos;
 import modelo.Comidas;
 
-public class ComidasService {
-    
+public class ComidasService{
     private Connection con = null;
 
     public ComidasService(){
@@ -28,13 +27,13 @@ public class ComidasService {
             ps.setBoolean(3, alimento.isSelA());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Alimento guardado: "+alimento.getNombreA());
             }else{
                 System.out.println("Alimento no guardado: "+alimento.getNombreA());
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar el alimento: " + ex.getMessage());
         }
     }    
@@ -52,7 +51,7 @@ public class ComidasService {
             ps.setBoolean(6, comida.isBaja());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Comida guardada: "+comida.getNombre());
             }else{
                 System.out.println("Comida no guardada: "+comida.getNombre());
@@ -72,13 +71,13 @@ public class ComidasService {
             ps.setInt(2,codAli);
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Comida guardada: ");
             }else{
                 System.out.println("Comida no guardada: ");
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar la comida: " + ex.getMessage());
         }
     }   
@@ -95,13 +94,13 @@ public class ComidasService {
             ps.setInt(6,k10500);
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Caloria guardada: ");
             }else{
                 System.out.println("Caloria no guardada: ");
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar la caloria: " + ex.getMessage());
         }
     }   
@@ -121,17 +120,16 @@ public class ComidasService {
             ps.setBoolean(8,estado);
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Dieta guardada: ");
             }else{
                 System.out.println("Dieta no guardada: ");
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar la dieta: " + ex.getMessage());
         }
-    }   
-        
+    }
     
     public void guardarAlimento(Alimentos alimento){
         String sql = "INSERT INTO alimento (codAlimento, nombre, caloriasPor100g) VALUES (?, ?, ?)";
@@ -142,17 +140,17 @@ public class ComidasService {
             ps.setBoolean(3, alimento.isSelA());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Alimento guardado: "+alimento.getNombreA());
             }else{
                 System.out.println("Alimento no guardado: "+alimento.getNombreA());
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar el alimento: " + ex.getMessage());
         }
     }
-        
+    
     public List<Alimentos> listarAlimento(){
         List<Alimentos> alimentos = new ArrayList<>();
         String sql = "SELECT codAlimento, nombre, caloriasPor100g FROM alimento;";
@@ -189,6 +187,7 @@ public class ComidasService {
 //        List<Pacientes> pac= null;
 //        return pac;
 //    }
+    
     public List<Alimentos> filtrarxIngred(int ingrediente){
         List<Alimentos> alim= null;
         return alim;
