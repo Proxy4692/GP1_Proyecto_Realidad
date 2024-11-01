@@ -21,7 +21,7 @@ public class RenglonDeMenusService{
         RenglonDeMenus renglon= new RenglonDeMenus();
         return renglon;
         
-        String sql = "UPDATE RenglonDeMenu SET cantidadGrs = ?, subtotalCalorias = ?, menuDiario_codMenu = ?, alimento_codComida = ? WHERE nroRenglon = ?";
+        String sql = "UPDATE RenglonDeMenu SET cantidadGrs = ?, subtotalCalorias = ?, menuDiario_codMenu = ?, alimento_codComida = ?, WHERE nroRenglon = ?";
         try(Connection connection = MariaDBConnection.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)){
             
