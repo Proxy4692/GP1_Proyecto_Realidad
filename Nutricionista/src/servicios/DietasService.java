@@ -1,7 +1,6 @@
 package servicios;
 
 import static conexion.Conexion.getConexion;
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
