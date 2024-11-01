@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
 import modelo.Comidas;
 import modelo.RenglonDeMenus;
 import java.sql.PreparedStatement;
@@ -17,8 +18,11 @@ public class RenglonDeMenusService{
     }
     
     public RenglonDeMenus modificarRenglon(){
+        RenglonDeMenus renglon= new RenglonDeMenus();
+        return renglon;
+        
         String sql = "UPDATE RenglonDeMenu SET cantidadGrs = ?, subtotalCalorias = ?, menuDiario_codMenu = ?, alimento_codComida = ? WHERE nroRenglon = ?";
-        try(Connection connection = MySQLConnection.getConnection();
+        try(Connection connection = MariaDBConnection.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setDouble(1, renglon.getCantidadGrs());
@@ -30,14 +34,13 @@ public class RenglonDeMenusService{
         }catch(SQLException e){
             e.printStackTrace();
         }
-    //    RenglonDeMenus renglon= new RenglonDeMenus();
-    //    return renglon;
+        return null;
     }
     
     public void imprimirRenglon(RenglonDeMenus renglon){
         String sql = "INSERT INTO ResnglonDeMenu (nroRenglon, cantidadGrs, subtotalCalorias, menuDiario_codMenu, alimento_codComida) VALUES (?, ?, ? , ?, ?)";
-        try(Connection connection = MySQLConnection.getConnection();
-                PreaparedStatement statement = connection.prepareStatement(sql)){
+        try(Connection connection = MariaDBConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, renglon.getNroRenglon());
             statement.setDouble(2, renglon.getCantidadGrs());
@@ -52,8 +55,8 @@ public class RenglonDeMenusService{
     
     public void eliminarRenglon(int nroRenglon){
         String sql = "DELETE FROM RenglonDeMenu WHERE nroRenglon = ?";
-        try(Connection connection = MySQLConnection.getConnection();
-                PreaparedStatement statement = connection.prepareStatement(sql)){
+        try(Connection connection = MariaDBConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, nroRenglon);
             statement.executeUpdate();
@@ -64,9 +67,9 @@ public class RenglonDeMenusService{
     
     public RenglonDeMenus obtenerRenglonPorNum(int nroRenglon){
         String sql = "SELECT * FROM RenglonDeMenu WHERE nroRenglon = ?";
-        RenglonDeMenu renglon = null;
-        try(Connection connection = MySQLConnection.getConnection();
-                PreaparedStatement statement = connection.prepareStatement(sql)){
+        RenglonDeMenus renglon = null;
+        try(Connection connection = MariaDBConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, nroRenglon);
             ResultSet resultSet = statement.executeQuery();
@@ -88,8 +91,8 @@ public class RenglonDeMenusService{
     public List<RenglonDeMenus> obtenerRenglonesPorMenu(int menuDiarioCodMenu){
         String sql = "SELECT * FROM RenglonDeMenu WHERE menuDiario_codMenu = ?";
         List<RenglonDeMenus> renglones = new ArrayList<>();
-        try(Connection connection = MySQLConnection.getConnection();
-                PreaparedStatement statement = connection.prepareStatement(sql)){
+        try(Connection connection = MariaDBConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, menuDiarioCodMenu);
             ResultSet resultSet = statement.executeQuery();

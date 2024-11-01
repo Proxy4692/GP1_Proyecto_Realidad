@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class DietasService{
     
@@ -19,7 +21,7 @@ public class DietasService{
     //Crear nueva dieta
     public void crearDieta(Dieta dieta){
         String sql = "INSERT INTO Dieta (codDieta, nombreD, fechaIni, fechaFin, pesoFinal, estado, totalCalorias, paciente_nroPaciente) VALUES (?, ?, ?, ?, ?, ? ,? ,?)";
-        try(Connection connection = MySQLConnection.getConnection();
+        try(Connection connection = MariaDBConnection.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, dieta.getCodDieta());
@@ -37,7 +39,7 @@ public class DietasService{
     
     public void eliminarDieta(int codDieta){
         String sql = "DELETE FROM Dieta WHERE codDieta = ?";
-        try(Connection connection = MySQLConnection.getConnection();
+        try(Connection connection = MariaDBConnection.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, codDieta);
@@ -49,8 +51,8 @@ public class DietasService{
     
     public void actualizarDieta(Dieta dieta){
         String sql = "UPDATE Dieta SET nombreD = ?, fechaIni = ?, fechaFin = ?, pesoFinal = ?, estado = ?, totalCalorias = ?, paciente_nroPaciente = ?, WHERE codDieta = ?";
-        try(Connection connection = MySQLConnection.getConnection();
-                PreparedStatement statement = connection.prepreStatement(sql)){
+        try(Connection connection = MariaDBConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setString(1, dieta.getNombreD());
             statement.setDate(2, dieta.getFechaIni());
@@ -69,7 +71,7 @@ public class DietasService{
     public void obtenerDietaPorCodigo(int codDieta){
         String sql = "SELECT * FROM Dieta WHERE codDieta = ?";
 
-        try(Connection connection = MySQLConnection.getConnection();
+        try(Connection connection = MariaDBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, codDieta);
             ResultSet resultSet = statement.executeQuery();
@@ -94,7 +96,7 @@ public class DietasService{
         String sql = "SELECT * FROM Dieta";
         List<Dieta> dietas = new ArrayList<>();
 
-        try(Connection connection = MySQLConnection.getConnection();
+        try(Connection connection = MariaDBConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)){
 
@@ -111,7 +113,6 @@ public class DietasService{
                 );
                 dietas.add(dieta);
             }
-
         }catch(SQLException e){
             e.printStackTrace();
         }
