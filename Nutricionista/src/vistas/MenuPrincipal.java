@@ -6,24 +6,41 @@ import java.awt.Image;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
 import conexion.Conexion;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Pacientes;
+import servicios.PacientesService;
 
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    private DefaultTableModel modeloPaciente= new DefaultTableModel();
+    private PacientesService pacServ=new PacientesService();
+    private Pacientes pacienteActual=null;
+    private Integer edad;
+    private Integer altura;
+    private Double pesoBuscado;
+    private Double pesoActual;
+    private Double alturaP;
+    private Double imc;
+    private String nombre;
+    private Integer cantMenu;    
+    
 
     public MenuPrincipal() {
         initComponents();
         Connection con=Conexion.getConexion();
         this.setLocationRelativeTo(null);
-        this.setSize(500, 520);
-        jrAlta.setSelected(false);
+        this.setSize(500, 520);       
+
         PacienteHab();
         ComidaApg();
         PasosApg();
         RenglonesApg();
         DietaApg();
         
+        armarCabeceraPacientes(); 
+        cargarDatosPacientes(); 
+        
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,7 +62,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLNombre = new javax.swing.JLabel();
         jtNombre = new javax.swing.JTextField();
         jLErrorNombre = new javax.swing.JLabel();
-        jrAlta = new javax.swing.JRadioButton();
         jLErrorAlta = new javax.swing.JLabel();
         jLEdad = new javax.swing.JLabel();
         jtEdad = new javax.swing.JTextField();
@@ -62,12 +78,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLPesoBuscado = new javax.swing.JLabel();
         jtPesoBuscado = new javax.swing.JTextField();
         jLErrorPesoBuscado = new javax.swing.JLabel();
+        jbAltaP = new javax.swing.JButton();
         SeleccionDeDieta = new javax.swing.JLabel();
         jPDatos2 = new javax.swing.JPanel();
         jLNombreDieta = new javax.swing.JLabel();
         jtNombreDieta = new javax.swing.JTextField();
         jLErrorNombreDieta = new javax.swing.JLabel();
-        jrAltaC = new javax.swing.JRadioButton();
         jLCantMenu = new javax.swing.JLabel();
         jSCantMenu = new javax.swing.JSpinner();
         jLErrorMenusDiarios = new javax.swing.JLabel();
@@ -86,7 +102,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jSDesMer = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jbAltaC = new javax.swing.JButton();
         jLRPaso1 = new javax.swing.JLabel();
         jbPaso1 = new javax.swing.JButton();
         jLRPaso2 = new javax.swing.JLabel();
@@ -145,21 +161,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         FIN = new javax.swing.JLabel();
         ImageIcon icono=new ImageIcon(getClass().getResource("/recursos/nutriFondo.png"));
         Image miImagen=icono.getImage();
-        escritorio = new javax.swing.JDesktopPane(){
+        escritorio2 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
                 g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);
             }
         };
         jMenuBar = new javax.swing.JMenuBar();
         jmMaterias = new javax.swing.JMenu();
-        MenuMat1 = new javax.swing.JMenuItem();
         jmAdministracion = new javax.swing.JMenu();
-        MenuAd1 = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
-        MenuCon1 = new javax.swing.JMenuItem();
-        jmSalir = new javax.swing.JMenu();
         jmAlumnos = new javax.swing.JMenu();
-        MenuAlu1 = new javax.swing.JMenuItem();
+        jmSalir = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
 
@@ -220,7 +232,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtNroPaciente.setBackground(new java.awt.Color(255, 255, 255));
         jtNroPaciente.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jtNroPaciente.setForeground(new java.awt.Color(102, 0, 204));
-        jtNroPaciente.setText("0001");
         jtNroPaciente.setToolTipText("Codigo de paiente autogenerado");
         jtNroPaciente.setMinimumSize(new java.awt.Dimension(25, 25));
         jtNroPaciente.setName(""); // NOI18N
@@ -230,7 +241,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorNroPaciente.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorNroPaciente.setForeground(new java.awt.Color(102, 0, 204));
         jLErrorNroPaciente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLErrorNroPaciente.setText("NÚMERO AUTOASIGNADO");
+        jLErrorNroPaciente.setText(" ");
         jLErrorNroPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLNombre.setBackground(new java.awt.Color(255, 51, 102));
@@ -246,34 +257,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtNombre.setMinimumSize(new java.awt.Dimension(25, 25));
         jtNombre.setName(""); // NOI18N
         jtNombre.setPreferredSize(new java.awt.Dimension(25, 25));
+        jtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtNombreFocusLost(evt);
+            }
+        });
 
         jLErrorNombre.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorNombre.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorNombre.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLErrorNombre.setText("INGRESE SU APELLIDO Y SU NOMBRE COMPLETO");
         jLErrorNombre.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        jrAlta.setBackground(new java.awt.Color(102, 0, 153));
-        jrAlta.setForeground(new java.awt.Color(255, 255, 255));
-        jrAlta.setText("Alta");
-        jrAlta.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jrAlta.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jrAltaStateChanged(evt);
-            }
-        });
-        jrAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrAltaActionPerformed(evt);
-            }
-        });
 
         jLErrorAlta.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorAlta.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorAlta.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorAlta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLErrorAlta.setText("ASIGNAR UNA DIETA DIARIA");
+        jLErrorAlta.setText(" ");
         jLErrorAlta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLEdad.setBackground(new java.awt.Color(255, 51, 102));
@@ -289,12 +292,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtEdad.setMinimumSize(new java.awt.Dimension(25, 25));
         jtEdad.setName(""); // NOI18N
         jtEdad.setPreferredSize(new java.awt.Dimension(25, 25));
+        jtEdad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtEdadFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtEdadFocusLost(evt);
+            }
+        });
 
         jLErrorEdad.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorEdad.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorEdad.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorEdad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLErrorEdad.setText("INGRESE SU EDAD");
+        jLErrorEdad.setText(" ");
         jLErrorEdad.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLAltura.setBackground(new java.awt.Color(255, 51, 102));
@@ -310,12 +321,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtAltura.setMinimumSize(new java.awt.Dimension(25, 25));
         jtAltura.setName(""); // NOI18N
         jtAltura.setPreferredSize(new java.awt.Dimension(25, 25));
+        jtAltura.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtAlturaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtAlturaFocusLost(evt);
+            }
+        });
 
         jLErrorAltura.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorAltura.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorAltura.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorAltura.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLErrorAltura.setText("INGRESE SU ALTURA");
+        jLErrorAltura.setText(" ");
         jLErrorAltura.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLIMC.setBackground(new java.awt.Color(255, 51, 102));
@@ -327,7 +346,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtIMC.setBackground(new java.awt.Color(255, 255, 255));
         jtIMC.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jtIMC.setForeground(new java.awt.Color(102, 0, 204));
-        jtIMC.setText("29,5");
         jtIMC.setToolTipText("Ingrese nombre del alumno");
         jtIMC.setMinimumSize(new java.awt.Dimension(25, 25));
         jtIMC.setName(""); // NOI18N
@@ -337,7 +355,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorIMC.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorIMC.setForeground(new java.awt.Color(102, 0, 204));
         jLErrorIMC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLErrorIMC.setText("ÍNDICE IMC CALCULADO");
+        jLErrorIMC.setText(" ");
         jLErrorIMC.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLPesoActual.setBackground(new java.awt.Color(255, 51, 102));
@@ -354,12 +372,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtPesoActual.setMinimumSize(new java.awt.Dimension(25, 25));
         jtPesoActual.setName(""); // NOI18N
         jtPesoActual.setPreferredSize(new java.awt.Dimension(25, 71));
+        jtPesoActual.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtPesoActualFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtPesoActualFocusLost(evt);
+            }
+        });
 
         jLErrorPesoActual.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorPesoActual.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorPesoActual.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorPesoActual.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLErrorPesoActual.setText("SU PESO ACTUAL EN KG");
+        jLErrorPesoActual.setText(" ");
         jLErrorPesoActual.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLPesoBuscado.setBackground(new java.awt.Color(255, 51, 102));
@@ -376,13 +402,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtPesoBuscado.setMinimumSize(new java.awt.Dimension(25, 25));
         jtPesoBuscado.setName(""); // NOI18N
         jtPesoBuscado.setPreferredSize(new java.awt.Dimension(25, 25));
+        jtPesoBuscado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtPesoBuscadoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtPesoBuscadoFocusLost(evt);
+            }
+        });
 
         jLErrorPesoBuscado.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorPesoBuscado.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorPesoBuscado.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorPesoBuscado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLErrorPesoBuscado.setText("INGRESE SU PESO BUSCADO EN KG");
+        jLErrorPesoBuscado.setText(" ");
         jLErrorPesoBuscado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        jbAltaP.setBackground(new java.awt.Color(255, 255, 51));
+        jbAltaP.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jbAltaP.setForeground(new java.awt.Color(0, 0, 255));
+        jbAltaP.setText("Alta");
+        jbAltaP.setToolTipText("Búsqueda por DNI");
+        jbAltaP.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        jbAltaP.setMaximumSize(new java.awt.Dimension(81, 24));
+        jbAltaP.setMinimumSize(new java.awt.Dimension(81, 24));
+        jbAltaP.setName(""); // NOI18N
+        jbAltaP.setPreferredSize(new java.awt.Dimension(81, 28));
+        jbAltaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltaPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPDatos1Layout = new javax.swing.GroupLayout(jPDatos1);
         jPDatos1.setLayout(jPDatos1Layout);
@@ -424,13 +474,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addComponent(jLErrorNroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPDatos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPDatos1Layout.createSequentialGroup()
-                                .addGap(288, 288, 288)
-                                .addComponent(jrAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPDatos1Layout.createSequentialGroup()
                                 .addGap(234, 234, 234)
-                                .addComponent(jLErrorAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLErrorAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPDatos1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbAltaP, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPDatos1Layout.createSequentialGroup()
-                        .addComponent(jLPesoActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLPesoActual, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPDatos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,11 +506,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDatos1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPDatos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtNroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPDatos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLNroPaciente)
-                        .addComponent(jrAlta)))
-                .addGap(0, 0, 0)
+                        .addComponent(jtNroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbAltaP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLNroPaciente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPDatos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLErrorNroPaciente)
                     .addComponent(jLErrorAlta))
@@ -536,23 +586,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorNombreDieta.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorNombreDieta.setForeground(new java.awt.Color(102, 0, 204));
         jLErrorNombreDieta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLErrorNombreDieta.setText("NOMBRE AUTOASIGNADO");
+        jLErrorNombreDieta.setText(" ");
         jLErrorNombreDieta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        jrAltaC.setBackground(new java.awt.Color(102, 0, 153));
-        jrAltaC.setForeground(new java.awt.Color(255, 255, 255));
-        jrAltaC.setText("Confirmar");
-        jrAltaC.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jrAltaC.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jrAltaCStateChanged(evt);
-            }
-        });
-        jrAltaC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrAltaCActionPerformed(evt);
-            }
-        });
 
         jLCantMenu.setBackground(new java.awt.Color(255, 51, 102));
         jLCantMenu.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -561,11 +596,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLCantMenu.setText("Cantidad de menus diarios:");
         jLCantMenu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        jSCantMenu.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSCantMenuStateChanged(evt);
+            }
+        });
+        jSCantMenu.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jSCantMenuFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jSCantMenuFocusLost(evt);
+            }
+        });
+
         jLErrorMenusDiarios.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorMenusDiarios.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorMenusDiarios.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorMenusDiarios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLErrorMenusDiarios.setText("INGRESE CANTIDAD DE MENUS DIARIOS : DESDE 3 HASTA 7");
+        jLErrorMenusDiarios.setText(" ");
         jLErrorMenusDiarios.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLKcalPorSemana.setBackground(new java.awt.Color(255, 51, 102));
@@ -581,7 +630,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorKcalS.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorKcalS.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorKcalS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLErrorKcalS.setText("INGRESE UN VALOR DE KCAL SEMANALES");
+        jLErrorKcalS.setText(" ");
         jLErrorKcalS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLFechaIni.setBackground(new java.awt.Color(255, 51, 102));
@@ -602,7 +651,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorFechaFin.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorFechaFin.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLErrorFechaFin.setText("INGRESE UNA FECHA DE FINALIZADA LA DIETA");
+        jLErrorFechaFin.setText(" ");
         jLErrorFechaFin.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jdFechaIni.setBackground(new java.awt.Color(0, 47, 78));
@@ -626,7 +675,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorFechaIni.setFont(new java.awt.Font("Dubai", 0, 8)); // NOI18N
         jLErrorFechaIni.setForeground(new java.awt.Color(0, 47, 78));
         jLErrorFechaIni.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLErrorFechaIni.setText("INGRESE LA FECHA DE COMIENZO DE LA DIETA");
+        jLErrorFechaIni.setText(" ");
         jLErrorFechaIni.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jdFechaFin.setBackground(new java.awt.Color(0, 47, 78));
@@ -680,10 +729,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jToggleButton1.setText("jToggleButton1");
-        jToggleButton1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jToggleButton1StateChanged(evt);
+        jbAltaC.setBackground(new java.awt.Color(255, 255, 51));
+        jbAltaC.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jbAltaC.setForeground(new java.awt.Color(0, 0, 255));
+        jbAltaC.setText("Alta");
+        jbAltaC.setToolTipText("Búsqueda por DNI");
+        jbAltaC.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        jbAltaC.setMaximumSize(new java.awt.Dimension(81, 24));
+        jbAltaC.setMinimumSize(new java.awt.Dimension(81, 24));
+        jbAltaC.setName(""); // NOI18N
+        jbAltaC.setPreferredSize(new java.awt.Dimension(81, 28));
+        jbAltaC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltaCActionPerformed(evt);
             }
         });
 
@@ -732,25 +790,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jdFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(12, 12, 12))))
-                                    .addGroup(jPDatos2Layout.createSequentialGroup()
-                                        .addGroup(jPDatos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPDatos2Layout.createSequentialGroup()
-                                                .addComponent(jLNombreDieta)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPDatos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPDatos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPDatos2Layout.createSequentialGroup()
+                                            .addComponent(jLNombreDieta)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPDatos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPDatos2Layout.createSequentialGroup()
                                                     .addComponent(jLErrorNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(jPDatos2Layout.createSequentialGroup()
-                                                        .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(24, 24, 24)
-                                                        .addComponent(jrAltaC))))
-                                            .addGroup(jPDatos2Layout.createSequentialGroup()
-                                                .addGap(73, 73, 73)
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                                    .addGap(0, 0, Short.MAX_VALUE))
+                                                .addGroup(jPDatos2Layout.createSequentialGroup()
+                                                    .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jbAltaC, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(jPDatos2Layout.createSequentialGroup()
+                                            .addGap(73, 73, 73)
+                                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jLSelA, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
+                        .addContainerGap())
                     .addGroup(jPDatos2Layout.createSequentialGroup()
                         .addComponent(jLErrorFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(98, 98, 98)
@@ -764,9 +820,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPDatos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLNombreDieta)
-                    .addComponent(jrAltaC)
-                    .addComponent(jToggleButton1))
-                .addGap(3, 3, 3)
+                    .addComponent(jbAltaC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
                 .addComponent(jLErrorNombreDieta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPDatos2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1344,19 +1399,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         FIN.setText("fin");
         FIN.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        escritorio.setBackground(new java.awt.Color(255, 255, 255));
-        escritorio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        escritorio.setName(""); // NOI18N
-        escritorio.setPreferredSize(new java.awt.Dimension(500, 900));
+        escritorio2.setBackground(new java.awt.Color(255, 255, 255));
+        escritorio2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        escritorio2.setName(""); // NOI18N
+        escritorio2.setPreferredSize(new java.awt.Dimension(500, 900));
 
-        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
-        escritorio.setLayout(escritorioLayout);
-        escritorioLayout.setHorizontalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1661, Short.MAX_VALUE)
+        javax.swing.GroupLayout escritorio2Layout = new javax.swing.GroupLayout(escritorio2);
+        escritorio2.setLayout(escritorio2Layout);
+        escritorio2Layout.setHorizontalGroup(
+            escritorio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1640, Short.MAX_VALUE)
         );
-        escritorioLayout.setVerticalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        escritorio2Layout.setVerticalGroup(
+            escritorio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1059, Short.MAX_VALUE)
         );
 
@@ -1367,13 +1422,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMaterias.setMinimumSize(new java.awt.Dimension(72, 69));
         jmMaterias.setName(""); // NOI18N
         jmMaterias.setPreferredSize(new java.awt.Dimension(72, 69));
-
-        MenuMat1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenuMat1.setBackground(new java.awt.Color(0, 102, 153));
-        MenuMat1.setFont(new java.awt.Font("Dubai", 0, 11)); // NOI18N
-        MenuMat1.setText("Formulario de Materia");
-        jmMaterias.add(MenuMat1);
-
         jMenuBar.add(jmMaterias);
 
         jmAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/administracion50.gif"))); // NOI18N
@@ -1383,13 +1431,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmAdministracion.setMinimumSize(new java.awt.Dimension(72, 69));
         jmAdministracion.setName(""); // NOI18N
         jmAdministracion.setPreferredSize(new java.awt.Dimension(72, 69));
-
-        MenuAd1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenuAd1.setBackground(new java.awt.Color(0, 102, 153));
-        MenuAd1.setFont(new java.awt.Font("Dubai", 0, 11)); // NOI18N
-        MenuAd1.setText("Manejo de Inscripciones");
-        jmAdministracion.add(MenuAd1);
-
         jMenuBar.add(jmAdministracion);
 
         jmConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/consulta50.gif"))); // NOI18N
@@ -1398,23 +1439,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmConsultas.setMaximumSize(new java.awt.Dimension(112, 69));
         jmConsultas.setMinimumSize(new java.awt.Dimension(72, 69));
         jmConsultas.setPreferredSize(new java.awt.Dimension(72, 69));
-
-        MenuCon1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenuCon1.setBackground(new java.awt.Color(0, 102, 153));
-        MenuCon1.setFont(new java.awt.Font("Dubai", 0, 11)); // NOI18N
-        MenuCon1.setText("Alumnos por materia");
-        jmConsultas.add(MenuCon1);
-
         jMenuBar.add(jmConsultas);
-
-        jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir50.gif"))); // NOI18N
-        jmSalir.setToolTipText("Salir");
-        jmSalir.setMargin(new java.awt.Insets(2, 20, 2, 2));
-        jmSalir.setMaximumSize(new java.awt.Dimension(112, 69));
-        jmSalir.setMinimumSize(new java.awt.Dimension(72, 69));
-        jmSalir.setName(""); // NOI18N
-        jmSalir.setPreferredSize(new java.awt.Dimension(72, 69));
-        jMenuBar.add(jmSalir);
 
         jmAlumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/alumno50.gif"))); // NOI18N
         jmAlumnos.setToolTipText("Alumnos");
@@ -1424,14 +1449,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmAlumnos.setMinimumSize(new java.awt.Dimension(72, 69));
         jmAlumnos.setName(""); // NOI18N
         jmAlumnos.setPreferredSize(new java.awt.Dimension(72, 69));
-
-        MenuAlu1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenuAlu1.setBackground(new java.awt.Color(0, 102, 153));
-        MenuAlu1.setFont(new java.awt.Font("Dubai", 0, 11)); // NOI18N
-        MenuAlu1.setText("Formulario de Alumno");
-        jmAlumnos.add(MenuAlu1);
-
         jMenuBar.add(jmAlumnos);
+
+        jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir50.gif"))); // NOI18N
+        jmSalir.setToolTipText("Salir");
+        jmSalir.setMargin(new java.awt.Insets(2, 20, 2, 2));
+        jmSalir.setMaximumSize(new java.awt.Dimension(112, 69));
+        jmSalir.setMinimumSize(new java.awt.Dimension(72, 69));
+        jmSalir.setName(""); // NOI18N
+        jmSalir.setPreferredSize(new java.awt.Dimension(72, 69));
+        jMenuBar.add(jmSalir);
 
         setJMenuBar(jMenuBar);
 
@@ -1481,13 +1508,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 1661, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 537, Short.MAX_VALUE)))
+                    .addComponent(escritorio2, javax.swing.GroupLayout.PREFERRED_SIZE, 1640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 558, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DatosDelPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DietaDiaria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1537,9 +1564,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(1, 1, 1)
-                    .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
-                    .addGap(1, 1, 1)))
+                    .addGap(4, 4, 4)
+                    .addComponent(escritorio2, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
+                    .addGap(5, 5, 5)))
         );
 
         getAccessibleContext().setAccessibleName("Nutricionista");
@@ -1547,21 +1574,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jrAltaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrAltaStateChanged
-    if (!jrAlta.isSelected()){
-        PacienteHab();
-        ComidaApg();
-        PasosApg();
-        RenglonesApg();
-        DietaApg();
-        
-    } else{
-        PacienteBlq();
-        ComidaEnc();
-        ComidaHab();
-    }
-    }//GEN-LAST:event_jrAltaStateChanged
 
     private void jbPaso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso1ActionPerformed
         RenglonesEnc();
@@ -1576,7 +1588,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPaso2ActionPerformed
 
     private void jbPaso3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso3ActionPerformed
-        jrAlta.setSelected(false);
+
         PacienteHab();
         ComidaApg();
         PasosApg();
@@ -1584,30 +1596,203 @@ public class MenuPrincipal extends javax.swing.JFrame {
         DietaApg();
     }//GEN-LAST:event_jbPaso3ActionPerformed
 
-    private void jrAltaCStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrAltaCStateChanged
-    if (!jrAltaC.isSelected()){
-        ComidaHab();
-        PasosApg();
-        RenglonesApg();
-        DietaApg();
+    private void jtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreFocusGained
+
+        jLErrorNombre.setForeground(new java.awt.Color(0, 47, 78));
+        jLErrorNombre.setText("INGRESE SU APELLIDO Y SU NOMBRE COMPLETO");        
         
-    } else{
+    }//GEN-LAST:event_jtNombreFocusGained
+
+    private void jtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreFocusLost
+
+        if(jtNombre.getText().isEmpty()){
+            jLErrorNombre.setText("FALTA COMPLETAR SU NOMBRE");
+            jLErrorNombre.setForeground(new java.awt.Color(255, 51, 102));
+            return;
+        }
+        nombre= jtNombre.getText();
+        jLErrorNombre.setText("");
+        Etapa1Completa();
+        
+    }//GEN-LAST:event_jtNombreFocusLost
+
+    private void jtEdadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtEdadFocusGained
+
+        jLErrorEdad.setForeground(new java.awt.Color(0, 47, 78));
+        jLErrorEdad.setText("INGRESE SU EDAD");
+        
+    }//GEN-LAST:event_jtEdadFocusGained
+
+    private void jtEdadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtEdadFocusLost
+
+        try{
+            if(jtEdad.getText().isEmpty()){
+                jLErrorEdad.setText("FALTA COMPLETAR SU EDAD");
+                jLErrorEdad.setForeground(new java.awt.Color(255, 51, 102));
+                return;
+            }
+            edad= Integer.parseInt(jtEdad.getText());
+            jLErrorEdad.setText("");
+            Etapa1Completa();
+        }catch(NumberFormatException nf){
+            jLErrorEdad.setText("LA EDAD ES UN VALOR NUMERICO");
+            jLErrorEdad.setForeground(new java.awt.Color(255, 51, 102));
+            jtEdad.setText("");
+        }
+    }//GEN-LAST:event_jtEdadFocusLost
+
+    private void jtAlturaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtAlturaFocusGained
+
+        jLErrorAltura.setForeground(new java.awt.Color(0, 47, 78));
+        jLErrorAltura.setText("INGRESE SU ALTURA");        
+        
+    }//GEN-LAST:event_jtAlturaFocusGained
+
+    private void jtAlturaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtAlturaFocusLost
+
+        try{
+            if(jtAltura.getText().isEmpty()){
+                jLErrorAltura.setText("FALTA COMPLETAR SU ALTURA");
+                jLErrorAltura.setForeground(new java.awt.Color(255, 51, 102));
+                return;
+            }
+            alturaP= Double.parseDouble(jtAltura.getText()); 
+            jLErrorAltura.setText("");
+            if(!jtPesoActual.getText().isEmpty()){
+                imc= pesoActual/(alturaP*alturaP);
+                jtIMC.setText(imc.toString());
+                jLErrorIMC.setText("");
+            }
+            Etapa1Completa();
+        }catch(NumberFormatException nf){
+            jLErrorAltura.setText("LA ALTURA ES UN VALOR NUMERICO");
+            jLErrorAltura.setForeground(new java.awt.Color(255, 51, 102));
+            jtAltura.setText("");
+        }        
+        
+    }//GEN-LAST:event_jtAlturaFocusLost
+
+    private void jtPesoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoActualFocusGained
+
+        jLErrorPesoActual.setForeground(new java.awt.Color(0, 47, 78));
+        jLErrorPesoActual.setText("SU PESO ACTUAL EN KG");        
+        
+    }//GEN-LAST:event_jtPesoActualFocusGained
+
+    private void jtPesoActualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoActualFocusLost
+
+        try{
+            if(jtPesoActual.getText().isEmpty()){
+                jLErrorPesoActual.setText("FALTA COMPLETAR SU PESO ACTUAL");
+                jLErrorPesoActual.setForeground(new java.awt.Color(255, 51, 102));
+                return;
+            }
+            pesoActual= Double.parseDouble(jtPesoActual.getText()); 
+            jLErrorPesoActual.setText("");
+            if(!jtAltura.getText().isEmpty()){
+                imc= pesoActual/(alturaP*alturaP);
+                jtIMC.setText(imc.toString());
+                jLErrorIMC.setText("");
+            }
+            Etapa1Completa();
+        }catch(NumberFormatException nf){
+            jLErrorPesoActual.setText("EL PESO ACTUAL ES UN VALOR NUMERICO");
+            jLErrorPesoActual.setForeground(new java.awt.Color(255, 51, 102));
+            jtPesoActual.setText("");
+        }              
+        
+    }//GEN-LAST:event_jtPesoActualFocusLost
+
+    private void jtPesoBuscadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoBuscadoFocusGained
+
+        jLErrorPesoBuscado.setForeground(new java.awt.Color(0, 47, 78));
+        jLErrorPesoBuscado.setText("INGRESE SU PESO BUSCADO EN KG");         
+        
+    }//GEN-LAST:event_jtPesoBuscadoFocusGained
+
+    private void jtPesoBuscadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoBuscadoFocusLost
+
+        try{
+            if(jtPesoBuscado.getText().isEmpty()){
+                jLErrorPesoBuscado.setText("FALTA COMPLETAR SU PESO BUSCADO");
+                jLErrorPesoBuscado.setForeground(new java.awt.Color(255, 51, 102));
+                return;
+            }
+            pesoBuscado= Double.parseDouble(jtPesoBuscado.getText()); 
+            jLErrorPesoBuscado.setText("");
+            Etapa1Completa();
+        }catch(NumberFormatException nf){
+            jLErrorPesoBuscado.setText("EL PESO BUSCADO ES UN VALOR NUMERICO");
+            jLErrorPesoBuscado.setForeground(new java.awt.Color(255, 51, 102));
+            jtPesoBuscado.setText("");
+        }              
+        
+    }//GEN-LAST:event_jtPesoBuscadoFocusLost
+
+    private void jbAltaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaPActionPerformed
+
+        if(jtNombre.getText().isEmpty()||jtEdad.getText().isEmpty()||jtAltura.getText().isEmpty()||jtPesoActual.getText().isEmpty()||jtPesoBuscado.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Complete los datos del Paciente para poder definir la dieta");
+            PacienteHab();
+            ComidaApg();
+            PasosApg();
+            RenglonesApg();
+            DietaApg();               
+        }else{
+            PacienteBlq();
+            ComidaEnc();
+            ComidaHab();  
+        }
+
+    }//GEN-LAST:event_jbAltaPActionPerformed
+
+    private void jbAltaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaCActionPerformed
+
+//    if(jtFechaIni.getText().isEmpty()||jtFechaFin.getText().isEmpty()){
+//        JOptionPane.showMessageDialog(this,"Complete los datos de definicion de Comidas");
+//        ComidaHab();
+//        PasosApg();
+//        RenglonesApg();
+//        DietaApg();              
+//    }else{
         ComidaBlq();
         PasosEnc();
-    }
-    }//GEN-LAST:event_jrAltaCStateChanged
+//    }    
 
-    private void jrAltaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrAltaCActionPerformed
+    }//GEN-LAST:event_jbAltaCActionPerformed
 
-    }//GEN-LAST:event_jrAltaCActionPerformed
+    private void jSCantMenuStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSCantMenuStateChanged
 
-    private void jrAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrAltaActionPerformed
+        int vmax=8;
+        int vmin=2;
+        if(jSCantMenu.equals(vmin)){
+            jSCantMenu.setValue(3);
+            jLErrorMenusDiarios.setText("LA CANTIDAD DE MENUS DIARIOS NO PUEDE SER MENOS DE 3");
+            jLErrorMenusDiarios.setForeground(new java.awt.Color(255, 51, 102));
+        }
+        if(jSCantMenu.equals(vmax)){
+            jSCantMenu.setValue(7);
+            jLErrorMenusDiarios.setText("LA CANTIDAD DE MENUS DIARIOS NO PUEDE SUPERAR 7");
+            jLErrorMenusDiarios.setForeground(new java.awt.Color(255, 51, 102));
+        }  
+        
+    }//GEN-LAST:event_jSCantMenuStateChanged
 
-    }//GEN-LAST:event_jrAltaActionPerformed
+    private void jSCantMenuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSCantMenuFocusGained
 
-    private void jToggleButton1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jToggleButton1StateChanged
+        jLErrorMenusDiarios.setForeground(new java.awt.Color(0, 47, 78));
+        jLErrorMenusDiarios.setText("INGRESE CANTIDAD DE MENUS DIARIOS : DESDE 3 HASTA 7");         
+        
+    }//GEN-LAST:event_jSCantMenuFocusGained
 
-    }//GEN-LAST:event_jToggleButton1StateChanged
+    private void jSCantMenuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSCantMenuFocusLost
+
+        cantMenu= Integer.parseInt(jSCantMenu.toString()); 
+        jLErrorMenusDiarios.setText("");
+        Etapa2Completa();
+   
+
+    }//GEN-LAST:event_jSCantMenuFocusLost
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1642,9 +1827,31 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
     }
     
+    private void Etapa1Completa(){
+        
+        if(jtNombre.getText().isEmpty()&&jtEdad.getText().isEmpty()&&jtAltura.getText().isEmpty()&&jtPesoActual.getText().isEmpty()&&jtPesoBuscado.getText().isEmpty()){
+            jLErrorNroPaciente.setText("");
+            jLErrorAlta.setText("ASIGNAR UNA DIETA DIARIA");
+            jLErrorIMC.setText("");
+            jbAltaP.setEnabled(true);
+        }
+        
+    }
+    
+    private void Etapa2Completa(){
+        
+        if(jtFechaIni.getText().isEmpty()||jtFechaFin.getText().isEmpty()){
+        jLErrorNombreDieta.setText("");
+        jbAltaC.setEnabled(true);
+        }
+        
+    }
+    
     private void PacienteEnc(){
         DatosDelPaciente.setVisible(true);
         jPDatos1.setVisible(true);
+        jbAltaP.setEnabled(false);
+        jbAltaC.setEnabled(false);
     }
     private void PacienteApg(){
         DatosDelPaciente.setVisible(false);
@@ -1655,7 +1862,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPDatos1.setBackground(new java.awt.Color(153, 153, 153));
         jLErrorNroPaciente.setBackground(new java.awt.Color(255, 51, 102));
         jLErrorIMC.setBackground(new java.awt.Color(255, 51, 102));
-        jrAlta.setEnabled(true);
         jtNroPaciente.setEditable(false);
         jtIMC.setEditable(false);
         jtNombre.setEditable(true);
@@ -1680,13 +1886,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void PacienteErr(){      
         jLErrorNroPaciente.setText("NÚMERO AUTOASIGNADO");
-        jLErrorNombre.setText("INGRESE SU APELLIDO Y SU NOMBRE COMPLETO");
-        jLErrorAlta.setText("ASIGNAR UNA DIETA DIARIA");
-        jLErrorEdad.setText("INGRESE SU EDAD");
-        jLErrorAltura.setText("INGRESE SU ALTURA");
+        jLErrorAlta.setText("");
         jLErrorIMC.setText("ÍNDICE IMC CALCULADO");
-        jLErrorPesoActual.setText("SU PESO ACTUAL EN KG");
-        jLErrorPesoBuscado.setText("INGRESE SU PESO BUSCADO EN KG");
+        jLErrorNombre.setText("");
+        jLErrorEdad.setText("");
+        jLErrorAltura.setText("");
+        jLErrorPesoActual.setText("");
+        jLErrorPesoBuscado.setText("");
     }
     
     private void PacienteNoErr(){
@@ -1712,13 +1918,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void ComidaHab(){
         jPDatos2.setBackground(new java.awt.Color(153, 153, 153));
         jLErrorNombreDieta.setBackground(new java.awt.Color(255, 51, 102));
-        jrAltaC.setSelected(false);
         jtNombreDieta.setEditable(false);
-        jrAltaC.setEnabled(true);
         jtFechaIni.setEditable(false);
         jtFechaFin.setEditable(false);
         jSCantMenu.setEnabled(true);
         jCKcalS.setEditable(false);
+        jSCantMenu.setValue(3);
         ComidaErr();
     }
     
@@ -1741,12 +1946,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void ComidaNoErr(){
-        jtNombreDieta.setText("DIETA LUNAR");
-        jLErrorNombreDieta.setText("NOMBRE AUTOASIGNADO");
-        jLErrorMenusDiarios.setText("INGRESE CANTIDAD DE MENUS DIARIOS : DESDE 3 HASTA 7");
-        jLErrorKcalS.setText("INGRESE UN VALOR DE KCAL SEMANALES");
-        jLErrorFechaFin.setText("INGRESE UNA FECHA DE FINALIZADA LA DIETA");
-        jLErrorFechaIni.setText("INGRESE LA FECHA DE COMIENZO DE LA DIETA");
+        jtNombreDieta.setText("");
+        jLErrorNombreDieta.setText("");
+        jLErrorMenusDiarios.setText("");
+        jLErrorKcalS.setText("");
+        jLErrorFechaFin.setText("");
+        jLErrorFechaIni.setText("");
     }
     
     private void PasosEnc(){
@@ -1800,14 +2005,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
         DietaDiaria.setVisible(false);
         jPDatos4.setVisible(false);
         TablaPaciente.setVisible(false);
-        TablaComida.setVisible(false);
-        TablaRenglones.setVisible(false);
-        TablaDietaDiaria.setVisible(false);
-        FIN.setVisible(false);
         jST1.setVisible(false);
+        TablaComida.setVisible(false);
         jST2.setVisible(false);
+        TablaRenglones.setVisible(false);
         jST3.setVisible(false);
+        TablaDietaDiaria.setVisible(false);
         jST4.setVisible(false);
+        FIN.setVisible(false);
+    }
+    
+    private void armarCabeceraPacientes(){     
+        modeloPaciente.addColumn("nroPaciente");
+        modeloPaciente.addColumn("nombre");
+        modeloPaciente.addColumn("edad");
+        modeloPaciente.addColumn("altura");
+        modeloPaciente.addColumn("Peso Actual");
+        modeloPaciente.addColumn("Peso Buscado");
+        modeloPaciente.addColumn("Codigo Dieta");
+        
+        jTablePaciente.setModel(modeloPaciente);
+    }
+
+    private void cargarDatosPacientes(){
+        int filas=jTablePaciente.getRowCount()-1;
+        for(int f=filas;f>=0;f--){
+            modeloPaciente.removeRow(f);
+        }
+        for (Pacientes paciente : pacServ.listarPaciente()) {
+            modeloPaciente.addRow(new Object[]{paciente.getNroPaciente(), paciente.getNombre(), paciente.getEdad(),paciente.getAltura(),paciente.getPesoActual(), paciente.getPesoBuscado(),0});          
+        }
+        jTablePaciente.enable(true);
     }
     
     
@@ -1818,16 +2046,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel DefinicionDeComidas;
     private javax.swing.JLabel DietaDiaria;
     private javax.swing.JLabel FIN;
-    private javax.swing.JMenuItem MenuAd1;
-    private javax.swing.JMenuItem MenuAlu1;
-    private javax.swing.JMenuItem MenuCon1;
-    private javax.swing.JMenuItem MenuMat1;
     private javax.swing.JLabel SeleccionDeDieta;
     private javax.swing.JLabel TablaComida;
     private javax.swing.JLabel TablaDietaDiaria;
     private javax.swing.JLabel TablaPaciente;
     private javax.swing.JLabel TablaRenglones;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JDesktopPane escritorio1;
+    private javax.swing.JDesktopPane escritorio2;
     private javax.swing.JComboBox<String> jCKcalS;
     private javax.swing.JComboBox<String> jCTipoComida;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
@@ -1916,7 +2142,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTableDietaDiaria;
     private javax.swing.JTable jTablePaciente;
     private javax.swing.JTable jTableRenglones;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton jbAltaC;
+    private javax.swing.JButton jbAltaP;
     private javax.swing.JButton jbPaso1;
     private javax.swing.JButton jbPaso2;
     private javax.swing.JButton jbPaso3;
@@ -1927,8 +2154,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenu jmMaterias;
     private javax.swing.JMenu jmSalir;
-    private javax.swing.JRadioButton jrAlta;
-    private javax.swing.JRadioButton jrAltaC;
     private javax.swing.JTextField jtAltura;
     private javax.swing.JTextField jtEdad;
     private javax.swing.JTextField jtFechaFin;
