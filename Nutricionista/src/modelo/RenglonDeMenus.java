@@ -1,19 +1,13 @@
 package modelo;
 
-public class RenglonDeMenus {
+public class RenglonDeMenus{
     
     private int nroRenglon;
     private Comidas alimento;
     private double cantidadGrs;
     private int subtotalCalorias;
 
-    public RenglonDeMenus() {
-    }
-
-    public RenglonDeMenus(Comidas alimento, double cantidadGrs, int subtotalCalorias) {
-        this.alimento = alimento;
-        this.cantidadGrs = cantidadGrs;
-        this.subtotalCalorias = subtotalCalorias;
+    public RenglonDeMenus(){
     }
 
     public RenglonDeMenus(int nroRenglon, Comidas alimento, double cantidadGrs, int subtotalCalorias) {
@@ -23,41 +17,40 @@ public class RenglonDeMenus {
         this.subtotalCalorias = subtotalCalorias;
     }
 
-    public int getNroRenglon() {
+    public int getNroRenglon(){
         return nroRenglon;
     }
 
-    public void setNroRenglon(int nroRenglon) {
+    public void setNroRenglon(int nroRenglon){
         this.nroRenglon = nroRenglon;
     }
 
-    public Comidas getAlimento() {
+    public Comidas getAlimento(){
         return alimento;
     }
 
-    public void setAlimento(Comidas alimento) {
+    public void setAlimento(Comidas alimento){
         this.alimento = alimento;
     }
 
-    public double getCantidadGrs() {
+    public double getCantidadGrs(){
         return cantidadGrs;
     }
 
-    public void setCantidadGrs(double cantidadGrs) {
+    public void setCantidadGrs(double cantidadGrs){
         this.cantidadGrs = cantidadGrs;
     }
 
-    public int getSubtotalCalorias() {
+    public int getSubtotalCalorias(){
         return subtotalCalorias;
     }
 
-    public void setSubtotalCalorias(int subtotalCalorias) {
+    public void setSubtotalCalorias(int subtotalCalorias){
         this.subtotalCalorias = subtotalCalorias;
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return "RenglonDeMenus{" + "nroRenglon=" + nroRenglon + ", alimento=" + alimento + ", cantidadGrs=" + cantidadGrs + ", subtotalCalorias=" + subtotalCalorias + '}';
     }
-    
 }
