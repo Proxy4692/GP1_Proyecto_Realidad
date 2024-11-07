@@ -10,14 +10,7 @@ public class MenuDiarios {
     private boolean estado;
     private Dietas dieta;
 
-    public MenuDiarios() {
-    }
-
-    public MenuDiarios(int diaNro, List comidas, boolean estado, Dietas dieta) {
-        this.diaNro = diaNro;
-        this.comidas = comidas;
-        this.estado = estado;
-        this.dieta = dieta;
+    public MenuDiarios(){
     }
 
     public MenuDiarios(int codMenu, int diaNro, List comidas, boolean estado, Dietas dieta) {
@@ -28,49 +21,48 @@ public class MenuDiarios {
         this.dieta = dieta;
     }
 
-    public int getCodMenu() {
+    public int getCodMenu(){
         return codMenu;
     }
 
-    public void setCodMenu(int codMenu) {
+    public void setCodMenu(int codMenu){
         this.codMenu = codMenu;
     }
 
-    public int getDiaNro() {
+    public int getDiaNro(){
         return diaNro;
     }
 
-    public void setDiaNro(int diaNro) {
+    public void setDiaNro(int diaNro){
         this.diaNro = diaNro;
     }
 
-    public List getComidas() {
+    public List getComidas(){
         return comidas;
     }
 
-    public void setComidas(List comidas) {
+    public void setComidas(List comidas){
         this.comidas = comidas;
     }
 
-    public boolean isEstado() {
+    public boolean isEstado(){
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(boolean estado){
         this.estado = estado;
     }
 
-    public Dietas getDieta() {
+    public Dietas getDieta(){
         return dieta;
     }
 
-    public void setDieta(Dietas dieta) {
+    public void setDieta(Dietas dieta){
         this.dieta = dieta;
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return "MenuDiarios{" + "codMenu=" + codMenu + ", diaNro=" + diaNro + ", comidas=" + comidas + ", estado=" + estado + ", dieta=" + dieta + '}';
     }
-    
 }

@@ -1,12 +1,13 @@
 package servicios;
 
 import static conexion.Conexion.getConexion;
-import java.sql.Connection;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.MenuDiarios;
 import modelo.RenglonDeMenus;
 
-public class MenuDiariosService {
+public class MenuDiariosService{
     
     private Connection con = null;
 

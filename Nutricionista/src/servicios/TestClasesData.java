@@ -6,19 +6,20 @@ import modelo.Alimentos;
 import modelo.Comidas;
 import modelo.Pacientes;
 
-
-public class TestClasesData {
+public class TestClasesData{
     public static void main(String[] args){
-        
         System.out.println("El siguiente test prueba todos los atributos de las clases service.");
         System.out.println("Para evitar conflictos al agregar registros duplicados, es importante que");
         System.out.println("previamente la base de datos nutricionista este sin ningun dato.");
+        
         //Testeo de metodos de clase Conexion
         Connection con=getConexion();
+        
         //Testeo de metodos de clase PacientesService
         PacientesService pac=new PacientesService();
         System.out.println(".........................PACIENTE_SERVICE..........................");
         System.out.println();
+        
         //GUARDAR ALUMNO
         Pacientes pac1= new Pacientes("Pedro Martinez",36,1.72,92.4,82.5);
         Pacientes pac2= new Pacientes("Ana Paez",25,1.69,87,80);
@@ -31,6 +32,7 @@ public class TestClasesData {
         pac.guardarPaciente(pac4);
         pac.guardarPaciente(pac5);
         System.out.println(".........................GUARDAR PACIENTE - FIN");
+        
         //MODIFICAR PACIENTE
         pac1.setNombre("Gabriel Ortega");
         pac2.setEdad(41);
@@ -43,17 +45,20 @@ public class TestClasesData {
         pac.modificarPaciente(pac4);
         pac.modificarPaciente(pac5);
         System.out.println(".........................MODIFICAR PACIENTE - FIN");
+        
         //BUSCAR PACIENTE
         Pacientes pacB=pac.buscarPaciente(pac5.getNroPaciente());
         System.out.println("BUSCAR PACIENTE id "+pac5.getNroPaciente());
         System.out.println(pacB.toString());
         System.out.println(".........................BUSCAR PACIENTE - FIN");
+        
         //LISTAR PACIENTES
         System.out.println("MOSTRAR LISTA DE PACIENTES ACTIVOS");
         for(Pacientes paciente:pac.listarPaciente()){
             System.out.println(paciente.toString());           
         }
         System.out.println(".........................LISTAR PACIENTES - FIN");
+        
         //ELIMINAR PACIENTE
         int id1 = pac1.getNroPaciente();
         for (int i = id1; i <= (id1 + 4); i++) {
@@ -64,6 +69,7 @@ public class TestClasesData {
             System.out.println(paciente.toString());           
         }
         System.out.println(".........................ELIMINAR PACIENTE - FIN");
+        
         //RECUPERAR PACIENTES ELIMINADOS        
         pac.guardarPaciente(pac1);
         pac.guardarPaciente(pac2);
@@ -80,6 +86,7 @@ public class TestClasesData {
         ComidasService com=new ComidasService();
         System.out.println(".........................COMIDAS_SERVICE..........................");
         System.out.println();
+        
         //GUARDAR ALIMENTOS
         Alimentos alim1= new Alimentos(1,"almendra",true);
         Alimentos alim2= new Alimentos(2,"arroz",true);
@@ -163,7 +170,6 @@ public class TestClasesData {
         com.cargarAlimentos(alim40);
 
         //GUARDAR COMIDAS
-
         Comidas comi1= new Comidas(324, "Sopa de lentejas","Almuerzo",25,"",false);
         Comidas comi2= new Comidas(327, "Sopa de verduras","Almuerzo",26,"",false);
         Comidas comi3= new Comidas(334, "Guiso de lentejas","Almuerzo",52,"",false);
@@ -453,8 +459,7 @@ public class TestClasesData {
         com.cargarComidas(comi143);
         com.cargarComidas(comi144);
 
-       //GUARDAR DIETAS POSIBLES
-
+        //GUARDAR DIETAS POSIBLES
         com.cargarDietasPosibles(1,700,607,320,512,702,401,true);
         com.cargarDietasPosibles(2,700,602,316,503,701,402,true);
         com.cargarDietasPosibles(3,700,603,313,501,702,401,true);
