@@ -10,7 +10,7 @@ public class RenglonDeMenus{
     public RenglonDeMenus(){
     }
 
-    public RenglonDeMenus(int nroRenglon, Comidas alimento, double cantidadGrs, int subtotalCalorias) {
+    public RenglonDeMenus(int nroRenglon, Comidas alimento, double cantidadGrs, int subtotalCalorias){
         this.nroRenglon = nroRenglon;
         this.alimento = alimento;
         this.cantidadGrs = cantidadGrs;

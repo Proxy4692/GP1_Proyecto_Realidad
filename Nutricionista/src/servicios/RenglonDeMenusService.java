@@ -50,20 +50,20 @@ public class RenglonDeMenusService{
         }
     }
     
-    public RenglonDeMenus obtenerRenglonPorNum(int nroRenglon){
+    public List<RenglonDeMenus> obtenerRenglonPorNum(int nroRenglon) throws SQLException{
+        List<RenglonDeMenu> renglones = new ArrayList<>();
         String sql = "SELECT * FROM RenglonDeMenu WHERE nroRenglon = ?";
         RenglonDeMenus renglon = null;
         try(PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, nroRenglon);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
-                renglon = new RenglonDeMenus(
-                        resultSet.getInt("nroRenglon"),
-                        resultSet.getDouble("cantidadGrs"),
-                        resultSet.getInt("subtotalCalorias"),
-                        resultSet.getInt("menuDiario_codMenu"),
-                        resultSet.getInt("alimento_codComida")
-                );
+                RenglonDeMenus renglon = new RenglonDeMenus();
+                        resultSet.getInt("nroRenglon");
+                        resultSet.getDouble("cantidadGrs");
+                        resultSet.getInt("subtotalCalorias");
+                        resultSet.getInt("menuDiario_codMenu");
+                        resultSet.getInt("alimento_codComida");
             }
         }catch(SQLException e){
             e.printStackTrace();
