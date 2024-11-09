@@ -59,7 +59,7 @@ public class RenglonDeMenusService{
             if(resultSet.next()){
                 RenglonDeMenus renglon = new RenglonDeMenus();
                 renglon.setNroRenglon(resultSet.getInt("nroRenglon"));
-                renglon.
+                renglon.setMenuDiario(resultSet.getInt("menu_diario_id"));
                         resultSet.getInt("nroRenglon");
                         resultSet.getDouble("cantidadGrs");
                         resultSet.getInt("subtotalCalorias");

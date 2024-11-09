@@ -8,15 +8,19 @@ import modelo.MenuDiarios;
 import modelo.RenglonDeMenus;
 
 public class MenuDiariosService{
+    private Connection connection;
     
-    private Connection con = null;
-
-    public MenuDiariosService(){
-        con = getConexion();
+    public MenuDiariosService(Connection connection){
+        this.connection = connection;
     }
     
-    public void alterarDietaDiaria(){
-        
+    public void alterarDietaDiaria(MenuDiarios menuDiarios) throws SQLException{
+        String sql = "UPDATE menu_diario SET fecha = ? WHERE id = ?";
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setDate(1, Date.valueOf(menuDiarios.getFecha()));
+            statement.setInt(2, menuDiarios.getId());
+            statement.executeUpdate();
+        }
     }
     
     public List<MenuDiarios> generarDietaDiaria(){
