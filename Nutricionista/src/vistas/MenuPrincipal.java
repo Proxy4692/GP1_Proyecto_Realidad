@@ -1,4 +1,3 @@
-
 package vistas;
 
 import java.awt.Graphics;
@@ -11,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Pacientes;
 import servicios.PacientesService;
 
-public class MenuPrincipal extends javax.swing.JFrame {
+public class MenuPrincipal extends javax.swing.JFrame{
     private DefaultTableModel modeloPaciente= new DefaultTableModel();
     private PacientesService pacServ=new PacientesService();
     private Pacientes pacienteActual=null;
@@ -22,14 +21,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private Double alturaP;
     private Double imc;
     private String nombre;
-    private Integer cantMenu;    
+    private Integer cantMenu;
     
-
-    public MenuPrincipal() {
+    public MenuPrincipal(){
         initComponents();
         Connection con=Conexion.getConexion();
         this.setLocationRelativeTo(null);
-        this.setSize(500, 520);       
+        this.setSize(500, 520);
 
         PacienteHab();
         ComidaApg();
@@ -37,9 +35,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         RenglonesApg();
         DietaApg();
         
-        armarCabeceraPacientes(); 
-        cargarDatosPacientes(); 
-        
+        armarCabeceraPacientes();
+        cargarDatosPacientes();
     }
 
     @SuppressWarnings("unchecked")
@@ -1669,7 +1666,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jLErrorAltura.setForeground(new java.awt.Color(255, 51, 102));
             jtAltura.setText("");
         }        
-        
     }//GEN-LAST:event_jtAlturaFocusLost
 
     private void jtPesoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoActualFocusGained
@@ -1699,8 +1695,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jLErrorPesoActual.setText("EL PESO ACTUAL ES UN VALOR NUMERICO");
             jLErrorPesoActual.setForeground(new java.awt.Color(255, 51, 102));
             jtPesoActual.setText("");
-        }              
-        
+        }
     }//GEN-LAST:event_jtPesoActualFocusLost
 
     private void jtPesoBuscadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoBuscadoFocusGained
@@ -1718,15 +1713,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jLErrorPesoBuscado.setForeground(new java.awt.Color(255, 51, 102));
                 return;
             }
-            pesoBuscado= Double.parseDouble(jtPesoBuscado.getText()); 
+            pesoBuscado= Double.parseDouble(jtPesoBuscado.getText());
             jLErrorPesoBuscado.setText("");
             Etapa1Completa();
         }catch(NumberFormatException nf){
             jLErrorPesoBuscado.setText("EL PESO BUSCADO ES UN VALOR NUMERICO");
             jLErrorPesoBuscado.setForeground(new java.awt.Color(255, 51, 102));
             jtPesoBuscado.setText("");
-        }              
-        
+        }
     }//GEN-LAST:event_jtPesoBuscadoFocusLost
 
     private void jbAltaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaPActionPerformed
@@ -1743,7 +1737,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             ComidaEnc();
             ComidaHab();  
         }
-
     }//GEN-LAST:event_jbAltaPActionPerformed
 
     private void jbAltaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaCActionPerformed
@@ -1757,8 +1750,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 //    }else{
         ComidaBlq();
         PasosEnc();
-//    }    
-
+//    }
     }//GEN-LAST:event_jbAltaCActionPerformed
 
     private void jSCantMenuStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSCantMenuStateChanged
