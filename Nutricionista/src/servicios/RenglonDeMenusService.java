@@ -22,7 +22,7 @@ public class RenglonDeMenusService{
         try(PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             statement.setDouble(1, renglon.getCantidadGrs());
             statement.setInt(2, renglon.getSubtotalCalorias());
-            statement.setInt(3, renglon.getMenuDiarioCodMenu());
+            statement.setInt(3, renglon.getNroRenglon());
             statement.setString(4, renglon.getAlimentoCodComida());
             statement.setInt(5, renglon.getNroRenglon());
             statement.executeUpdate();

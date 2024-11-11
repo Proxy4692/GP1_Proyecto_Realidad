@@ -11,17 +11,16 @@ import java.sql.Statement;
 
 public class DietasService{
     
-    private Connection con = null;
+    private Connection connection = null;
 
     public DietasService(){
-        con = getConexion();
+        connection = getConexion();
     }
     
     //Crear nueva dieta
     public void crearDieta(Dieta dieta){
         String sql = "INSERT INTO Dieta (codDieta, nombreD, fechaIni, fechaFin, pesoFinal, estado, totalCalorias, paciente_nroPaciente) VALUES (?, ?, ?, ?, ?, ? ,? ,?)";
-        try(Connection connection = MariaDBConnection.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)){
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, dieta.getCodDieta());
             statement.setInt(2, dieta.getNombreD());
@@ -38,8 +37,7 @@ public class DietasService{
     
     public void eliminarDieta(int codDieta){
         String sql = "DELETE FROM Dieta WHERE codDieta = ?";
-        try(Connection connection = MariaDBConnection.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)){
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setInt(1, codDieta);
             statement.executeUpdate();
@@ -50,8 +48,7 @@ public class DietasService{
     
     public void actualizarDieta(Dieta dieta){
         String sql = "UPDATE Dieta SET nombreD = ?, fechaIni = ?, fechaFin = ?, pesoFinal = ?, estado = ?, totalCalorias = ?, paciente_nroPaciente = ?, WHERE codDieta = ?";
-        try(Connection connection = MariaDBConnection.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)){
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
             
             statement.setString(1, dieta.getNombreD());
             statement.setDate(2, dieta.getFechaIni());
@@ -67,11 +64,10 @@ public class DietasService{
         }
     }
     
-    public void obtenerDietaPorCodigo(int codDieta){
+    public void obtenerDietaPorCodigo(int codDieta) throws SQLException{
         String sql = "SELECT * FROM Dieta WHERE codDieta = ?";
 
-        try(Connection connection = MariaDBConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)){
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, codDieta);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
@@ -86,17 +82,14 @@ public class DietasService{
                     resultSet.getInt("paciente_nroPaciente")
                 );
             }
-        }catch(SQLException e){
-            e.printStackTrace();
         }
     }
     
-    public List<Dieta> obtenerTodasLasDietas(){
+    public List<Dieta> obtenerTodasLasDietas() throws SQLException{
         String sql = "SELECT * FROM Dieta";
         List<Dieta> dietas = new ArrayList<>();
 
-        try(Connection connection = MariaDBConnection.getConnection();
-             Statement statement = connection.createStatement();
+        try(Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)){
 
             while(resultSet.next()){
@@ -112,8 +105,6 @@ public class DietasService{
                 );
                 dietas.add(dieta);
             }
-        }catch(SQLException e){
-            e.printStackTrace();
         }
         return dietas;
     }
