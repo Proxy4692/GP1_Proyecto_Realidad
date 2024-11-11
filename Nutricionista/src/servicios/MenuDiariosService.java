@@ -18,7 +18,7 @@ public class MenuDiariosService{
         String sql = "UPDATE menu_diario SET fecha = ? WHERE id = ?";
         try(PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setDate(1, Date.valueOf(menuDiarios.getFecha()));
-            statement.setInt(2, menuDiarios.getId());
+            statement.setInt(2, menuDiarios.getCodMenu());
             statement.executeUpdate();
         }
     }

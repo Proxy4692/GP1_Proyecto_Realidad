@@ -2,8 +2,7 @@ package modelo;
 
 import java.util.List;
 
-public class MenuDiarios {
-    
+public class MenuDiarios{
     private int codMenu;
     private int diaNro;
     private List comidas;
@@ -13,7 +12,7 @@ public class MenuDiarios {
     public MenuDiarios(){
     }
 
-    public MenuDiarios(int codMenu, int diaNro, List comidas, boolean estado, Dietas dieta) {
+    public MenuDiarios(int codMenu, int diaNro, List comidas, boolean estado, Dietas dieta){
         this.codMenu = codMenu;
         this.diaNro = diaNro;
         this.comidas = comidas;
