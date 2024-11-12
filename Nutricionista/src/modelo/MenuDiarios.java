@@ -10,6 +10,7 @@ public class MenuDiarios{
     private Dietas dieta;
 
     public MenuDiarios(){
+        
     }
 
     public MenuDiarios(int codMenu, int diaNro, List comidas, boolean estado, Dietas dieta){

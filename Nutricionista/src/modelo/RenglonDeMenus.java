@@ -1,13 +1,13 @@
 package modelo;
 
 public class RenglonDeMenus{
-    
     private int nroRenglon;
     private Comidas alimento;
     private double cantidadGrs;
     private int subtotalCalorias;
 
     public RenglonDeMenus(){
+        
     }
 
     public RenglonDeMenus(int nroRenglon, Comidas alimento, double cantidadGrs, int subtotalCalorias){
