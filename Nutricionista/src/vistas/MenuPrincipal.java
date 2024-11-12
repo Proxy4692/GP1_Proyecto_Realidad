@@ -1766,15 +1766,13 @@ public class MenuPrincipal extends javax.swing.JFrame{
             jSCantMenu.setValue(7);
             jLErrorMenusDiarios.setText("LA CANTIDAD DE MENUS DIARIOS NO PUEDE SUPERAR 7");
             jLErrorMenusDiarios.setForeground(new java.awt.Color(255, 51, 102));
-        }  
-        
+        }
     }//GEN-LAST:event_jSCantMenuStateChanged
 
     private void jSCantMenuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSCantMenuFocusGained
 
         jLErrorMenusDiarios.setForeground(new java.awt.Color(0, 47, 78));
-        jLErrorMenusDiarios.setText("INGRESE CANTIDAD DE MENUS DIARIOS : DESDE 3 HASTA 7");         
-        
+        jLErrorMenusDiarios.setText("INGRESE CANTIDAD DE MENUS DIARIOS : DESDE 3 HASTA 7");
     }//GEN-LAST:event_jSCantMenuFocusGained
 
     private void jSCantMenuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSCantMenuFocusLost
@@ -1782,11 +1780,9 @@ public class MenuPrincipal extends javax.swing.JFrame{
         cantMenu= Integer.parseInt(jSCantMenu.toString()); 
         jLErrorMenusDiarios.setText("");
         Etapa2Completa();
-   
-
     }//GEN-LAST:event_jSCantMenuFocusLost
 
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1812,31 +1808,27 @@ public class MenuPrincipal extends javax.swing.JFrame{
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new MenuPrincipal().setVisible(true);
             }
         });
     }
     
     private void Etapa1Completa(){
-        
         if(jtNombre.getText().isEmpty()&&jtEdad.getText().isEmpty()&&jtAltura.getText().isEmpty()&&jtPesoActual.getText().isEmpty()&&jtPesoBuscado.getText().isEmpty()){
             jLErrorNroPaciente.setText("");
             jLErrorAlta.setText("ASIGNAR UNA DIETA DIARIA");
             jLErrorIMC.setText("");
             jbAltaP.setEnabled(true);
         }
-        
     }
     
     private void Etapa2Completa(){
-        
         if(jtFechaIni.getText().isEmpty()||jtFechaFin.getText().isEmpty()){
         jLErrorNombreDieta.setText("");
         jbAltaC.setEnabled(true);
         }
-        
     }
     
     private void PacienteEnc(){
@@ -1928,7 +1920,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
         ComidaNoErr();
     }
     
-    private void ComidaErr(){      
+    private void ComidaErr(){
         jtNombreDieta.setText("DIETA LUNAR");
         jLErrorNombreDieta.setText("NOMBRE AUTOASIGNADO");
         jLErrorMenusDiarios.setText("INGRESE CANTIDAD DE MENUS DIARIOS : DESDE 3 HASTA 7");
@@ -1969,10 +1961,10 @@ public class MenuPrincipal extends javax.swing.JFrame{
     }
     
     private void RenglonesEnc(){
-        
         DefinicionDeComidas.setVisible(true);
         jPDatos3.setVisible(true);
     }
+    
     private void RenglonesApg(){
         DefinicionDeComidas.setVisible(false);
         jPDatos3.setVisible(false);
@@ -2024,14 +2016,11 @@ public class MenuPrincipal extends javax.swing.JFrame{
         for(int f=filas;f>=0;f--){
             modeloPaciente.removeRow(f);
         }
-        for (Pacientes paciente : pacServ.listarPaciente()) {
+        for(Pacientes paciente : pacServ.listarPaciente()){
             modeloPaciente.addRow(new Object[]{paciente.getNroPaciente(), paciente.getNombre(), paciente.getEdad(),paciente.getAltura(),paciente.getPesoActual(), paciente.getPesoBuscado(),0});          
         }
         jTablePaciente.enable(true);
     }
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DatosDelPaciente;
