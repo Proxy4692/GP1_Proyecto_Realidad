@@ -21,11 +21,10 @@ public class Conexion{
             JOptionPane.showMessageDialog(null,"Conectado");
             
         }catch(ClassNotFoundException ex){
-            JOptionPane.showMessageDialog(null,"Error al cargar los driver: "+ex.getMessage());
-            
-            
+            JOptionPane.showMessageDialog(null,"Error al cargar los driver: " + ex.getMessage());
+
         }catch(SQLException ex){
-            JOptionPane.showConfirmDialog(null, "Error al cargar la Base de Datos: "+ex.getMessage());
+            JOptionPane.showConfirmDialog(null, "Error al cargar la Base de Datos: " + ex.getMessage());
             }
         }
         return connection;
