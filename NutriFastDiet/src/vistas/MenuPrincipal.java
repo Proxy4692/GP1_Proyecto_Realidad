@@ -418,6 +418,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         selMerienda = new javax.swing.JTextField();
         selCena = new javax.swing.JTextField();
         selAlmuerzo = new javax.swing.JTextField();
+        ImageIcon icono=new ImageIcon(getClass().getResource("/recursos/nutriFondo.png"));
+        Image miImagen=icono.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar = new javax.swing.JMenuBar();
         jmMaterias = new javax.swing.JMenu();
         jmAdministracion = new javax.swing.JMenu();
@@ -1998,6 +2005,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        escritorio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        escritorio.setName(""); // NOI18N
+        escritorio.setPreferredSize(new java.awt.Dimension(500, 900));
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2091, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1059, Short.MAX_VALUE)
+        );
+
         jmMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/materia50.gif"))); // NOI18N
         jmMaterias.setToolTipText("Materias");
         jmMaterias.setMargin(new java.awt.Insets(2, 20, 2, 2));
@@ -2125,6 +2148,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addComponent(jLCena, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 2091, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2205,6 +2230,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSCena, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(15, 15, 15)
+                    .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
+                    .addGap(16, 16, 16)))
         );
 
         jCTipoComida.getAccessibleContext().setAccessibleParent(jtComidas);
@@ -4249,6 +4279,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel DatosDelPaciente;
     private javax.swing.JLabel DietaDiaria;
     private javax.swing.JLabel SeleccionDeDieta;
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JComboBox<String> jCKcalS;
     private javax.swing.JComboBox<String> jCTipoComida;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
