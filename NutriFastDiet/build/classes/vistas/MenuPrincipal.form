@@ -272,7 +272,7 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSDesayuno" alignment="1" pref="558" max="32767" attributes="0"/>
+                  <Component id="jSDesayuno" alignment="1" pref="555" max="32767" attributes="0"/>
                   <Component id="jSCena" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
@@ -321,13 +321,13 @@
                           </Group>
                           <Component id="jLCena" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="escritorio" alignment="0" pref="2094" max="32767" attributes="0"/>
+              <Component id="escritorio" alignment="0" pref="2091" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -668,7 +668,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="cc" type="rgb"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Codigo de paiente autogenerado"/>
+            <Property name="toolTipText" type="java.lang.String" value="Codigo de paciente autogenerado"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
             </Property>
@@ -720,7 +720,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese apellido del alumno"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese apellido y nombre"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
             </Property>
@@ -776,7 +776,7 @@
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese nombre del alumno"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese edad"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
             </Property>
@@ -833,7 +833,7 @@
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese nombre del alumno"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese altura"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
             </Property>
@@ -890,7 +890,7 @@
               <Color blue="ff" green="ff" red="cc" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese nombre del alumno"/>
+            <Property name="toolTipText" type="java.lang.String" value="Indice de Masa Corporal"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
             </Property>
@@ -943,7 +943,7 @@
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese su nombre"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese su peso"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 71]"/>
             </Property>
@@ -1003,7 +1003,7 @@
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese su nombre"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese su peso buscado"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 71]"/>
             </Property>
@@ -1048,7 +1048,7 @@
               <Color blue="ff" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Alta"/>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Guardar Paciente"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -1371,6 +1371,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="jSCantMenu">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Cantidad de d&#xed;as semanales del menu"/>
+          </Properties>
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSCantMenuStateChanged"/>
           </Events>
@@ -1412,6 +1415,7 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Cantidad de kcal semanal"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCKcalSItemStateChanged"/>
@@ -1462,7 +1466,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese su nombre"/>
+            <Property name="toolTipText" type="java.lang.String" value="Fecha Inicio Dieta"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
             </Property>
@@ -1525,7 +1529,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Ingrese su nombre"/>
+            <Property name="toolTipText" type="java.lang.String" value="Fecha Finalizada la Dieta"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
             </Property>
@@ -1574,7 +1578,7 @@
               <Color blue="ff" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Confirmar configuracion de Dieta"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -1624,7 +1628,7 @@
           <Font name="Dubai" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Paso1"/>
-        <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+        <Property name="toolTipText" type="java.lang.String" value="Paso1: Comidas"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 7, 2, 7]"/>
         </Property>
@@ -1672,7 +1676,7 @@
           <Font name="Dubai" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Paso 2"/>
-        <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+        <Property name="toolTipText" type="java.lang.String" value="Paso 2: Renglones"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 7, 2, 7]"/>
         </Property>
@@ -1720,7 +1724,7 @@
           <Font name="Dubai" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Paso 3"/>
-        <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+        <Property name="toolTipText" type="java.lang.String" value="Paso 3: Dieta"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 7, 2, 7]"/>
         </Property>
@@ -1769,6 +1773,7 @@
             <EtchetBorder/>
           </Border>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
 
       <Layout>
@@ -2806,7 +2811,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/recursos/asignar30.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cambiar Dieta Jueves"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -2839,7 +2844,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/recursos/asignar30.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cambiar Dieta Miercoles"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -2872,7 +2877,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/recursos/asignar30.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cambiar Dieta Martes"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -2905,7 +2910,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/recursos/asignar30.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cambiar Dieta Lunes"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -2938,7 +2943,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/recursos/asignar30.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cambiar Dieta Viernes"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -2971,7 +2976,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/recursos/asignar30.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cambiar Dieta Sabado"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -3004,7 +3009,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/recursos/asignar30.gif"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cambiar Dieta Domingo"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 7, 2, 7]"/>
             </Property>
@@ -3324,7 +3329,7 @@
           <Font name="Dubai" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Paso1"/>
-        <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+        <Property name="toolTipText" type="java.lang.String" value="Paso 1: Comidas"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 7, 2, 7]"/>
         </Property>
@@ -3372,7 +3377,7 @@
           <Font name="Dubai" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Paso 2"/>
-        <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+        <Property name="toolTipText" type="java.lang.String" value="Paso 2: Renglones"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 7, 2, 7]"/>
         </Property>
@@ -3420,7 +3425,7 @@
           <Font name="Dubai" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Paso 3"/>
-        <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+        <Property name="toolTipText" type="java.lang.String" value="Paso 3: Dieta"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 7, 2, 7]"/>
         </Property>
@@ -3451,7 +3456,7 @@
           <Color blue="0" green="0" red="66" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="RE-ASIGNAR"/>
-        <Property name="toolTipText" type="java.lang.String" value="B&#xfa;squeda por DNI"/>
+        <Property name="toolTipText" type="java.lang.String" value="Reasignar Dieta"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 7, 2, 7]"/>
         </Property>
@@ -3507,6 +3512,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="selColacionMouseClicked"/>

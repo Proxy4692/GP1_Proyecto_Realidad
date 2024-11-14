@@ -491,7 +491,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtNroPaciente.setBackground(new java.awt.Color(51, 51, 55));
         jtNroPaciente.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jtNroPaciente.setForeground(new java.awt.Color(204, 255, 255));
-        jtNroPaciente.setToolTipText("Codigo de paiente autogenerado");
+        jtNroPaciente.setToolTipText("Codigo de paciente autogenerado");
         jtNroPaciente.setMinimumSize(new java.awt.Dimension(25, 25));
         jtNroPaciente.setName(""); // NOI18N
         jtNroPaciente.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -512,7 +512,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtNombre.setBackground(new java.awt.Color(204, 255, 255));
         jtNombre.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtNombre.setForeground(new java.awt.Color(102, 0, 204));
-        jtNombre.setToolTipText("Ingrese apellido del alumno");
+        jtNombre.setToolTipText("Ingrese apellido y nombre");
         jtNombre.setMinimumSize(new java.awt.Dimension(25, 25));
         jtNombre.setName(""); // NOI18N
         jtNombre.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -541,7 +541,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtEdad.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtEdad.setForeground(new java.awt.Color(102, 0, 204));
         jtEdad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtEdad.setToolTipText("Ingrese nombre del alumno");
+        jtEdad.setToolTipText("Ingrese edad");
         jtEdad.setMinimumSize(new java.awt.Dimension(25, 25));
         jtEdad.setName(""); // NOI18N
         jtEdad.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -571,7 +571,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtAltura.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtAltura.setForeground(new java.awt.Color(102, 0, 204));
         jtAltura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtAltura.setToolTipText("Ingrese nombre del alumno");
+        jtAltura.setToolTipText("Ingrese altura");
         jtAltura.setMinimumSize(new java.awt.Dimension(25, 25));
         jtAltura.setName(""); // NOI18N
         jtAltura.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -601,7 +601,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtIMC.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtIMC.setForeground(new java.awt.Color(204, 255, 255));
         jtIMC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtIMC.setToolTipText("Ingrese nombre del alumno");
+        jtIMC.setToolTipText("Indice de Masa Corporal");
         jtIMC.setMinimumSize(new java.awt.Dimension(25, 25));
         jtIMC.setName(""); // NOI18N
         jtIMC.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -623,7 +623,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtPesoActual.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jtPesoActual.setForeground(new java.awt.Color(102, 0, 204));
         jtPesoActual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtPesoActual.setToolTipText("Ingrese su nombre");
+        jtPesoActual.setToolTipText("Ingrese su peso");
         jtPesoActual.setMaximumSize(new java.awt.Dimension(25, 71));
         jtPesoActual.setMinimumSize(new java.awt.Dimension(25, 25));
         jtPesoActual.setName(""); // NOI18N
@@ -654,7 +654,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtPesoBuscado.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jtPesoBuscado.setForeground(new java.awt.Color(102, 0, 204));
         jtPesoBuscado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtPesoBuscado.setToolTipText("Ingrese su nombre");
+        jtPesoBuscado.setToolTipText("Ingrese su peso buscado");
         jtPesoBuscado.setMaximumSize(new java.awt.Dimension(25, 71));
         jtPesoBuscado.setMinimumSize(new java.awt.Dimension(25, 25));
         jtPesoBuscado.setName(""); // NOI18N
@@ -679,7 +679,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbAltaP.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbAltaP.setForeground(new java.awt.Color(0, 0, 255));
         jbAltaP.setText("Alta");
-        jbAltaP.setToolTipText("Búsqueda por DNI");
+        jbAltaP.setToolTipText("Guardar Paciente");
         jbAltaP.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbAltaP.setMaximumSize(new java.awt.Dimension(81, 24));
         jbAltaP.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -892,6 +892,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLCantMenu.setText("Cantidad de menus diarios:");
         jLCantMenu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        jSCantMenu.setToolTipText("Cantidad de días semanales del menu");
         jSCantMenu.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSCantMenuStateChanged(evt);
@@ -912,6 +913,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLKcalPorSemana.setText("Kcal/100g por semana:");
         jLKcalPorSemana.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        jCKcalS.setToolTipText("Cantidad de kcal semanal");
         jCKcalS.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCKcalSItemStateChanged(evt);
@@ -934,7 +936,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtFechaIni.setBackground(new java.awt.Color(255, 204, 255));
         jtFechaIni.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtFechaIni.setForeground(new java.awt.Color(102, 0, 204));
-        jtFechaIni.setToolTipText("Ingrese su nombre");
+        jtFechaIni.setToolTipText("Fecha Inicio Dieta");
         jtFechaIni.setMinimumSize(new java.awt.Dimension(25, 25));
         jtFechaIni.setName(""); // NOI18N
         jtFechaIni.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -963,7 +965,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtFechaFin.setBackground(new java.awt.Color(255, 204, 255));
         jtFechaFin.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtFechaFin.setForeground(new java.awt.Color(102, 0, 204));
-        jtFechaFin.setToolTipText("Ingrese su nombre");
+        jtFechaFin.setToolTipText("Fecha Finalizada la Dieta");
         jtFechaFin.setMinimumSize(new java.awt.Dimension(25, 25));
         jtFechaFin.setName(""); // NOI18N
         jtFechaFin.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -987,7 +989,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbAltaC.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbAltaC.setForeground(new java.awt.Color(0, 0, 255));
         jbAltaC.setText("Confirmar");
-        jbAltaC.setToolTipText("Búsqueda por DNI");
+        jbAltaC.setToolTipText("Confirmar configuracion de Dieta");
         jbAltaC.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbAltaC.setMaximumSize(new java.awt.Dimension(81, 24));
         jbAltaC.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1104,7 +1106,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso1.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso1.setText("Paso1");
-        jbPaso1.setToolTipText("Búsqueda por DNI");
+        jbPaso1.setToolTipText("Paso1: Comidas");
         jbPaso1.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso1.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso1.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1126,7 +1128,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso2.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso2.setText("Paso 2");
-        jbPaso2.setToolTipText("Búsqueda por DNI");
+        jbPaso2.setToolTipText("Paso 2: Renglones");
         jbPaso2.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso2.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso2.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1148,7 +1150,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso3.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso3.setText("Paso 3");
-        jbPaso3.setToolTipText("Búsqueda por DNI");
+        jbPaso3.setToolTipText("Paso 3: Dieta");
         jbPaso3.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso3.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso3.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1169,6 +1171,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPDatos3.setBackground(new java.awt.Color(0, 47, 78));
         jPDatos3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPDatos3.setToolTipText("");
 
         jtComidas1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1501,7 +1504,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modJueves.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modJueves.setForeground(new java.awt.Color(102, 0, 0));
         modJueves.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modJueves.setToolTipText("Búsqueda por DNI");
+        modJueves.setToolTipText("Cambiar Dieta Jueves");
         modJueves.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modJueves.setMaximumSize(new java.awt.Dimension(81, 24));
         modJueves.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1517,7 +1520,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modMiercoles.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modMiercoles.setForeground(new java.awt.Color(102, 0, 0));
         modMiercoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modMiercoles.setToolTipText("Búsqueda por DNI");
+        modMiercoles.setToolTipText("Cambiar Dieta Miercoles");
         modMiercoles.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modMiercoles.setMaximumSize(new java.awt.Dimension(81, 24));
         modMiercoles.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1533,7 +1536,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modMartes.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modMartes.setForeground(new java.awt.Color(102, 0, 0));
         modMartes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modMartes.setToolTipText("Búsqueda por DNI");
+        modMartes.setToolTipText("Cambiar Dieta Martes");
         modMartes.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modMartes.setMaximumSize(new java.awt.Dimension(81, 24));
         modMartes.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1549,7 +1552,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modLunes.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modLunes.setForeground(new java.awt.Color(102, 0, 0));
         modLunes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modLunes.setToolTipText("Búsqueda por DNI");
+        modLunes.setToolTipText("Cambiar Dieta Lunes");
         modLunes.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modLunes.setMaximumSize(new java.awt.Dimension(81, 24));
         modLunes.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1565,7 +1568,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modViernes.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modViernes.setForeground(new java.awt.Color(102, 0, 0));
         modViernes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modViernes.setToolTipText("Búsqueda por DNI");
+        modViernes.setToolTipText("Cambiar Dieta Viernes");
         modViernes.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modViernes.setMaximumSize(new java.awt.Dimension(81, 24));
         modViernes.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1581,7 +1584,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modSabado.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modSabado.setForeground(new java.awt.Color(102, 0, 0));
         modSabado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modSabado.setToolTipText("Búsqueda por DNI");
+        modSabado.setToolTipText("Cambiar Dieta Sabado");
         modSabado.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modSabado.setMaximumSize(new java.awt.Dimension(81, 24));
         modSabado.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1597,7 +1600,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modDomingo.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modDomingo.setForeground(new java.awt.Color(102, 0, 0));
         modDomingo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modDomingo.setToolTipText("Búsqueda por DNI");
+        modDomingo.setToolTipText("Cambiar Dieta Domingo");
         modDomingo.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modDomingo.setMaximumSize(new java.awt.Dimension(81, 24));
         modDomingo.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1874,7 +1877,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso4.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso4.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso4.setText("Paso1");
-        jbPaso4.setToolTipText("Búsqueda por DNI");
+        jbPaso4.setToolTipText("Paso 1: Comidas");
         jbPaso4.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso4.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso4.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1896,7 +1899,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso5.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso5.setText("Paso 2");
-        jbPaso5.setToolTipText("Búsqueda por DNI");
+        jbPaso5.setToolTipText("Paso 2: Renglones");
         jbPaso5.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso5.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso5.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1918,7 +1921,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso6.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso6.setText("Paso 3");
-        jbPaso6.setToolTipText("Búsqueda por DNI");
+        jbPaso6.setToolTipText("Paso 3: Dieta");
         jbPaso6.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso6.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso6.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1934,7 +1937,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbReasignar.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         jbReasignar.setForeground(new java.awt.Color(102, 0, 0));
         jbReasignar.setText("RE-ASIGNAR");
-        jbReasignar.setToolTipText("Búsqueda por DNI");
+        jbReasignar.setToolTipText("Reasignar Dieta");
         jbReasignar.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbReasignar.setMaximumSize(new java.awt.Dimension(81, 24));
         jbReasignar.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1964,6 +1967,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         selColacion.setBackground(new java.awt.Color(102, 0, 102));
         selColacion.setFont(new java.awt.Font("Dubai", 3, 12)); // NOI18N
         selColacion.setForeground(new java.awt.Color(255, 255, 255));
+        selColacion.setToolTipText("");
         selColacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 selColacionMouseClicked(evt);
@@ -2108,7 +2112,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(jPDatos4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSDesayuno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .addComponent(jSDesayuno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                     .addComponent(jSCena, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(214, 214, 214)
@@ -2147,10 +2151,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                     .addComponent(jbPaso6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLRPaso6, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
                             .addComponent(jLCena, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 2094, Short.MAX_VALUE))
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 2091, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
