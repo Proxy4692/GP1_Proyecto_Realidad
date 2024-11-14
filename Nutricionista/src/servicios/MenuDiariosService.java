@@ -17,8 +17,7 @@ public class MenuDiariosService{
     public void alterarDietaDiaria(MenuDiarios menuDiarios) throws SQLException{
         String sql = "UPDATE menu_diario SET fecha = ? WHERE id = ?";
         try(PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setDate(1, Date.valueOf(menuDiarios.getFecha()));
-            statement.setInt(2, menuDiarios.getCodMenu());
+            statement.setInt(1, menuDiarios.getCodMenu());
             statement.executeUpdate();
         }
     }

@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class Conexion{
     
-    private static final String URL="jdbc:mariadb://localhost/";
+    private static final String URL="jdbc:mariadb://localhost/3306";
     private static final String DB ="nutricionista";
     private static final String USUARIO="root";
     private static final String PASSWORD="";
@@ -21,11 +21,10 @@ public class Conexion{
             JOptionPane.showMessageDialog(null,"Conectado");
             
         }catch(ClassNotFoundException ex){
-            JOptionPane.showMessageDialog(null,"Error al cargar los driver: "+ex.getMessage());
-            
-            
+            JOptionPane.showMessageDialog(null,"Error al cargar los driver: " + ex.getMessage());
+
         }catch(SQLException ex){
-            JOptionPane.showConfirmDialog(null, "Error al cargar la Base de Datos: "+ex.getMessage());
+            JOptionPane.showConfirmDialog(null, "Error al cargar la Base de Datos: " + ex.getMessage());
             }
         }
         return connection;
