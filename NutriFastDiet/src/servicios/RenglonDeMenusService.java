@@ -11,7 +11,7 @@ import java.util.List;
 import modelo.Comidas;
 import modelo.RenglonDeMenus;
 
-public class RenglonDeMenusService {
+public class RenglonDeMenusService{
     
     private Connection con = null;
 
@@ -34,13 +34,13 @@ public class RenglonDeMenusService {
             ps.setInt(3, comida.getCodComida());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Menú guardado: "+comida.getNombre());
             }else{
                 System.out.println("Menú no guardado: "+comida.getNombre());
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar Menú: " + ex.getMessage());
         }
     }        
@@ -80,7 +80,7 @@ public class RenglonDeMenusService {
             ps.setInt(2, subtotal.intValue());
             ps.setInt(3, renglon.getNroRenglon());
             int am=ps.executeUpdate();
-            if (am==1){
+            if(am==1){
                 System.out.println("El Renglon fue actualizado :"+renglon.getNroRenglon());
             }else{
                 System.out.println("El Renglon no fue actualizado :"+renglon.getNroRenglon());
@@ -103,7 +103,7 @@ public class RenglonDeMenusService {
             }
             ps.close();
         }catch(SQLException ex){
-            System.out.println( "Error al acceder a la tabla Renglon de Menus");
+            System.out.println("Error al acceder a la tabla Renglon de Menus");
         }
     }        
     
@@ -120,7 +120,7 @@ public class RenglonDeMenusService {
             }
             ps.close();
         }catch(SQLException ex){
-            System.out.println( "Error al acceder a la tabla inscripcion");
+            System.out.println("Error al acceder a la tabla inscripcion");
         }
     }
     

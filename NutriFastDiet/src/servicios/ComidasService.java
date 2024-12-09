@@ -11,7 +11,7 @@ import java.util.List;
 import modelo.Alimentos;
 import modelo.Comidas;
 
-public class ComidasService {
+public class ComidasService{
     
     private Connection con = null;
 
@@ -28,7 +28,7 @@ public class ComidasService {
             ps.setBoolean(3, alimento.isSelA());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Alimento guardado: "+alimento.getNombreA());
             }else{
                 System.out.println("Alimento no guardado: "+alimento.getNombreA());
@@ -52,7 +52,7 @@ public class ComidasService {
             ps.setBoolean(6, comida.isBaja());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Comida guardada: "+comida.getNombre());
             }else{
                 System.out.println("Comida no guardada: "+comida.getNombre());
@@ -72,7 +72,7 @@ public class ComidasService {
             ps.setInt(2,codAli);
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Comida guardada: "+codCom+" - "+codAli);
             }else{
                 System.out.println("Comida no guardada: "+codCom+" - "+codAli);
@@ -95,7 +95,7 @@ public class ComidasService {
             ps.setInt(6,k10500);
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Caloria guardada: ");
             }else{
                 System.out.println("Caloria no guardada: ");
@@ -121,7 +121,7 @@ public class ComidasService {
             ps.setBoolean(8,estado);
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                 System.out.println("Dieta guardada: ");
             }else{
                 System.out.println("Dieta no guardada: ");
@@ -140,7 +140,7 @@ public class ComidasService {
             ps.setBoolean(1, alimento.isSelA());
             ps.setInt(2, alimento.getCodAlimento());
             int mm=ps.executeUpdate();
-            if (mm == 1){
+            if(mm == 1){
                 System.out.println("El alimento " +alimento.getCodAlimento()
                         +" fue modificado exitosamente");
             }else{
@@ -184,7 +184,7 @@ public class ComidasService {
         try{
                 PreparedStatement ps = con.prepareStatement (sql);
                 ResultSet ml = ps.executeQuery ();
-            while (ml.next()) {
+            while(ml.next()){
                 Alimentos alimento = new Alimentos();
                 alimento.setCodAlimento (ml.getInt ("codAlimento"));
                 alimento.setNombreA (ml.getString ("nombreA"));
@@ -206,7 +206,7 @@ public class ComidasService {
             ps.setBoolean(1, comida.isBaja());
             ps.setInt(2, comida.getCodComida());
             int mm=ps.executeUpdate();
-            if (mm == 1){
+            if(mm == 1){
                 System.out.println("La comida " +comida.getCodComida()
                         +" fue modificada exitosamente");
             }else{
@@ -227,7 +227,7 @@ public class ComidasService {
             ps.setString(1, detalle);
             ps.setInt(2, comida.getCodComida());
             int mm=ps.executeUpdate();
-            if (mm == 1){
+            if(mm == 1){
                 System.out.println("La comida " +comida.getCodComida()
                         +" fue modificada exitosamente");
             }else{
@@ -247,7 +247,7 @@ public class ComidasService {
         try{
                 PreparedStatement ps = con.prepareStatement (sql);
                 ResultSet ml = ps.executeQuery ();
-            while (ml.next()) {
+            while(ml.next()){
                 Comidas comida = new Comidas();
                 comida.setCodComida(ml.getInt ("conComida"));
                 comida.setNombre (ml.getString ("nombre"));
@@ -270,7 +270,7 @@ public class ComidasService {
         try{
                 PreparedStatement ps = con.prepareStatement (sql);
                 ResultSet ml = ps.executeQuery ();
-            while (ml.next()) {
+            while(ml.next()){
                 Comidas comida = new Comidas();
                 comida.setCodComida(ml.getInt ("conComida"));
                 comida.setNombre (ml.getString ("nombre"));
@@ -297,7 +297,7 @@ public class ComidasService {
             ps.setInt(1, comida.getCodComida());
             ResultSet ml = ps.executeQuery ();
             String detalleComida="";
-            while (ml.next()) {
+            while(ml.next()){
                 if(detalleComida.isEmpty()){
                     detalleComida= detalleComida+ml.getString ("nombreA");
                 }else{
@@ -344,6 +344,4 @@ public class ComidasService {
         List<Alimentos> alim= null;
         return alim;
     }
-    
-
 }

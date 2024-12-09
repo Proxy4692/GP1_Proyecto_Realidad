@@ -11,7 +11,7 @@ import java.util.List;
 import modelo.MenuDiarios;
 import modelo.RenglonDeMenus;
 
-public class MenuDiariosService {
+public class MenuDiariosService{
     
     private Connection con = null;
 
@@ -104,9 +104,6 @@ public class MenuDiariosService {
         }
         return menuDiario;
     }
-    
-    
-    
     
     public void alterarDietaDiaria(){
         

@@ -32,7 +32,7 @@ public class PacientesService {
             ps.setDouble(5, paciente.getPesoBuscado());
             ps.executeUpdate();
             ResultSet mg = ps.getGeneratedKeys();
-            if (mg.next()) {
+            if(mg.next()){
                     paciente.setNroPaciente(mg.getInt(1));
                     JOptionPane.showMessageDialog(null, "El paciente "+paciente.getNombre()
                             +" ha sido guardado exitosamente");
@@ -40,7 +40,7 @@ public class PacientesService {
                 JOptionPane.showMessageDialog(null, "El paciente no pudo ser guardado");
             }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 System.out.println("Error al guardar el paciente: " + ex.getMessage());
         }
     }
@@ -56,7 +56,7 @@ public class PacientesService {
             ps.setDouble(5, paciente. getPesoBuscado ());
             ps.setFloat(6, paciente. getNroPaciente ());
             int mm=ps.executeUpdate();
-            if (mm == 1){
+            if(mm == 1){
                 JOptionPane.showMessageDialog(null, "El paciente " +paciente.getNombre()
                         +" fue modificado exitosamente");
             }else{
@@ -94,7 +94,7 @@ public class PacientesService {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet mb = ps.executeQuery();
-            if (mb.next()) {
+            if(mb.next()){
                 paciente = new Pacientes();
                 paciente.setNroPaciente (mb.getInt("nroPaciente"));
                 paciente.setNombre (mb.getString("nombre"));
@@ -116,7 +116,7 @@ public class PacientesService {
         try{
                 PreparedStatement ps = con.prepareStatement (sql);
                 ResultSet ml = ps.executeQuery ();
-            while (ml.next()) {
+            while(ml.next()){
                 Pacientes paciente = new Pacientes();
                 paciente.setNroPaciente (ml.getInt ("nroPaciente"));
                 paciente.setNombre (ml.getString ("nombre"));
@@ -149,5 +149,4 @@ public class PacientesService {
         List<Pacientes> pac= null;
         return pac;
     }
-    
 }

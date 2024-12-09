@@ -100,7 +100,7 @@ public class DietasService {
 //            ps.setDouble(5, paciente. getPesoBuscado ());
 //            ps.setFloat(6, paciente. getNroPaciente ());
 //            int mm=ps.executeUpdate();
-//            if (mm == 1){
+//            if(mm == 1){
 //                JOptionPane.showMessageDialog(null, "El paciente " +paciente.getNombre()
 //                        +" fue modificado exitosamente");
 //            }else{
@@ -160,7 +160,7 @@ public class DietasService {
 //        try{
 //                PreparedStatement ps = con.prepareStatement (sql);
 //                ResultSet ml = ps.executeQuery ();
-//            while (ml.next()) {
+//            while (ml.next()){
 //                Pacientes paciente = new Pacientes();
 //                paciente.setNroPaciente (ml.getInt ("nroPaciente"));
 //                paciente.setNombre (ml.getString ("nombre"));

@@ -21,7 +21,7 @@ import servicios.ComidasService;
 import servicios.MenuDiariosService;
 import servicios.RenglonDeMenusService;
 
-public class MenuPrincipal extends javax.swing.JFrame {
+public class MenuPrincipal extends javax.swing.JFrame{
     private DefaultTableModel modeloBorrador= new DefaultTableModel();
     private DefaultTableModel modeloAlimento= new DefaultTableModel(){
         public boolean isCellEditable(int fila, int columna){
@@ -31,7 +31,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             return false;
         }
     
-        Class[] typesA = new Class [] {
+        Class[] typesA = new Class []{
                 java.lang.Integer.class, java.lang.String.class,  java.lang.Boolean.class
             };
         public Class getColumnClass(int columnIndex) {
@@ -46,10 +46,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             return false;
         }
     
-        Class[] typesC = new Class [] {
+        Class[] typesC = new Class []{
                 java.lang.Integer.class, java.lang.String.class,  java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
-        public Class getColumnClass(int columnIndex) {
+        public Class getColumnClass(int columnIndex){
                 return typesC [columnIndex];
             }
     };
@@ -61,10 +61,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             return false;
         }
     
-        Class[] typesC = new Class [] {
+        Class[] typesC = new Class []{
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
-        public Class getColumnClass(int columnIndex) {
+        public Class getColumnClass(int columnIndex){
                 return typesC [columnIndex];
             }
     };
@@ -76,10 +76,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             return false;
         }
     
-        Class[] typesC = new Class [] {
+        Class[] typesC = new Class []{
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
-        public Class getColumnClass(int columnIndex) {
+        public Class getColumnClass(int columnIndex){
                 return typesC [columnIndex];
             }
     };
@@ -91,10 +91,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             return false;
         }
     
-        Class[] typesC = new Class [] {
+        Class[] typesC = new Class []{
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
-        public Class getColumnClass(int columnIndex) {
+        public Class getColumnClass(int columnIndex){
                 return typesC [columnIndex];
             }
     };
@@ -106,10 +106,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             return false;
         }
     
-        Class[] typesC = new Class [] {
+        Class[] typesC = new Class []{
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
-        public Class getColumnClass(int columnIndex) {
+        public Class getColumnClass(int columnIndex){
                 return typesC [columnIndex];
             }
     };
