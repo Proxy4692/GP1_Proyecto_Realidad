@@ -1,6 +1,5 @@
-
 package vistas;
-
+//IMPORT
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
@@ -20,7 +19,7 @@ import modelo.RenglonDeMenus;
 import servicios.ComidasService;
 import servicios.MenuDiariosService;
 import servicios.RenglonDeMenusService;
-
+//Formato de TABLE MODEL
 public class MenuPrincipal extends javax.swing.JFrame {
     private DefaultTableModel modeloBorrador= new DefaultTableModel();
     private DefaultTableModel modeloAlimento= new DefaultTableModel(){
@@ -30,7 +29,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesA = new Class [] {
                 java.lang.Integer.class, java.lang.String.class,  java.lang.Boolean.class
             };
@@ -45,7 +43,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.String.class,  java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
@@ -60,7 +57,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
@@ -75,7 +71,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
@@ -90,7 +85,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
@@ -105,7 +99,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
@@ -120,7 +113,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
@@ -135,7 +127,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Double.class, java.lang.Integer.class
             };
@@ -150,7 +141,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Double.class, java.lang.Integer.class
             };
@@ -165,7 +155,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Double.class, java.lang.Integer.class
             };
@@ -180,7 +169,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Double.class, java.lang.Integer.class
             };
@@ -195,7 +183,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Double.class, java.lang.Integer.class
             };
@@ -210,7 +197,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Double.class, java.lang.Integer.class
             };
@@ -225,7 +211,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             return false;
         }
-    
         Class[] typesC = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,  java.lang.Double.class, java.lang.Integer.class
             };
@@ -233,7 +218,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 return typesC [columnIndex];
             }
     };
-
+//Declaro CONSTRUCTORES ARRAYS y VARIABLES
     private PacientesService pacServ=new PacientesService();
     private ComidasService comServ=new ComidasService();
     private RenglonDeMenusService rengMenu= new RenglonDeMenusService();
@@ -261,21 +246,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private Integer almActual;
     private Integer colActual;
     private Integer merActual;
-    private Integer cenActual;
-    
+    private Integer cenActual;   
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;
-
-
-    
-
+//Inicio de FORM COMPONENTS
     public MenuPrincipal() {
         initComponents();
         Connection con=Conexion.getConexion();
         this.setLocationRelativeTo(null);
-        this.setSize(500, 520);       
+        this.setSize(500, 520);//Tamaño de FORMS 
         initForm();
-        etapa1();
+        etapa0();
     }
 
     @SuppressWarnings("unchecked")
@@ -426,11 +407,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         };
         jMenuBar = new javax.swing.JMenuBar();
-        jmMaterias = new javax.swing.JMenu();
-        jmAdministracion = new javax.swing.JMenu();
-        jmConsultas = new javax.swing.JMenu();
-        jmAlumnos = new javax.swing.JMenu();
+        jmPacientes = new javax.swing.JMenu();
+        jMPacienteNuevo = new javax.swing.JMenuItem();
+        jMPacienteModificar = new javax.swing.JMenuItem();
+        jMPacienteSeguim = new javax.swing.JMenuItem();
+        jmComidas = new javax.swing.JMenu();
+        jMAlimentoVer = new javax.swing.JMenuItem();
+        jMComidaNuevo = new javax.swing.JMenuItem();
+        jMComidaModificar = new javax.swing.JMenuItem();
+        jmDietas = new javax.swing.JMenu();
+        jMDietaKcal = new javax.swing.JMenuItem();
+        jMDietaAlternativas = new javax.swing.JMenuItem();
+        jMDietaImprimir = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
+        jMSalir = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -512,7 +502,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtNombre.setBackground(new java.awt.Color(204, 255, 255));
         jtNombre.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtNombre.setForeground(new java.awt.Color(102, 0, 204));
-        jtNombre.setToolTipText("Ingrese apellido y nombre");
+        jtNombre.setToolTipText("Ingrese apelllido y nombre");
         jtNombre.setMinimumSize(new java.awt.Dimension(25, 25));
         jtNombre.setName(""); // NOI18N
         jtNombre.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -623,7 +613,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtPesoActual.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jtPesoActual.setForeground(new java.awt.Color(102, 0, 204));
         jtPesoActual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtPesoActual.setToolTipText("Ingrese su peso");
+        jtPesoActual.setToolTipText("Peso");
         jtPesoActual.setMaximumSize(new java.awt.Dimension(25, 71));
         jtPesoActual.setMinimumSize(new java.awt.Dimension(25, 25));
         jtPesoActual.setName(""); // NOI18N
@@ -654,7 +644,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtPesoBuscado.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jtPesoBuscado.setForeground(new java.awt.Color(102, 0, 204));
         jtPesoBuscado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtPesoBuscado.setToolTipText("Ingrese su peso buscado");
+        jtPesoBuscado.setToolTipText("Peso buscado");
         jtPesoBuscado.setMaximumSize(new java.awt.Dimension(25, 71));
         jtPesoBuscado.setMinimumSize(new java.awt.Dimension(25, 25));
         jtPesoBuscado.setName(""); // NOI18N
@@ -678,8 +668,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbAltaP.setBackground(new java.awt.Color(255, 255, 51));
         jbAltaP.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbAltaP.setForeground(new java.awt.Color(0, 0, 255));
+        jbAltaP.setMnemonic('G');
         jbAltaP.setText("Alta");
-        jbAltaP.setToolTipText("Guardar Paciente");
+        jbAltaP.setToolTipText("Búsqueda por DNI");
         jbAltaP.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbAltaP.setMaximumSize(new java.awt.Dimension(81, 24));
         jbAltaP.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -892,7 +883,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLCantMenu.setText("Cantidad de menus diarios:");
         jLCantMenu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jSCantMenu.setToolTipText("Cantidad de días semanales del menu");
         jSCantMenu.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSCantMenuStateChanged(evt);
@@ -913,7 +903,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLKcalPorSemana.setText("Kcal/100g por semana:");
         jLKcalPorSemana.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jCKcalS.setToolTipText("Cantidad de kcal semanal");
         jCKcalS.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCKcalSItemStateChanged(evt);
@@ -936,7 +925,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtFechaIni.setBackground(new java.awt.Color(255, 204, 255));
         jtFechaIni.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtFechaIni.setForeground(new java.awt.Color(102, 0, 204));
-        jtFechaIni.setToolTipText("Fecha Inicio Dieta");
+        jtFechaIni.setToolTipText("Ingrese su nombre");
         jtFechaIni.setMinimumSize(new java.awt.Dimension(25, 25));
         jtFechaIni.setName(""); // NOI18N
         jtFechaIni.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -965,7 +954,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtFechaFin.setBackground(new java.awt.Color(255, 204, 255));
         jtFechaFin.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jtFechaFin.setForeground(new java.awt.Color(102, 0, 204));
-        jtFechaFin.setToolTipText("Fecha Finalizada la Dieta");
+        jtFechaFin.setToolTipText("Ingrese su nombre");
         jtFechaFin.setMinimumSize(new java.awt.Dimension(25, 25));
         jtFechaFin.setName(""); // NOI18N
         jtFechaFin.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -989,7 +978,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbAltaC.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbAltaC.setForeground(new java.awt.Color(0, 0, 255));
         jbAltaC.setText("Confirmar");
-        jbAltaC.setToolTipText("Confirmar configuracion de Dieta");
+        jbAltaC.setToolTipText("Búsqueda por DNI");
         jbAltaC.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbAltaC.setMaximumSize(new java.awt.Dimension(81, 24));
         jbAltaC.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1106,7 +1095,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso1.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso1.setText("Paso1");
-        jbPaso1.setToolTipText("Paso1: Comidas");
+        jbPaso1.setToolTipText("Búsqueda por DNI");
         jbPaso1.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso1.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso1.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1128,7 +1117,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso2.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso2.setText("Paso 2");
-        jbPaso2.setToolTipText("Paso 2: Renglones");
+        jbPaso2.setToolTipText("Búsqueda por DNI");
         jbPaso2.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso2.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso2.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1150,7 +1139,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso3.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso3.setText("Paso 3");
-        jbPaso3.setToolTipText("Paso 3: Dieta");
+        jbPaso3.setToolTipText("Búsqueda por DNI");
         jbPaso3.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso3.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso3.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1171,7 +1160,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPDatos3.setBackground(new java.awt.Color(0, 47, 78));
         jPDatos3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPDatos3.setToolTipText("");
 
         jtComidas1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1504,7 +1492,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modJueves.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modJueves.setForeground(new java.awt.Color(102, 0, 0));
         modJueves.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modJueves.setToolTipText("Cambiar Dieta Jueves");
+        modJueves.setToolTipText("Búsqueda por DNI");
         modJueves.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modJueves.setMaximumSize(new java.awt.Dimension(81, 24));
         modJueves.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1520,7 +1508,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modMiercoles.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modMiercoles.setForeground(new java.awt.Color(102, 0, 0));
         modMiercoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modMiercoles.setToolTipText("Cambiar Dieta Miercoles");
+        modMiercoles.setToolTipText("Búsqueda por DNI");
         modMiercoles.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modMiercoles.setMaximumSize(new java.awt.Dimension(81, 24));
         modMiercoles.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1536,7 +1524,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modMartes.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modMartes.setForeground(new java.awt.Color(102, 0, 0));
         modMartes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modMartes.setToolTipText("Cambiar Dieta Martes");
+        modMartes.setToolTipText("Búsqueda por DNI");
         modMartes.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modMartes.setMaximumSize(new java.awt.Dimension(81, 24));
         modMartes.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1552,7 +1540,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modLunes.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modLunes.setForeground(new java.awt.Color(102, 0, 0));
         modLunes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modLunes.setToolTipText("Cambiar Dieta Lunes");
+        modLunes.setToolTipText("Búsqueda por DNI");
         modLunes.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modLunes.setMaximumSize(new java.awt.Dimension(81, 24));
         modLunes.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1568,7 +1556,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modViernes.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modViernes.setForeground(new java.awt.Color(102, 0, 0));
         modViernes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modViernes.setToolTipText("Cambiar Dieta Viernes");
+        modViernes.setToolTipText("Búsqueda por DNI");
         modViernes.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modViernes.setMaximumSize(new java.awt.Dimension(81, 24));
         modViernes.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1584,7 +1572,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modSabado.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modSabado.setForeground(new java.awt.Color(102, 0, 0));
         modSabado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modSabado.setToolTipText("Cambiar Dieta Sabado");
+        modSabado.setToolTipText("Búsqueda por DNI");
         modSabado.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modSabado.setMaximumSize(new java.awt.Dimension(81, 24));
         modSabado.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1600,7 +1588,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modDomingo.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         modDomingo.setForeground(new java.awt.Color(102, 0, 0));
         modDomingo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/asignar30.gif"))); // NOI18N
-        modDomingo.setToolTipText("Cambiar Dieta Domingo");
+        modDomingo.setToolTipText("Búsqueda por DNI");
         modDomingo.setMargin(new java.awt.Insets(2, 7, 2, 7));
         modDomingo.setMaximumSize(new java.awt.Dimension(81, 24));
         modDomingo.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1877,7 +1865,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso4.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso4.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso4.setText("Paso1");
-        jbPaso4.setToolTipText("Paso 1: Comidas");
+        jbPaso4.setToolTipText("Búsqueda por DNI");
         jbPaso4.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso4.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso4.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1899,7 +1887,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso5.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso5.setText("Paso 2");
-        jbPaso5.setToolTipText("Paso 2: Renglones");
+        jbPaso5.setToolTipText("Búsqueda por DNI");
         jbPaso5.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso5.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso5.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1921,7 +1909,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso6.setBackground(new java.awt.Color(255, 255, 51));
         jbPaso6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jbPaso6.setText("Paso 3");
-        jbPaso6.setToolTipText("Paso 3: Dieta");
+        jbPaso6.setToolTipText("Búsqueda por DNI");
         jbPaso6.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbPaso6.setMaximumSize(new java.awt.Dimension(81, 24));
         jbPaso6.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1937,7 +1925,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbReasignar.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         jbReasignar.setForeground(new java.awt.Color(102, 0, 0));
         jbReasignar.setText("RE-ASIGNAR");
-        jbReasignar.setToolTipText("Reasignar Dieta");
+        jbReasignar.setToolTipText("Búsqueda por DNI");
         jbReasignar.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jbReasignar.setMaximumSize(new java.awt.Dimension(81, 24));
         jbReasignar.setMinimumSize(new java.awt.Dimension(81, 24));
@@ -1958,16 +1946,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jtReasignar.setMinimumSize(new java.awt.Dimension(25, 25));
         jtReasignar.setName(""); // NOI18N
         jtReasignar.setPreferredSize(new java.awt.Dimension(25, 25));
-        jtReasignar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtReasignarActionPerformed(evt);
-            }
-        });
 
         selColacion.setBackground(new java.awt.Color(102, 0, 102));
         selColacion.setFont(new java.awt.Font("Dubai", 3, 12)); // NOI18N
         selColacion.setForeground(new java.awt.Color(255, 255, 255));
-        selColacion.setToolTipText("");
         selColacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 selColacionMouseClicked(evt);
@@ -2019,48 +2001,132 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2094, Short.MAX_VALUE)
+            .addGap(0, 2091, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1059, Short.MAX_VALUE)
+            .addGap(0, 1086, Short.MAX_VALUE)
         );
 
-        jmMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/materia50.gif"))); // NOI18N
-        jmMaterias.setToolTipText("Materias");
-        jmMaterias.setMargin(new java.awt.Insets(2, 20, 2, 2));
-        jmMaterias.setMaximumSize(new java.awt.Dimension(112, 69));
-        jmMaterias.setMinimumSize(new java.awt.Dimension(72, 69));
-        jmMaterias.setName(""); // NOI18N
-        jmMaterias.setPreferredSize(new java.awt.Dimension(72, 69));
-        jMenuBar.add(jmMaterias);
+        jmPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/consulta50.gif"))); // NOI18N
+        jmPacientes.setToolTipText("Paciente");
+        jmPacientes.setMargin(new java.awt.Insets(2, 20, 2, 2));
+        jmPacientes.setMaximumSize(new java.awt.Dimension(112, 69));
+        jmPacientes.setMinimumSize(new java.awt.Dimension(72, 69));
+        jmPacientes.setName(""); // NOI18N
+        jmPacientes.setPreferredSize(new java.awt.Dimension(72, 69));
 
-        jmAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/administracion50.gif"))); // NOI18N
-        jmAdministracion.setToolTipText("Administración");
-        jmAdministracion.setMargin(new java.awt.Insets(2, 20, 2, 2));
-        jmAdministracion.setMaximumSize(new java.awt.Dimension(112, 69));
-        jmAdministracion.setMinimumSize(new java.awt.Dimension(72, 69));
-        jmAdministracion.setName(""); // NOI18N
-        jmAdministracion.setPreferredSize(new java.awt.Dimension(72, 69));
-        jMenuBar.add(jmAdministracion);
+        jMPacienteNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMPacienteNuevo.setText("Nuevo Paciente");
+        jMPacienteNuevo.setToolTipText("Ingrese datos de un nuevo paciente");
+        jMPacienteNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMPacienteNuevoActionPerformed(evt);
+            }
+        });
+        jmPacientes.add(jMPacienteNuevo);
 
-        jmConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/consulta50.gif"))); // NOI18N
-        jmConsultas.setToolTipText("Consultas");
-        jmConsultas.setMargin(new java.awt.Insets(2, 20, 2, 2));
-        jmConsultas.setMaximumSize(new java.awt.Dimension(112, 69));
-        jmConsultas.setMinimumSize(new java.awt.Dimension(72, 69));
-        jmConsultas.setPreferredSize(new java.awt.Dimension(72, 69));
-        jMenuBar.add(jmConsultas);
+        jMPacienteModificar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMPacienteModificar.setText("Ver/Modificar Paciente");
+        jMPacienteModificar.setToolTipText("Ver o actualizar datos de pacientes ");
+        jMPacienteModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMPacienteModificarActionPerformed(evt);
+            }
+        });
+        jmPacientes.add(jMPacienteModificar);
 
-        jmAlumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/alumno50.gif"))); // NOI18N
-        jmAlumnos.setToolTipText("Alumnos");
-        jmAlumnos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jmAlumnos.setMargin(new java.awt.Insets(2, 20, 2, 2));
-        jmAlumnos.setMaximumSize(new java.awt.Dimension(112, 69));
-        jmAlumnos.setMinimumSize(new java.awt.Dimension(72, 69));
-        jmAlumnos.setName(""); // NOI18N
-        jmAlumnos.setPreferredSize(new java.awt.Dimension(72, 69));
-        jMenuBar.add(jmAlumnos);
+        jMPacienteSeguim.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMPacienteSeguim.setText("Seguimiento del Paciente");
+        jMPacienteSeguim.setToolTipText("Ver progresivo de peso del paciente");
+        jMPacienteSeguim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMPacienteSeguimActionPerformed(evt);
+            }
+        });
+        jmPacientes.add(jMPacienteSeguim);
+
+        jMenuBar.add(jmPacientes);
+
+        jmComidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ensalada50.gif"))); // NOI18N
+        jmComidas.setToolTipText("Comida");
+        jmComidas.setMargin(new java.awt.Insets(2, 20, 2, 2));
+        jmComidas.setMaximumSize(new java.awt.Dimension(112, 69));
+        jmComidas.setMinimumSize(new java.awt.Dimension(72, 69));
+        jmComidas.setPreferredSize(new java.awt.Dimension(72, 69));
+
+        jMAlimentoVer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMAlimentoVer.setText("Ver Alimentos");
+        jMAlimentoVer.setToolTipText("Ver clases de alimentos en comidas");
+        jMAlimentoVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAlimentoVerActionPerformed(evt);
+            }
+        });
+        jmComidas.add(jMAlimentoVer);
+
+        jMComidaNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMComidaNuevo.setText("Nueva Comida");
+        jMComidaNuevo.setToolTipText("Ingreso de comidas nuevas en menús");
+        jMComidaNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMComidaNuevoActionPerformed(evt);
+            }
+        });
+        jmComidas.add(jMComidaNuevo);
+
+        jMComidaModificar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMComidaModificar.setText("Ver/Modificar Comidas");
+        jMComidaModificar.setToolTipText("Ver o modificar comidas de menús");
+        jMComidaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMComidaModificarActionPerformed(evt);
+            }
+        });
+        jmComidas.add(jMComidaModificar);
+
+        jMenuBar.add(jmComidas);
+
+        jmDietas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/administracion50.gif"))); // NOI18N
+        jmDietas.setToolTipText("Dieta");
+        jmDietas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jmDietas.setMargin(new java.awt.Insets(2, 20, 2, 2));
+        jmDietas.setMaximumSize(new java.awt.Dimension(112, 69));
+        jmDietas.setMinimumSize(new java.awt.Dimension(72, 69));
+        jmDietas.setName(""); // NOI18N
+        jmDietas.setPreferredSize(new java.awt.Dimension(72, 69));
+
+        jMDietaKcal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMDietaKcal.setText("Selección de Kcal Semanales");
+        jMDietaKcal.setToolTipText("Configuración de kcal  semanales");
+        jMDietaKcal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMDietaKcalActionPerformed(evt);
+            }
+        });
+        jmDietas.add(jMDietaKcal);
+
+        jMDietaAlternativas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMDietaAlternativas.setText("Alternativas de Menús");
+        jMDietaAlternativas.setToolTipText("Modelo de menús pre-seleccionados alternativos");
+        jMDietaAlternativas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMDietaAlternativasActionPerformed(evt);
+            }
+        });
+        jmDietas.add(jMDietaAlternativas);
+
+        jMDietaImprimir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMDietaImprimir.setText("Ver/Imprimir Dietas");
+        jMDietaImprimir.setToolTipText("Informes de dietas guardadas");
+        jMDietaImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMDietaImprimirActionPerformed(evt);
+            }
+        });
+        jmDietas.add(jMDietaImprimir);
+
+        jMenuBar.add(jmDietas);
 
         jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir50.gif"))); // NOI18N
         jmSalir.setToolTipText("Salir");
@@ -2069,6 +2135,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmSalir.setMinimumSize(new java.awt.Dimension(72, 69));
         jmSalir.setName(""); // NOI18N
         jmSalir.setPreferredSize(new java.awt.Dimension(72, 69));
+
+        jMSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMSalir.setText("Salir");
+        jMSalir.setToolTipText("Salir de aplicación");
+        jMSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSalirActionPerformed(evt);
+            }
+        });
+        jmSalir.add(jMSalir);
+
         jMenuBar.add(jmSalir);
 
         setJMenuBar(jMenuBar);
@@ -2236,10 +2313,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jSCena, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(13, 13, 13)
-                    .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
-                    .addGap(14, 14, 14)))
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE))
         );
 
         jCTipoComida.getAccessibleContext().setAccessibleParent(jtComidas);
@@ -2249,7 +2323,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//EVENTS de JBOTONS PASO1 
     private void jbPaso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso1ActionPerformed
         if(etapa ==2){
             etapa3();            
@@ -2257,7 +2331,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Paso incorrecto"); 
         }
     }//GEN-LAST:event_jbPaso1ActionPerformed
-
+//EVENTS de JBOTONS PASO2 
     private void jbPaso2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso2ActionPerformed
         if(etapa ==3){
             etapa4();            
@@ -2265,7 +2339,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Paso incorrecto"); 
         }
     }//GEN-LAST:event_jbPaso2ActionPerformed
-
+//EVENTS de JBOTONS PASO3
     private void jbPaso3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso3ActionPerformed
         if(etapa ==4){
             etapa5();            
@@ -2273,7 +2347,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Paso incorrecto"); 
         }
     }//GEN-LAST:event_jbPaso3ActionPerformed
-
+//EVENTS de JTEXT NOMBRE 
     private void jtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreFocusGained
 
         jLErrorNombre.setForeground(new java.awt.Color(0, 47, 78));
@@ -2293,7 +2367,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Etapa1Completa();
         
     }//GEN-LAST:event_jtNombreFocusLost
-
+//EVENTS de JTEXT EDAD 
     private void jtEdadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtEdadFocusGained
 
         jLErrorEdad.setForeground(new java.awt.Color(0, 47, 78));
@@ -2318,7 +2392,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jtEdad.setText("");
         }
     }//GEN-LAST:event_jtEdadFocusLost
-
+//EVENTS de JTEXT ALTURA 
     private void jtAlturaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtAlturaFocusGained
 
         jLErrorAltura.setForeground(new java.awt.Color(0, 47, 78));
@@ -2350,7 +2424,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }        
         
     }//GEN-LAST:event_jtAlturaFocusLost
-
+//EVENTS de JTEXT PESO-ACTUAL
     private void jtPesoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoActualFocusGained
 
         jLErrorPesoActual.setForeground(new java.awt.Color(0, 47, 78));
@@ -2382,7 +2456,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }              
         
     }//GEN-LAST:event_jtPesoActualFocusLost
-
+//EVENTS de JTEXT PESO-BUSCADO
     private void jtPesoBuscadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPesoBuscadoFocusGained
 
         jLErrorPesoBuscado.setForeground(new java.awt.Color(0, 47, 78));
@@ -2408,7 +2482,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }              
         
     }//GEN-LAST:event_jtPesoBuscadoFocusLost
-
+//EVENTS de JBOTONS GUARDAR-MODIFICAR PACIENTE
     private void jbAltaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaPActionPerformed
 
         if(jbAltaP.getText().equalsIgnoreCase("Guardar")){
@@ -2422,7 +2496,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }    
 
     }//GEN-LAST:event_jbAltaPActionPerformed
-
+//EVENTS de JBOTONS GUARDAR-MODIFICAR SELEC-DIETA
     private void jbAltaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaCActionPerformed
 
         if(jbAltaC.getText().equalsIgnoreCase("Confirmar")){
@@ -2437,7 +2511,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             etapa2();
         }    
     }//GEN-LAST:event_jbAltaCActionPerformed
-
+//EVENTS de JSPINNER CANTIDAD-MENUS
     private void jSCantMenuStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSCantMenuStateChanged
 
         cantMenu= (Integer)jSCantMenu.getValue();
@@ -2445,7 +2519,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Etapa2Completa();
         
     }//GEN-LAST:event_jSCantMenuStateChanged
-
+//EVENTS de JCHECKBOX KCAL-SEMANALES
     private void jCKcalSItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCKcalSItemStateChanged
         
         kcalSem= jCKcalS.toString();
@@ -2479,7 +2553,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Etapa2Completa();    
         
     }//GEN-LAST:event_jCKcalSItemStateChanged
-
+//EVENTS de JDATECHOOSER FECHA-INICIO
     private void jdFechaIniPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFechaIniPropertyChange
         
         if(evt.getPropertyName().equals("date")){
@@ -2499,7 +2573,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }        
         }
     }//GEN-LAST:event_jdFechaIniPropertyChange
-
+//EVENTS de JDATECHOOSER FECHA-FINAL
     private void jdFechaFinPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFechaFinPropertyChange
 
         if(evt.getPropertyName().equals("date")){
@@ -2519,31 +2593,31 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }        
         }
     }//GEN-LAST:event_jdFechaFinPropertyChange
-
+//EVENTS de JCHECKBOX TIPO-COMIDA
     private void jCTipoComidaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCTipoComidaItemStateChanged
        cargarDatosComidas();   
     }//GEN-LAST:event_jCTipoComidaItemStateChanged
-
+//EVENTS de JTABLE DESAYUNO
     private void jTDesayunoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDesayunoKeyReleased
         guardarDatosMenusDesayuno();
     }//GEN-LAST:event_jTDesayunoKeyReleased
-
+//EVENTS de JTABLE ALMUERZO
     private void jTAlmuerzoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAlmuerzoKeyReleased
         guardarDatosMenusAlmuerzo();
     }//GEN-LAST:event_jTAlmuerzoKeyReleased
-
+//EVENTS de JTABLE COLACION
     private void jTColacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTColacionKeyReleased
         guardarDatosMenusColacion();
     }//GEN-LAST:event_jTColacionKeyReleased
-
+//EVENTS de JTABLE MERIENDA
     private void jTMeriendaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTMeriendaKeyReleased
         guardarDatosMenusMerienda();
     }//GEN-LAST:event_jTMeriendaKeyReleased
-
+//EVENTS de JTABLE CENA
     private void jTCenaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCenaKeyReleased
         guardarDatosMenusCena();
     }//GEN-LAST:event_jTCenaKeyReleased
-
+//EVENTS de JBOTONS PASO6 == "PASO3"
     private void jbPaso6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso6ActionPerformed
         if(etapa ==4){
             etapa5();            
@@ -2551,7 +2625,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Paso incorrecto"); 
         }
     }//GEN-LAST:event_jbPaso6ActionPerformed
-
+//EVENTS de JBOTONS PASO5 == "PASO2"
     private void jbPaso5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso5ActionPerformed
         if(etapa ==3){
             etapa4();            
@@ -2559,7 +2633,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Paso incorrecto"); 
         }
     }//GEN-LAST:event_jbPaso5ActionPerformed
-
+//EVENTS de JBOTONS PASO4 == "PASO1"
     private void jbPaso4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso4ActionPerformed
         if(etapa ==2){
             etapa3();            
@@ -2567,7 +2641,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Paso incorrecto"); 
         }
     }//GEN-LAST:event_jbPaso4ActionPerformed
-
+//EVENTS de JBOTONS REASIGNAR
     private void jbReasignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReasignarActionPerformed
         String msj="Alternativa obtenida desde tabla MENUS POSIBLES - 7 posibles combinaciones.";
         switch(opcionActual){
@@ -2626,11 +2700,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 break;        
         }
     }//GEN-LAST:event_jbReasignarActionPerformed
-
-    private void jtReasignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtReasignarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtReasignarActionPerformed
-
+//EVENTS de JTABLE DESAYUNO
     private void jTDesayunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTDesayunoMouseClicked
         int filaElegida=jTDesayuno.getSelectedRow();
         if(filaElegida!=-1){
@@ -2639,7 +2709,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             desActual=(Integer)jTDesayuno.getValueAt(filaElegida, 1); 
         }
     }//GEN-LAST:event_jTDesayunoMouseClicked
-
+//EVENTS de JTABLE ALMUERZO
     private void jTAlmuerzoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTAlmuerzoMouseClicked
         int filaElegida=jTAlmuerzo.getSelectedRow();
         if(filaElegida!=-1){
@@ -2648,7 +2718,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             almActual=(Integer)jTAlmuerzo.getValueAt(filaElegida, 1); 
         }
     }//GEN-LAST:event_jTAlmuerzoMouseClicked
-
+//EVENTS de JTABLE COLACION
     private void jTColacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTColacionMouseClicked
         int filaElegida=jTColacion.getSelectedRow();
         if(filaElegida!=-1){
@@ -2657,7 +2727,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             colActual=(Integer)jTColacion.getValueAt(filaElegida, 1); 
         }
     }//GEN-LAST:event_jTColacionMouseClicked
-
+//EVENTS de JTABLE MERIENDA
     private void jTMeriendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTMeriendaMouseClicked
         int filaElegida=jTMerienda.getSelectedRow();
         if(filaElegida!=-1){
@@ -2666,7 +2736,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             merActual=(Integer)jTMerienda.getValueAt(filaElegida, 1); 
         }
     }//GEN-LAST:event_jTMeriendaMouseClicked
-
+//EVENTS de JTABLE CENA
     private void jTCenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCenaMouseClicked
         int filaElegida=jTCena.getSelectedRow();
         if(filaElegida!=-1){
@@ -2675,60 +2745,115 @@ public class MenuPrincipal extends javax.swing.JFrame {
             cenActual=(Integer)jTCena.getValueAt(filaElegida, 1); 
         }
     }//GEN-LAST:event_jTCenaMouseClicked
-
+//EVENTS de JBOTONS ARRASTRAR SELECCION A MARTES
     private void modMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modMartesActionPerformed
         modificarMenuMartes();
     }//GEN-LAST:event_modMartesActionPerformed
-
+//EVENTS de JBOTONS ARRASTRAR SELECCION A JUEVES
     private void modJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modJuevesActionPerformed
         modificarMenuJueves();
     }//GEN-LAST:event_modJuevesActionPerformed
-
+//EVENTS de JBOTONS ARRASTRAR SELECCION A LUNES
     private void modLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modLunesActionPerformed
         modificarMenuLunes();
     }//GEN-LAST:event_modLunesActionPerformed
-
+//EVENTS de JBOTONS ARRASTRAR SELECCION A MIERCOLES
     private void modMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modMiercolesActionPerformed
         modificarMenuMiercoles();
     }//GEN-LAST:event_modMiercolesActionPerformed
-
+//EVENTS de JBOTONS ARRASTRAR SELECCION A SABADO
     private void modSabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modSabadoActionPerformed
         modificarMenuSabado();
     }//GEN-LAST:event_modSabadoActionPerformed
-
+//EVENTS de JBOTONS ARRASTRAR SELECCION A VIERNES
     private void modViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modViernesActionPerformed
         modificarMenuViernes();
     }//GEN-LAST:event_modViernesActionPerformed
-
+//EVENTS de JBOTONS ARRASTRAR SELECCION A DOMINGO
     private void modDomingoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modDomingoActionPerformed
         modificarMenuDomingo();
     }//GEN-LAST:event_modDomingoActionPerformed
-
+//EVENTS de JTEXT SELECCION DESAYUNO
     private void selDesayunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selDesayunoMouseClicked
             selDesayuno.setText(null);
             desActual=0; 
     }//GEN-LAST:event_selDesayunoMouseClicked
-
+//EVENTS de JTEXT SELECCION ALMUERZO
     private void selAlmuerzoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selAlmuerzoMouseClicked
             selAlmuerzo.setText(null);
             almActual=0; 
     }//GEN-LAST:event_selAlmuerzoMouseClicked
-
+//EVENTS de JTEXT SELECCION COLACION
     private void selColacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selColacionMouseClicked
             selColacion.setText(null);
             colActual=0; 
     }//GEN-LAST:event_selColacionMouseClicked
-
+//EVENTS de JTEXT SELECCION MERIENDA
     private void selMeriendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selMeriendaMouseClicked
             selMerienda.setText(null);
             merActual=0; 
     }//GEN-LAST:event_selMeriendaMouseClicked
-
+//EVENTS de JTEXT SELECCION CENA
     private void selCenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selCenaMouseClicked
             selCena.setText(null);
             cenActual=0; 
     }//GEN-LAST:event_selCenaMouseClicked
+//EVENTS de ITEMS-MENU Pacientes
+    private void jMPacienteNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPacienteNuevoActionPerformed
+        etapa1();
+    }//GEN-LAST:event_jMPacienteNuevoActionPerformed
 
+    private void jMPacienteModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPacienteModificarActionPerformed
+        etapa0();
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormPacienteVerMod fi=new FormPacienteVerMod();
+        fi.setVisible(true);
+        escritorio.add(fi);
+        escritorio.moveToFront(fi);
+    }//GEN-LAST:event_jMPacienteModificarActionPerformed
+
+    private void jMPacienteSeguimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPacienteSeguimActionPerformed
+        etapa0();
+    }//GEN-LAST:event_jMPacienteSeguimActionPerformed
+//EVENTS de ITEMS-MENU Comidas
+    private void jMAlimentoVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAlimentoVerActionPerformed
+        etapa0();
+    }//GEN-LAST:event_jMAlimentoVerActionPerformed
+
+    private void jMComidaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMComidaNuevoActionPerformed
+        etapa0();
+    }//GEN-LAST:event_jMComidaNuevoActionPerformed
+
+    private void jMComidaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMComidaModificarActionPerformed
+        etapa0();
+    }//GEN-LAST:event_jMComidaModificarActionPerformed
+//EVENTS de ITEMS-MENU Dietas
+    private void jMDietaKcalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMDietaKcalActionPerformed
+        etapa0();
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormPacienteDieta fd=new FormPacienteDieta();
+        fd.setVisible(true);
+        escritorio.add(fd);
+        escritorio.moveToFront(fd);
+    }//GEN-LAST:event_jMDietaKcalActionPerformed
+
+    private void jMDietaAlternativasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMDietaAlternativasActionPerformed
+        etapa0();
+    }//GEN-LAST:event_jMDietaAlternativasActionPerformed
+
+    private void jMDietaImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMDietaImprimirActionPerformed
+        etapa0();
+    }//GEN-LAST:event_jMDietaImprimirActionPerformed
+//EVENTS de ITEMS-MENU Salir
+    private void jMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSalirActionPerformed
+        int resp= JOptionPane.showConfirmDialog(this, "¿Esta seguro de abandonar la aplicacion?","Confirmando",JOptionPane.YES_NO_OPTION);
+        if (resp==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }    
+    }//GEN-LAST:event_jMSalirActionPerformed
+//MAIN
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2761,19 +2886,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void Etapa1Completa(){
-        
+//FUNCTION de ETAPA1 completa: Verificación de que el nuevo paciente ingresado está en condición de ser guardado.    
+    private void Etapa1Completa(){        
         if(!jtNombre.getText().isEmpty()&&!jtEdad.getText().isEmpty()&&!jtAltura.getText().isEmpty()&&!jtPesoActual.getText().isEmpty()&&!jtPesoBuscado.getText().isEmpty()){
             jLErrorNroPaciente.setText("");
             jLErrorIMC.setText("");
             jbAltaP.setBackground(new java.awt.Color(0, 204, 102));
-        }
-        
+        }        
     }
-    
-    private void Etapa2Completa(){
-        
+//FUNCTION de ETAPA2 completa: Verificación de que la seleccion de dieta ingresada está en condiciones de ser confirmada.     
+    private void Etapa2Completa(){        
         if(!jtFechaIni.getText().isEmpty()&&!jtFechaFin.getText().isEmpty()&&!jCKcalS.toString().isEmpty()&&!jSCantMenu.toString().isEmpty()){
             if(fechaInicio.isBefore(fechaFinal)){
                 jLErrorNombreDieta.setText("");
@@ -2782,26 +2904,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jLErrorFechaFin.setForeground(new java.awt.Color(0, 47, 78));
             }else{
                 jtFechaFin.setText("");
-                
                 jLErrorFechaFin.setText("ELIJA FECHA MAYOR QUE LA INICIAL");
                 jLErrorFechaFin.setForeground(new java.awt.Color(255, 51, 102));
-                jbAltaC.setBackground(new java.awt.Color(255, 255, 51));
-                
+                jbAltaC.setBackground(new java.awt.Color(255, 255, 51));               
             }
-
-        }
-        
+        }        
     }
-    
+//FUNCTION de jPANEL PACIENTE-VISIBLE    
     private void PacienteEnc(){
         DatosDelPaciente.setVisible(true);
         jPDatos1.setVisible(true);
     }
+//FUNCTION de jPANEL PACIENTE-OCULTO  
     private void PacienteApg(){
         DatosDelPaciente.setVisible(false);
         jPDatos1.setVisible(false);
     }
-    
+//FUNCTION de jPANEL PACIENTE-HABILITADO 
     private void PacienteHab(){
         jbAltaP.setText("GUARDAR");
         jPDatos1.setBackground(new java.awt.Color(153, 153, 153));
@@ -2815,7 +2934,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorNroPaciente.setText("NÚMERO AUTOASIGNADO");
         jLErrorIMC.setText("ÍNDICE IMC CALCULADO");
     }
-    
+//FUNCTION de jPANEL PACIENTE-BLOQUEADO    
     private void PacienteBlq(){
         jbAltaP.setText("Modificar");
         jPDatos1.setBackground(new java.awt.Color(0, 47, 78));
@@ -2830,7 +2949,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorPesoActual.setText("");
         jLErrorPesoBuscado.setText("");
     }
-     
+//FUNCTION de jTABLE COMIDA-VISIBLE     
     private void ComidaEnc(){
         armarCabeceraAlimentos(); 
         cargarDatosAlimentos();
@@ -2842,6 +2961,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPDatos3.setVisible(true);
         jCTipoComida.setVisible(false);
     }
+//FUNCTION de jTABLE COMIDA-OCULTO    
     private void ComidaApg(){
         SeleccionDeDieta.setVisible(false);
         jPDatos2.setVisible(false);
@@ -2849,7 +2969,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPDatos3.setVisible(false);
         jCTipoComida.setVisible(false);
     }
-    
+//FUNCTION de jTABLE COMIDA-HABILITADO    
     private void ComidaHab(){
         jbAltaC.setText("CONFIRMAR");
         jbAltaC.setBackground(new java.awt.Color(255, 255, 51));
@@ -2871,7 +2991,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPDatos3.setVisible(true);
         jtComidas.setEnabled(true);
     }
-    
+//FUNCTION de jTABLE COMIDA-BLOQUEADO    
     private void ComidaBlq(){
         jbAltaC.setText("Modificar");
         jPDatos2.setBackground(new java.awt.Color(0, 47, 78));
@@ -2885,7 +3005,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLErrorFechaFin.setText("");
         jLErrorFechaIni.setText("");
     }
-    
+//FUNCTION de jBOTONS PASO123-VISIBLE
     private void PasosEnc(){
         jLRPaso1.setVisible(true);
         jbPaso1.setVisible(true);
@@ -2894,7 +3014,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLRPaso3.setVisible(true);
         jbPaso3.setVisible(true);
     }
-    
+//FUNCTION de jBOTONS PASO123-OCULTO   
     private void PasosApg(){
         jLRPaso1.setVisible(false);
         jbPaso1.setVisible(false);
@@ -2903,7 +3023,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLRPaso3.setVisible(false);
         jbPaso3.setVisible(false);
     }
-    
+//FUNCTION de jBOTONS PASO456-VISIBLE    
     private void PasosEnc2(){
         jLRPaso4.setVisible(true);
         jbPaso4.setVisible(true);
@@ -2912,7 +3032,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLRPaso6.setVisible(true);
         jbPaso6.setVisible(true);
     }
-    
+//FUNCTION de jBOTONS PASO456-OCULTO    
     private void PasosApg2(){
         jLRPaso4.setVisible(false);
         jbPaso4.setVisible(false);
@@ -2921,7 +3041,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLRPaso6.setVisible(false);
         jbPaso6.setVisible(false);
     }
-    
+//FUNCTION de jPANEL RENGLONES-VISIBLE     
     private void RenglonesEnc(){
         guardarDatosComidas();  
         jtComidas.setEnabled(false);
@@ -2947,8 +3067,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSColacion.setVisible(true);
         jSMerienda.setVisible(true);
         jSCena.setVisible(true);
-
     }
+//FUNCTION de jPANEL RENGLONES-OCULTO  
     private void RenglonesApg(){
         jLDesayuno.setVisible(false);
         jLAlmuerzo.setVisible(false);
@@ -2961,7 +3081,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSMerienda.setVisible(false);
         jSCena.setVisible(false);
     }
-    
+//FUNCTION de jPANEL DIETA-VISIBLE    
     private void DietaEnc(){   
         DietaDiaria.setVisible(true);
         jPDatos4.setVisible(true);
@@ -3028,7 +3148,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 modJueves.setVisible(true);
                 modViernes.setVisible(true);
                 modSabado.setVisible(true);
-                modDomingo.setVisible(true);
                 jPanelO1.setVisible(true);                
                 jPanelO2.setVisible(true);                
                 jPanelO3.setVisible(true);                
@@ -3078,10 +3197,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jTOpcion4.setEnabled(true);
         jTOpcion5.setEnabled(true);
         jTOpcion6.setEnabled(true);
-        jTOpcion7.setEnabled(true);
-        
+        jTOpcion7.setEnabled(true);        
     }
-    
+//FUNCTION de jPANEL DIETA-OCULTO     
     private void DietaApg(){
         DietaDiaria.setVisible(false);
         jPDatos4.setVisible(false);
@@ -3114,7 +3232,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLOpcion6.setVisible(false);
         jLOpcion7.setVisible(false);
     }
-    
+//FUNCTION de jPANEL DIETA-BLOQUEADO     
     private void DietaBlq(){
         jTOpcion1.setEnabled(false);
         jTOpcion2.setEnabled(false);
@@ -3124,30 +3242,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jTOpcion6.setEnabled(false);
         jTOpcion7.setEnabled(false);
     }
-     
-    private void etapa1(){
-        PacienteEnc();
-        PacienteHab();
+//FUNCTION de ETAPA0: Modo Ventanas de Escritorio     
+    private void etapa0(){
+        PacienteApg();        
         ComidaApg();
         PasosApg();
         PasosApg2();
         RenglonesApg();
         DietaApg();
+        etapa = 0;
+    }
+//FUNCTION de ETAPA1: Ingreso de datos de nuevo Paciente     
+    private void etapa1(){
+        PacienteEnc();
+        PacienteHab();
+//        ComidaApg();
+//        PasosApg();
+//        PasosApg2();
+//        RenglonesApg();
+//        DietaApg();
         etapa = 1;
     }
-    
-    private void etapa2(){
-        
+//FUNCTION de ETAPA2: Selección de formato de dieta y Alimentos(Paciente nuevo guardado)       
+    private void etapa2(){       
         PacienteBlq();
         ComidaEnc();
         ComidaHab();  
-        PasosApg();
-        PasosApg2();
-        RenglonesApg();
-        DietaApg();
+//        PasosApg();
+//        PasosApg2();
+//        RenglonesApg();
+//        DietaApg();
         etapa = 2;
     }
-    
+//FUNCTION de ETAPA2B: Selección de Menus no incluidos filtrado por tipo de Comida (Selección de dieta y Alimentos guardada)      
     private void etapa2b(){
         ComidaBlq();
         guardarDatosAlimentos();
@@ -3164,19 +3291,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso3.setEnabled(false);
         jbPaso6.setEnabled(false);
     }
-    
+//FUNCTION de ETAPA3: Selección de Renglones de Menus divididos por tipo de Comida (Selección de gramos y cálculo de Kcal por Menú)     
     private void etapa3(){
         jbPaso1.setBackground(new java.awt.Color(0, 204, 102));
         jbPaso4.setBackground(new java.awt.Color(0, 204, 102));
         RenglonesEnc();
         PasosApg();
         PasosEnc2();
-        DietaApg();
+//        DietaApg();
         jbPaso2.setEnabled(true);
         jbPaso5.setEnabled(true);
         etapa = 3;
     }
-
+//FUNCTION de ETAPA4: Selección de Dieta divididos por dia Semanal (Selección de Renglones y cálculo de Kcal por Dia)     
     private void etapa4(){
         jbPaso2.setBackground(new java.awt.Color(0, 204, 102));
         jbPaso5.setBackground(new java.awt.Color(0, 204, 102));
@@ -3187,7 +3314,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPaso6.setEnabled(true);
         etapa = 4;
     }
-    
+//FUNCTION de ETAPA5: Ver o imprimir Dieta       
     private void etapa5(){ 
         DietaBlq();
         RenglonesApg();
@@ -3210,41 +3337,40 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modDomingo.setVisible(false);
         PacienteEnc();
         jSAlimentos.setVisible(false);
-        jSComidas.setVisible(true);
+        jSComidas.setVisible(false);
         SeleccionDeDieta.setVisible(true);
         jPDatos2.setVisible(true);
-        jPDatos3.setVisible(true);
+        jPDatos3.setVisible(false);
         jCTipoComida.setVisible(false);
         jbAltaC.setVisible(false);
         jCKcalS.setEnabled(false);
         etapa = 5;
     }
-        
+//FUNCTION de Inicio de FORM         
     private void initForm(){
-        
+        //Inicio de JSPINNER CANTIDAD-MENUS
         SpinnerNumberModel cm = new SpinnerNumberModel();
         cm.setMaximum(7);
         cm.setMinimum(3);
         cm.setStepSize(1);
         jSCantMenu.setModel(cm);
         jSCantMenu.setValue(3);
-              
+        //Items de JCHECKBOX KCAL-SEMANALES
         jCKcalS.addItem("5850k-MuyBajo");
         jCKcalS.addItem("7000k-Bajo");
         jCKcalS.addItem("8050k-Medio");
         jCKcalS.addItem("9450k-Alto");
         jCKcalS.addItem("10500k-MuyAlto");
         jCKcalS.setSelectedItem(new String("8050k-Medio"));
-        
+        //Items de JCHECKBOX TIPO-COMIDA
         jCTipoComida.addItem("Desayuno");
         jCTipoComida.addItem("Almuerzo");
         jCTipoComida.addItem("Colacion");
         jCTipoComida.addItem("Merienda");
         jCTipoComida.addItem("Cena");
         jCTipoComida.setSelectedItem(new String("Desayuno"));        
-        
     }
-    
+//Crear cabecera de JTABLE ALIMENTOS    
     private void armarCabeceraAlimentos(){
         jLDefinicionCom.setText("Seleccione los ALIMENTOS que desea incluir");
         jCTipoComida.setVisible(false);
@@ -3255,7 +3381,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloAlimento.addColumn("seleccionar");
         jtComidas1.setModel(modeloAlimento);
     }
-
+//Carga de datos de JTABLE ALIMENTOS
     private void cargarDatosAlimentos(){
         int filasA=modeloAlimento.getRowCount()-1;
         for(int f=filasA;f>=0;f--){
@@ -3266,7 +3392,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jtComidas1.enable(true);
     }
-    
+//Guardar datos de JTABLE ALIMENTOS a BD Nutricionista    
     private void guardarDatosAlimentos(){
         int filasA=jtComidas1.getRowCount()-1;
         for(int f=filasA;f>=0;f--){
@@ -3278,7 +3404,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jtComidas1.enable(false);        
     }
-    
+//Crear cabecera de JTABLE COMIDAS     
     private void armarCabeceraComidas(){
         jLDefinicionCom.setText("Seleccione las COMIDAS que no desea incluir");
         jLDefinicionCom.setForeground(new java.awt.Color(255, 51, 102));
@@ -3290,7 +3416,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloComida.addColumn("no incluir");
         jtComidas.setModel(modeloComida);
     }
-
+//Carga de datos de JTABLE COMIDAS
     private void cargarDatosComidas(){
         if(jCTipoComida.getSelectedObjects().equals(null)){
             JOptionPane.showMessageDialog(this,"Seleccione un tipo de Comida válido");
@@ -3313,7 +3439,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jtComidas.enable(true);      
     }
-    
+//Guardar datos de JTABLE COMIDAS a BD Nutricionista     
     private void guardarDatosComidas(){    
         int filas=jtComidas.getRowCount()-1;
         for(int f=filas;f>=0;f--){
@@ -3327,7 +3453,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jtComidas.enable(false);       
     }
-    
+//Crear cabecera de JTABLE MENUS-DESAYUNO  
     private void armarCabeceraMenusDesayuno(){
         modeloMenuD.addColumn("nroRenglón");
         modeloMenuD.addColumn("código");
@@ -3337,7 +3463,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloMenuD.addColumn("Total Kcal");
         jTDesayuno.setModel(modeloMenuD);
     }
-    
+//Carga de datos de JTABLE MENUS-DESAYUNO     
     private void cargarDatosMenusDesayuno(){
         Double kcal = kcalDia * 0.2;
         int filasC=modeloMenuD.getRowCount()-1;
@@ -3361,8 +3487,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jTDesayuno.enable(true);
     }
-    
-   
+//Guardar datos de JTABLE MENUS-DESAYUNO a BD Nutricionista        
     private void guardarDatosMenusDesayuno(){    
         int filas=jTDesayuno.getRowCount()-1;
         for(int f=filas;f>=0;f--){
@@ -3373,7 +3498,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jTDesayuno.setValueAt(renglonActual.getSubtotalCalorias(), f, 5);
         }        
     }
-    
+//Crear cabecera de JTABLE MENUS-ALMUERZO      
     private void armarCabeceraMenusAlmuerzo(){
         modeloMenuA.addColumn("nroRenglón");
         modeloMenuA.addColumn("código");
@@ -3383,7 +3508,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloMenuA.addColumn("Total Kcal");
         jTAlmuerzo.setModel(modeloMenuA);
     }
-    
+//Carga de datos de JTABLE MENUS-ALMUERZO     
     private void cargarDatosMenusAlmuerzo(){
         Double kcal = kcalDia * 0.3;
         int filasC=modeloMenuA.getRowCount()-1;
@@ -3406,7 +3531,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jTAlmuerzo.enable(true);
     }
-    
+//Guardar datos de JTABLE MENUS-ALMUERZO a BD Nutricionista     
     private void guardarDatosMenusAlmuerzo(){    
         int filas=jTAlmuerzo.getRowCount()-1;
         for(int f=filas;f>=0;f--){
@@ -3417,7 +3542,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jTAlmuerzo.setValueAt(renglonActual.getSubtotalCalorias(), f, 5);
         }        
     }
-        
+//Crear cabecera de JTABLE MENUS-COLACION          
     private void armarCabeceraMenusColacion(){
         modeloMenuC.addColumn("nroRenglón");
         modeloMenuC.addColumn("código");
@@ -3427,7 +3552,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloMenuC.addColumn("Total Kcal");
         jTColacion.setModel(modeloMenuC);
     }
-    
+//Carga de datos de JTABLE MENUS-COLACION     
     private void cargarDatosMenusColacion(){
         Double kcal = kcalDia * 0.1;
         int filasC=modeloMenuC.getRowCount()-1;
@@ -3450,7 +3575,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jTColacion.enable(true);
     }
-    
+//Guardar datos de JTABLE MENUS-COLACION a BD Nutricionista     
     private void guardarDatosMenusColacion(){    
         int filas=jTColacion.getRowCount()-1;
         for(int f=filas;f>=0;f--){
@@ -3461,7 +3586,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jTColacion.setValueAt(renglonActual.getSubtotalCalorias(), f, 5);
         }        
     }
-        
+//Crear cabecera de JTABLE MENUS-MERIENDA          
     private void armarCabeceraMenusMerienda(){
         modeloMenuM.addColumn("nroRenglón");
         modeloMenuM.addColumn("código");
@@ -3471,7 +3596,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloMenuM.addColumn("Total Kcal");
         jTMerienda.setModel(modeloMenuM);
     }
-    
+//Carga de datos de JTABLE MENUS-MERIENDA     
     private void cargarDatosMenusMerienda(){
         Double kcal = kcalDia * 0.1;
         int filasC=modeloMenuM.getRowCount()-1;
@@ -3494,7 +3619,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jTMerienda.enable(true);
     }
-    
+//Guardar datos de JTABLE MENUS-MERIENDA a BD Nutricionista     
     private void guardarDatosMenusMerienda(){    
         int filas=jTMerienda.getRowCount()-1;
         for(int f=filas;f>=0;f--){
@@ -3505,7 +3630,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jTMerienda.setValueAt(renglonActual.getSubtotalCalorias(), f, 5);
         }        
     }
-        
+//Crear cabecera de JTABLE MENUS-CENA          
     private void armarCabeceraMenusCena(){
         modeloMenuN.addColumn("nroRenglón");
         modeloMenuN.addColumn("código");
@@ -3515,7 +3640,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloMenuN.addColumn("Total Kcal");
         jTCena.setModel(modeloMenuN);
     }
-    
+//Carga de datos de JTABLE MENUS-CENA     
     private void cargarDatosMenusCena(){
         Double kcal = kcalDia * 0.3;        
         int filasC=modeloMenuN.getRowCount()-1;
@@ -3538,7 +3663,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         jTCena.enable(true);
     }
-    
+//Guardar datos de JTABLE MENUS-CENA a BD Nutricionista     
     private void guardarDatosMenusCena(){    
         int filas=jTCena.getRowCount()-1;
         for(int f=filas;f>=0;f--){
@@ -3549,50 +3674,51 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jTCena.setValueAt(renglonActual.getSubtotalCalorias(), f, 5);
         }        
     }
-    
+//Crear cabecera de JTABLE incluídos en JPANEL DIETA    
     private void armarCabeceraMenusSemanal(){
+        //Crear cabecera de JTABLE MENUS-LUNES  
         modeloMenuLu.addColumn("código");
         modeloMenuLu.addColumn("comida");
         modeloMenuLu.addColumn("detalle");
         modeloMenuLu.addColumn("gramos");
         modeloMenuLu.addColumn("kcal");
         jTOpcion1.setModel(modeloMenuLu);
-        
+        //Crear cabecera de JTABLE MENUS-MARTES
         modeloMenuMa.addColumn("código");
         modeloMenuMa.addColumn("comida");
         modeloMenuMa.addColumn("detalle");
         modeloMenuMa.addColumn("gramos");
         modeloMenuMa.addColumn("kcal");
         jTOpcion2.setModel(modeloMenuMa);
-        
+        //Crear cabecera de JTABLE MENUS-MIERCOLES
         modeloMenuMi.addColumn("código");
         modeloMenuMi.addColumn("comida");
         modeloMenuMi.addColumn("detalle");
         modeloMenuMi.addColumn("gramos");
         modeloMenuMi.addColumn("kcal");
         jTOpcion3.setModel(modeloMenuMi);
-        
+        //Crear cabecera de JTABLE MENUS-JUEVES
         modeloMenuJu.addColumn("código");
         modeloMenuJu.addColumn("comida");
         modeloMenuJu.addColumn("detalle");
         modeloMenuJu.addColumn("gramos");
         modeloMenuJu.addColumn("kcal");
         jTOpcion4.setModel(modeloMenuJu);
-        
+        //Crear cabecera de JTABLE MENUS-VIERNES
         modeloMenuVi.addColumn("código");
         modeloMenuVi.addColumn("comida");
         modeloMenuVi.addColumn("detalle");
         modeloMenuVi.addColumn("gramos");
         modeloMenuVi.addColumn("kcal");
         jTOpcion5.setModel(modeloMenuVi);
-        
+        //Crear cabecera de JTABLE MENUS-SABADO
         modeloMenuSa.addColumn("código");
         modeloMenuSa.addColumn("comida");
         modeloMenuSa.addColumn("detalle");
         modeloMenuSa.addColumn("gramos");
         modeloMenuSa.addColumn("kcal");
         jTOpcion6.setModel(modeloMenuSa);
-        
+        //Crear cabecera de JTABLE MENUS-DOMINGO
         modeloMenuDo.addColumn("código");
         modeloMenuDo.addColumn("comida");
         modeloMenuDo.addColumn("detalle");
@@ -3600,7 +3726,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         modeloMenuDo.addColumn("kcal");
         jTOpcion7.setModel(modeloMenuDo);
     }
-
+//Borrar datos de JTABLE incluídos en JPANEL DIETA 
     private void borrarMenus(){
         int filasC=modeloMenuLu.getRowCount()-1;
         for(int f=filasC;f>=0;f--){
@@ -3631,12 +3757,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuDo.removeRow(f);
         }
     }
-    
+//Cargar datos de JTABLE incluídos en JPANEL DIETA referenciando a POSIBLES DIETAS (correspondiente a NRO-ALTERNATIVA y a KCAL-SEMANALES    
     private void cargarDietaDiaria(){
         borrarMenus();
         int fila=1;
         for (MenuDiarios menu : menuServ.listarMenusDiario(kcalCol, opcionActual)){
-
             if(fila==1){
                 crearFilaMenuLu(menu.getDesayuno());               
                 crearFilaMenuLu(menu.getAlmuerzo());
@@ -3687,10 +3812,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 crearFilaMenuDo(menu.getCena());
             }
             fila++;
-        }
-  
+        }  
     }
-        
+//FUNCTION crear fila de JTABLE LUNES        
     private void crearFilaMenuLu(int codComida){
         renglonActual = rengMenu.buscarRenglonDeMenu(codComida);
         comidaActual = comServ.buscarComida(renglonActual.getConComida());
@@ -3700,6 +3824,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuLu.addRow(new Object[]{0, "", "", 0, 0});
         }
     }
+//FUNCTION crear fila de JTABLE MARTES
     private void crearFilaMenuMa(int codComida){
         renglonActual = rengMenu.buscarRenglonDeMenu(codComida);
         comidaActual = comServ.buscarComida(renglonActual.getConComida());
@@ -3709,6 +3834,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuMa.addRow(new Object[]{0, "", "", 0, 0});
         } 
     }
+//FUNCTION crear fila de JTABLE MIERCOLES
     private void crearFilaMenuMi(int codComida){
         renglonActual = rengMenu.buscarRenglonDeMenu(codComida);
         comidaActual = comServ.buscarComida(renglonActual.getConComida());
@@ -3718,6 +3844,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuMi.addRow(new Object[]{0, "", "", 0, 0});
         }  
     }
+//FUNCTION crear fila de JTABLE JUEVES
     private void crearFilaMenuJu(int codComida){
         renglonActual = rengMenu.buscarRenglonDeMenu(codComida);
         comidaActual = comServ.buscarComida(renglonActual.getConComida());
@@ -3727,6 +3854,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuJu.addRow(new Object[]{0, "", "", 0, 0});
         }    
     }
+//FUNCTION crear fila de JTABLE VIERNES
     private void crearFilaMenuVi(int codComida){
         renglonActual = rengMenu.buscarRenglonDeMenu(codComida);
         comidaActual = comServ.buscarComida(renglonActual.getConComida());
@@ -3736,6 +3864,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuVi.addRow(new Object[]{0, "", "", 0, 0});
         }   
     }
+//FUNCTION crear fila de JTABLE SABADO
     private void crearFilaMenuSa(int codComida){
         renglonActual = rengMenu.buscarRenglonDeMenu(codComida);
         comidaActual = comServ.buscarComida(renglonActual.getConComida());
@@ -3745,6 +3874,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuSa.addRow(new Object[]{0, "", "", 0, 0});
         }    
     }
+//FUNCTION crear fila de JTABLE DOMINGO
     private void crearFilaMenuDo(int codComida){
         renglonActual = rengMenu.buscarRenglonDeMenu(codComida);
         comidaActual = comServ.buscarComida(renglonActual.getConComida());
@@ -3754,9 +3884,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             modeloMenuDo.addRow(new Object[]{0, "", "", 0, 0});
         }     
     }
-    
+//FUNCTION cargar JTEXT SELECCION a JTABLE LUNES    
     private void modificarMenuLunes(){
-
         int filasC=modeloMenuLu.getRowCount()-1;
         int desAnterior, almAnterior, colAnterior, merAnterior, cenAnterior;        
         desAnterior=0;
@@ -3778,8 +3907,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cenAnterior=0;
         if(jTOpcion1.getRowCount()>4){
             cenAnterior=(Integer)jTOpcion1.getValueAt(4, 0);
-        }        
-        
+        }               
         for(int f=filasC;f>=0;f--){
             modeloMenuLu.removeRow(f);
         }
@@ -3829,8 +3957,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }  
         }
     }
+//FUNCTION cargar JTEXT SELECCION a JTABLE MARTES    
     private void modificarMenuMartes(){
-
         int filasC=modeloMenuMa.getRowCount()-1;
         int desAnterior, almAnterior, colAnterior, merAnterior, cenAnterior;        
         desAnterior=0;
@@ -3852,8 +3980,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cenAnterior=0;
         if(jTOpcion2.getRowCount()>4){
             cenAnterior=(Integer)jTOpcion2.getValueAt(4, 0);
-        }        
-        
+        }                
         for(int f=filasC;f>=0;f--){
             modeloMenuMa.removeRow(f);
         }
@@ -3903,8 +4030,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }  
         }
     }
+//FUNCTION cargar JTEXT SELECCION a JTABLE MIERCOLES
     private void modificarMenuMiercoles(){
-
         int filasC=modeloMenuMi.getRowCount()-1;
         int desAnterior, almAnterior, colAnterior, merAnterior, cenAnterior;        
         desAnterior=0;
@@ -3926,8 +4053,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cenAnterior=0;
         if(jTOpcion3.getRowCount()>4){
             cenAnterior=(Integer)jTOpcion3.getValueAt(4, 0);
-        }        
-        
+        }               
         for(int f=filasC;f>=0;f--){
             modeloMenuMi.removeRow(f);
         }
@@ -3977,8 +4103,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }  
         }
     }
+//FUNCTION cargar JTEXT SELECCION a JTABLE JUEVES
     private void modificarMenuJueves(){
-
         int filasC=modeloMenuJu.getRowCount()-1;
         int desAnterior, almAnterior, colAnterior, merAnterior, cenAnterior;        
         desAnterior=0;
@@ -4000,8 +4126,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cenAnterior=0;
         if(jTOpcion4.getRowCount()>4){
             cenAnterior=(Integer)jTOpcion4.getValueAt(4, 0);
-        }        
-        
+        }                
         for(int f=filasC;f>=0;f--){
             modeloMenuJu.removeRow(f);
         }
@@ -4051,8 +4176,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }  
         }
     }
+//FUNCTION cargar JTEXT SELECCION a JTABLE VIERNES
     private void modificarMenuViernes(){
-
         int filasC=modeloMenuVi.getRowCount()-1;
         int desAnterior, almAnterior, colAnterior, merAnterior, cenAnterior;        
         desAnterior=0;
@@ -4074,8 +4199,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cenAnterior=0;
         if(jTOpcion5.getRowCount()>4){
             cenAnterior=(Integer)jTOpcion5.getValueAt(4, 0);
-        }        
-        
+        }                
         for(int f=filasC;f>=0;f--){
             modeloMenuVi.removeRow(f);
         }
@@ -4125,8 +4249,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }  
         }
     }
+//FUNCTION cargar JTEXT SELECCION a JTABLE SABADO
     private void modificarMenuSabado(){
-
         int filasC=modeloMenuSa.getRowCount()-1;
         int desAnterior, almAnterior, colAnterior, merAnterior, cenAnterior;        
         desAnterior=0;
@@ -4148,8 +4272,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cenAnterior=0;
         if(jTOpcion6.getRowCount()>4){
             cenAnterior=(Integer)jTOpcion6.getValueAt(4, 0);
-        }        
-        
+        }               
         for(int f=filasC;f>=0;f--){
             modeloMenuSa.removeRow(f);
         }
@@ -4199,8 +4322,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }  
         }
     }
+//FUNCTION cargar JTEXT SELECCION a JTABLE DOMINGO
     private void modificarMenuDomingo(){
-
         int filasC=modeloMenuDo.getRowCount()-1;
         int desAnterior, almAnterior, colAnterior, merAnterior, cenAnterior;        
         desAnterior=0;
@@ -4222,8 +4345,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cenAnterior=0;
         if(jTOpcion7.getRowCount()>4){
             cenAnterior=(Integer)jTOpcion7.getValueAt(4, 0);
-        }        
-        
+        }                
         for(int f=filasC;f>=0;f--){
             modeloMenuDo.removeRow(f);
         }
@@ -4332,6 +4454,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLRPaso4;
     private javax.swing.JLabel jLRPaso5;
     private javax.swing.JLabel jLRPaso6;
+    private javax.swing.JMenuItem jMAlimentoVer;
+    private javax.swing.JMenuItem jMComidaModificar;
+    private javax.swing.JMenuItem jMComidaNuevo;
+    private javax.swing.JMenuItem jMDietaAlternativas;
+    private javax.swing.JMenuItem jMDietaImprimir;
+    private javax.swing.JMenuItem jMDietaKcal;
+    private javax.swing.JMenuItem jMPacienteModificar;
+    private javax.swing.JMenuItem jMPacienteNuevo;
+    private javax.swing.JMenuItem jMPacienteSeguim;
+    private javax.swing.JMenuItem jMSalir;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -4389,10 +4521,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbReasignar;
     private com.toedter.calendar.JDateChooser jdFechaFin;
     private com.toedter.calendar.JDateChooser jdFechaIni;
-    private javax.swing.JMenu jmAdministracion;
-    private javax.swing.JMenu jmAlumnos;
-    private javax.swing.JMenu jmConsultas;
-    private javax.swing.JMenu jmMaterias;
+    private javax.swing.JMenu jmComidas;
+    private javax.swing.JMenu jmDietas;
+    private javax.swing.JMenu jmPacientes;
     private javax.swing.JMenu jmSalir;
     private javax.swing.JTextField jtAltura;
     private javax.swing.JTable jtComidas;

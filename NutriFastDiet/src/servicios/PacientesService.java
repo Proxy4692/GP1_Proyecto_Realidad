@@ -54,7 +54,7 @@ public class PacientesService {
             ps.setDouble(3, paciente.getAltura());
             ps.setDouble(4, paciente. getPesoActual ());
             ps.setDouble(5, paciente. getPesoBuscado ());
-            ps.setFloat(6, paciente. getNroPaciente ());
+            ps.setInt(6, paciente. getNroPaciente ());
             int mm=ps.executeUpdate();
             if (mm == 1){
                 JOptionPane.showMessageDialog(null, "El paciente " +paciente.getNombre()
@@ -110,7 +110,30 @@ public class PacientesService {
         return paciente;
     }
         
-        public List<Pacientes> listarPaciente(){
+        public Pacientes buscarPacientePorNombre(String nombre){
+        Pacientes paciente = null;
+        String sql = "SELECT * FROM paciente WHERE nombre = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet mb = ps.executeQuery();
+            if (mb.next()) {
+                paciente = new Pacientes();
+                paciente.setNroPaciente (mb.getInt("nroPaciente"));
+                paciente.setNombre (mb.getString("nombre"));
+                paciente.setEdad (mb.getInt("edad"));
+                paciente.setAltura (mb.getFloat("altura"));
+                paciente.setPesoActual (mb.getFloat("pesoActual"));
+                paciente.setPesoBuscado (mb.getFloat("pesoBuscado"));
+            }
+            ps.close();
+        }catch(SQLException ex){
+            System.out.println("Error al buscar el paciente: " + ex.getMessage());
+        }
+        return paciente;
+    }
+        
+        public List<Pacientes> listarPacientes(){
         List<Pacientes> pacientes = new ArrayList<>();
         String sql = "SELECT nroPaciente, nombre, edad, altura, pesoActual, pesoBuscado FROM paciente;";
         try{

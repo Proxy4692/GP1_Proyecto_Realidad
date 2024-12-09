@@ -6,6 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import modelo.Dietas;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 public class DietasService {
     
@@ -14,6 +23,145 @@ public class DietasService {
     public DietasService(){
         con = getConexion();
     }
+    
+    public void guardarDieta(Dietas dieta){
+        String sql = "INSERT INTO dieta (nroPaciente, nombreD, cantMenu, kcalSelec, fechaIni, fechaFin) VALUES (?, ?, ?, ?, ?, ?)";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, dieta.getNroPaciente());
+            ps.setString(2, dieta.getNombreD());
+            ps.setInt(3, dieta.getCantMenu());
+            ps.setString(4, dieta.getKcalSelec());
+            LocalDate ldIni = dieta.getFechaIni(); 
+            Date dtIni= Date.from(ldIni.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+           java.sql.Date FechIni = new java.sql.Date(dtIni.getTime()); 
+            ps.setDate(5, FechIni);
+            LocalDate ldFin = dieta.getFechaFin(); 
+            Date dtFin= Date.from(ldFin.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+           java.sql.Date FechFin = new java.sql.Date(dtIni.getTime());             
+            ps.setDate(6,FechFin);
+            
+            ps.executeUpdate();
+            ResultSet mg = ps.getGeneratedKeys();
+            if (mg.next()) {
+                    dieta.setCodDieta(mg.getInt(1));
+                    JOptionPane.showMessageDialog(null, "La dieta del paciente "+dieta.getNroPaciente()
+                            +" ha sido guardado exitosamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "La dieta no pudo ser guardada");
+            }
+                ps.close();
+            } catch (SQLException ex) {
+                System.out.println("Error al guardar dieta: " + ex.getMessage());
+        }
+    }
+    
+    public void modificarDieta(Dietas dieta){
+        String sql = "UPDATE dieta SET nroPaciente = ?, nombreD = ?, cantMenu = ?, kcalSelec = ?, fechaIni = ?, fechaFin = ? WHERE codDieta = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement (sql);
+            ps.setInt(1, dieta.getNroPaciente());
+            ps.setString(2, dieta.getNombreD());
+            ps.setInt(3, dieta.getCantMenu());
+            ps.setString(4, dieta.getKcalSelec());
+            LocalDate ldIni = dieta.getFechaIni(); 
+            Date dtIni= Date.from(ldIni.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            java.sql.Date FechIni = new java.sql.Date(dtIni.getTime()); 
+            ps.setDate(5, FechIni);
+            LocalDate ldFin = dieta.getFechaFin(); 
+            Date dtFin= Date.from(ldFin.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            java.sql.Date FechFin = new java.sql.Date(dtIni.getTime());             
+            ps.setDate(6,FechFin);
+            ps.setInt(7, dieta.getCodDieta());
+            
+            int mm=ps.executeUpdate();
+            if (mm == 1){
+                JOptionPane.showMessageDialog(null, "La dieta del paciente " +dieta.getNroPaciente()
+                        +" fue modificado exitosamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "La dieta del paciente " +dieta.getNroPaciente()
+                        +" no fue modificado");
+            }
+            
+            ps.close();
+        }catch(SQLException ex){
+            System.out.println("Error al modificar dieta: " + ex.getMessage());
+        }
+    }
+    
+        public void eliminarDieta(int id){
+        String sql = "DELETE FROM dieta WHERE codDieta = ? ";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int me=ps.executeUpdate();
+            if(me == 1){
+                JOptionPane.showMessageDialog(null, "La Dieta " +id
+                        +" ha sido eliminada");
+            ps.close();
+            }
+        }catch(SQLException ex){
+            System.out.println("Error al eliminar dieta: " + ex.getMessage());
+        }
+    }
+        
+        
+        public Dietas buscarDieta(int id){
+        Dietas dieta = null;
+        String sql = "SELECT * FROM dieta WHERE codDieta = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet mb = ps.executeQuery();
+            if (mb.next()) {
+                dieta = new Dietas();
+                dieta.setCodDieta (mb.getInt("codDieta"));
+                dieta.setNroPaciente (mb.getInt("nroPaciente"));
+                dieta.setNombreD (mb.getString("nombreD"));
+                dieta.setCantMenu (mb.getInt("cantMenu"));
+                dieta.setKcalSelec (mb.getString("kcalSelec"));
+                java.util.Date fi = mb.getDate("fechaIni");
+                LocalDate fdI= fi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                dieta.setFechaIni (fdI);
+                java.util.Date ff = mb.getDate("fechaFin");
+                LocalDate fdF= ff.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                dieta.setFechaFin (fdF);
+            }
+            ps.close();
+        }catch(SQLException ex){
+            System.out.println("Error al buscar dieta: " + ex.getMessage());
+        }
+        return dieta;
+    }
+        
+        public Dietas buscarDietaPorPaciente(int nroP){
+        Dietas dieta = null;
+        String sql = "SELECT * FROM dieta WHERE nroPaciente = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nroP);
+            ResultSet mb = ps.executeQuery();
+            if (mb.next()) {
+                dieta = new Dietas();
+                dieta.setCodDieta (mb.getInt("codDieta"));
+                dieta.setNroPaciente (mb.getInt("nroPaciente"));
+                dieta.setNombreD (mb.getString("nombreD"));
+                dieta.setCantMenu (mb.getInt("cantMenu"));
+                dieta.setKcalSelec (mb.getString("kcalSelec"));
+                java.util.Date fi = mb.getDate("fechaIni");
+                LocalDate fdI= fi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                dieta.setFechaIni (fdI);
+                java.util.Date ff = mb.getDate("fechaFin");
+                LocalDate fdF= ff.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                dieta.setFechaFin (fdF);
+            }
+            ps.close();
+        }catch(SQLException ex){
+            System.out.println("Error al buscar el paciente: " + ex.getMessage());
+        }
+        return dieta;
+    }
+    
     
     public void cargarDietasPosibles(int opcion, int kcalS, int desayuno, int almuerzo, int merienda, int colacion, int cena, boolean estado){
         String sql = "INSERT INTO dietasposibles (opcion, kcalS, desayuno, almuerzo, merienda, colacion, cena, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -63,120 +211,45 @@ public class DietasService {
         }
     }   
     
-
-
-//    public void guardarDieta(Dietas dieta){
-//        String sql = "INSERT INTO paciente (nombre, edad, altura, pesoActual, pesoBuscado) VALUES (?, ?, ?, ?, ?)";
-//        try{
-//            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//            ps.setString(1, paciente.getNombre());
-//            ps.setInt(2, paciente.getEdad());
-//            ps.setDouble(3, paciente.getAltura());
-//            ps.setDouble(4, paciente.getPesoActual());
-//            ps.setDouble(5, paciente.getPesoBuscado());
-//            ps.executeUpdate();
-//            ResultSet mg = ps.getGeneratedKeys();
-//            if (mg.next()) {
-//                    paciente.setNroPaciente(mg.getInt(1));
-//                    JOptionPane.showMessageDialog(null, "El paciente "+paciente.getNombre()
-//                            +" ha sido guardado exitosamente");
-//            }else{
-//                JOptionPane.showMessageDialog(null, "El paciente no pudo ser guardado");
-//            }
-//                ps.close();
-//            } catch (SQLException ex) {
-//                System.out.println("Error al guardar el paciente: " + ex.getMessage());
-//        }
-//    }
-//
-//    public void modificarPaciente(Pacientes paciente){
-//        String sql = "UPDATE paciente SET nombre = ?, edad = ?, altura = ?, pesoActual = ?, pesoBuscado = ? WHERE nroPaciente = ?";
-//        try{
-//            PreparedStatement ps = con.prepareStatement (sql);
-//            ps.setString(1, paciente. getNombre ());
-//            ps.setInt(2, paciente. getEdad ());
-//            ps.setDouble(3, paciente.getAltura());
-//            ps.setDouble(4, paciente. getPesoActual ());
-//            ps.setDouble(5, paciente. getPesoBuscado ());
-//            ps.setFloat(6, paciente. getNroPaciente ());
-//            int mm=ps.executeUpdate();
-//            if (mm == 1){
-//                JOptionPane.showMessageDialog(null, "El paciente " +paciente.getNombre()
-//                        +" fue modificado exitosamente");
-//            }else{
-//                JOptionPane.showMessageDialog(null, "El paciente " +paciente.getNombre()
-//                        +" no fue modificado");
-//            }
-//
-//            ps.close();
-//        }catch(SQLException ex){
-//            System.out.println("Error al modificar el paciente: " + ex.getMessage());
-//        }
-//    }
-//
-//        public void eliminarPaciente(int id){
-//        String sql = "DELETE FROM paciente WHERE nroPaciente = ? ";
-//        try{
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
-//            int me=ps.executeUpdate();
-//            if(me == 1){
-//                JOptionPane.showMessageDialog(null, "El paciente " +id
-//                        +" ha sido eliminado");
-//            ps.close();
-//            }
-//        }catch(SQLException ex){
-//            System.out.println("Error al eliminar el paciente: " + ex.getMessage());
-//        }
-//    }
-//
-//
-//        public Pacientes buscarPaciente(int id){
-//        Pacientes paciente = null;
-//        String sql = "SELECT * FROM paciente WHERE nroPaciente = ?";
-//        try{
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
-//            ResultSet mb = ps.executeQuery();
-//            if (mb.next()) {
-//                paciente = new Pacientes();
-//                paciente.setNroPaciente (mb.getInt("nroPaciente"));
-//                paciente.setNombre (mb.getString("nombre"));
-//                paciente.setEdad (mb.getInt("edad"));
-//                paciente.setAltura (mb.getFloat("altura"));
-//                paciente.setPesoActual (mb.getFloat("pesoActual"));
-//                paciente.setPesoBuscado (mb.getFloat("pesoBuscado"));
-//            }
-//            ps.close();
-//        }catch(SQLException ex){
-//            System.out.println("Error al buscar el paciente: " + ex.getMessage());
-//        }
-//        return paciente;
-//    }
-//
-//        public List<Pacientes> listarPaciente(){
-//        List<Pacientes> pacientes = new ArrayList<>();
-//        String sql = "SELECT nroPaciente, nombre, edad, altura, pesoActual, pesoBuscado FROM paciente;";
-//        try{
-//                PreparedStatement ps = con.prepareStatement (sql);
-//                ResultSet ml = ps.executeQuery ();
-//            while (ml.next()) {
-//                Pacientes paciente = new Pacientes();
-//                paciente.setNroPaciente (ml.getInt ("nroPaciente"));
-//                paciente.setNombre (ml.getString ("nombre"));
-//                paciente.setEdad (ml.getInt ("edad"));
-//                paciente.setAltura (ml.getFloat ("altura"));
-//                paciente.setPesoActual (ml.getFloat ("pesoActual"));
-//                paciente.setPesoBuscado (ml.getFloat ("pesoBuscado"));
-//                pacientes.add(paciente);
-//            }
-//            ps.close ();
-//        }catch(SQLException ex){
-//            System.out.println ("Error al listar las materias: " + ex.getMessage ());
-//        }
-//        return pacientes;
-//    }
-        public void cargarPesoYFinalizar(double peso){
+    public Integer kcalSemanal(int kcalCol, int diaNro){
+        Integer kcalSemanal = null;
+        try{
+            String sql;
+            switch(kcalCol){ 
+            case 1:
+                sql = "SELECT k5850 AS kcalS FROM `seleccaloria` WHERE diaNro = ?;"; 
+                break;
+            case 2:
+                sql = "SELECT k7000 AS kcalS FROM `seleccaloria` WHERE diaNro = ?;";
+                break;
+            case 3:
+                sql = "SELECT k8050 AS kcalS FROM `seleccaloria` WHERE diaNro = ?;";
+                break;
+            case 4:
+                sql = "SELECT k9450 AS kcalS FROM `seleccaloria` WHERE diaNro = ?;";
+                break;
+            case 5:
+                sql = "SELECT k10500 AS kcalS FROM `seleccaloria` WHERE diaNro = ?;";
+                break;
+            default:
+                sql = "SELECT k8050 AS kcalS FROM `seleccaloria` WHERE diaNro = ?;";
+                break;
+            }
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, diaNro);
+            ResultSet ml = ps.executeQuery ();
+            while (ml.next()) {
+                kcalSemanal= ml.getInt ("kcalS");
+            }
+            ps.close ();
+        }catch(SQLException ex){
+            System.out.println ("Error al listar Kcal Semanales: " + ex.getMessage ());
+        }
+        return kcalSemanal;
+    }
+    
+    
+    public void cargarPesoYFinalizar(double peso){
         
     }
     

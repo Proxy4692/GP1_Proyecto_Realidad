@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Dietas {
+    private int nroPaciente;
     private int codDieta;
     private String nombreD;
     private List menus;
@@ -12,34 +13,56 @@ public class Dietas {
     private double pesoFinal;
     private boolean estado;
     private int totalCalorias;
-    private Pacientes paciente;
+    private int cantMenu;
+    private String kcalSelec;
 
     public Dietas() {
     }
 
-    public Dietas(String nombreD, List menus, LocalDate fechaIni, LocalDate fechaFin, double pesoFinal, boolean estado, int totalCalorias, Pacientes paciente) {
+    public Dietas(Integer nroPaciente, String nombreD, LocalDate fechaIni, LocalDate fechaFin, int cantMenu, String kcalSelec) {
+        this.nroPaciente = nroPaciente;
         this.nombreD = nombreD;
-        this.menus = menus;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
-        this.pesoFinal = pesoFinal;
-        this.estado = estado;
-        this.totalCalorias = totalCalorias;
-        this.paciente = paciente;
+        this.cantMenu = cantMenu;
+        this.kcalSelec = kcalSelec;
     }
-
-    public Dietas(int codDieta, String nombreD, List menus, LocalDate fechaIni, LocalDate fechaFin, float pesoFinal, boolean estado, int totalCalorias, Pacientes paciente) {
+    
+    public Dietas(Integer codDieta, Integer nroPaciente, String nombreD, LocalDate fechaIni, LocalDate fechaFin, int cantMenu, String kcalSelec) {
         this.codDieta = codDieta;
+        this.nroPaciente = nroPaciente;
         this.nombreD = nombreD;
-        this.menus = menus;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
-        this.pesoFinal = pesoFinal;
-        this.estado = estado;
-        this.totalCalorias = totalCalorias;
-        this.paciente = paciente;
+        this.cantMenu = cantMenu;
+        this.kcalSelec = kcalSelec;
     }
 
+    public int getNroPaciente() {
+        return nroPaciente;
+    }
+
+    public void setNroPaciente(int nroPaciente) {
+        this.nroPaciente = nroPaciente;
+    }
+
+    public int getCantMenu() {
+        return cantMenu;
+    }
+
+    public void setCantMenu(int cantMenu) {
+        this.cantMenu = cantMenu;
+    }
+
+    public String getKcalSelec() {
+        return kcalSelec;
+    }
+
+    public void setKcalSelec(String KcalSelec) {
+        this.kcalSelec = KcalSelec;
+    }
+        
+    
     public int getCodDieta() {
         return codDieta;
     }
@@ -104,17 +127,11 @@ public class Dietas {
         this.totalCalorias = totalCalorias;
     }
 
-    public Pacientes getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Pacientes paciente) {
-        this.paciente = paciente;
-    }
-
     @Override
     public String toString() {
-        return "Dietas{" + "codDieta=" + codDieta + ", nombreD=" + nombreD + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", pesoFinal=" + pesoFinal + ", estado=" + estado + ", totalCalorias=" + totalCalorias + ", paciente=" + paciente + '}';
+        return "Dietas{" + "nroPaciente=" + nroPaciente + ", codDieta=" + codDieta + ", nombreD=" + nombreD + ", menus=" + menus + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", pesoFinal=" + pesoFinal + ", estado=" + estado + ", totalCalorias=" + totalCalorias + ", cantMenu=" + cantMenu + ", KcalSelec=" + kcalSelec + '}';
     }
+
+
     
 }

@@ -243,7 +243,12 @@ public class ComidasService {
             
     public List<Comidas> listarComida(){
         List<Comidas> comidas = new ArrayList<>();
-        String sql = "SELECT conComida, nombre, tipoComida, detalle, caloriasPor100g, baja FROM comida;";
+        String sql = "SELECT c.conComida, nombre, tipoComida, detalle, caloriasPor100g, baja " +
+        "FROM `comida` c JOIN `comidaalimento` ca JOIN `alimento` a " + 
+        "WHERE c.conComida = ca.conComida AND ca.codAlimento = a.codAlimento AND c.conComida " +
+        "NOT IN (SELECT c.conComida FROM `comida` c JOIN `comidaalimento` ca JOIN `alimento` a " +
+        "WHERE c.conComida = ca.conComida AND ca.codAlimento = a.codAlimento " + 
+        "AND a.selA = FALSE);" ;       
         try{
                 PreparedStatement ps = con.prepareStatement (sql);
                 ResultSet ml = ps.executeQuery ();
