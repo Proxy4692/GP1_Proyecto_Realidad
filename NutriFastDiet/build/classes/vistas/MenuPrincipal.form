@@ -413,7 +413,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jbPaso4" max="32767" attributes="0"/>
-                                  <Component id="jLRPaso4" pref="141" max="32767" attributes="0"/>
+                                  <Component id="jLRPaso4" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -434,7 +434,7 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="escritorio" alignment="0" pref="2091" max="32767" attributes="0"/>
+              <Component id="escritorio" alignment="0" pref="2053" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -538,7 +538,7 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="escritorio" alignment="0" pref="1086" max="32767" attributes="0"/>
+              <Component id="escritorio" alignment="0" pref="1060" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1903,7 +1903,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSComidas" pref="537" max="32767" attributes="0"/>
+                      <Component id="jSComidas" pref="549" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -1919,7 +1919,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSComidas" pref="288" max="32767" attributes="0"/>
+                      <Component id="jSComidas" pref="294" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -2167,7 +2167,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jPanelO6" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="jPanelO6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLOpcion7" min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>

@@ -5,9 +5,12 @@ import java.awt.Image;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
 import conexion.Conexion;
+import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.Pacientes;
 import servicios.PacientesService;
@@ -2341,6 +2344,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPaso2ActionPerformed
 //EVENTS de JBOTONS PASO3
     private void jbPaso3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso3ActionPerformed
+
         if(etapa ==4){
             etapa5();            
         }else{

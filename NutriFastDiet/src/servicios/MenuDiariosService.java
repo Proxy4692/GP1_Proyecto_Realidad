@@ -60,6 +60,18 @@ public class MenuDiariosService {
         return menuDiario;
     }
     
+        public void guardarReceta(int nroPaciente, String tipoComida){
+        String sql = "INSERT INTO recetas (nroPaciente, tipoComida) VALUES (?, ?)";
+        try(Connection con = conexion.Conexion.getConexion();
+                PreparedStatement statement = con.prepareCall(sql)){
+            statement.setInt(1, nroPaciente);
+            statement.setString(2, tipoComida);
+            System.out.println("Receta guardada");
+        }catch(SQLException ex){
+            System.err.println("Error al guardar la receta: " + ex.getMessage());
+        }
+    }
+    
         public List<MenuDiarios> listarMenusDiario(int kcalCol, int opcion){
         List<MenuDiarios> menuDiario = new ArrayList<>();
         try{
