@@ -2805,12 +2805,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMPacienteModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPacienteModificarActionPerformed
         etapa0();
-        escritorio.removeAll();
-        escritorio.repaint();
-        FormPacienteVerMod fi=new FormPacienteVerMod();
-        fi.setVisible(true);
-        escritorio.add(fi);
-        escritorio.moveToFront(fi);
+//        escritorio.removeAll();
+//        escritorio.repaint();
+//        FormPacienteVerMod fi=new FormPacienteVerMod();
+//        fi.setVisible(true);
+//        escritorio.add(fi);
+//        escritorio.moveToFront(fi);
     }//GEN-LAST:event_jMPacienteModificarActionPerformed
 
     private void jMPacienteSeguimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPacienteSeguimActionPerformed
@@ -2831,12 +2831,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 //EVENTS de ITEMS-MENU Dietas
     private void jMDietaKcalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMDietaKcalActionPerformed
         etapa0();
-        escritorio.removeAll();
-        escritorio.repaint();
-        FormPacienteDieta fd=new FormPacienteDieta();
-        fd.setVisible(true);
-        escritorio.add(fd);
-        escritorio.moveToFront(fd);
+//        escritorio.removeAll();
+//        escritorio.repaint();
+//        FormPacienteDieta fd=new FormPacienteDieta();
+//        fd.setVisible(true);
+//        escritorio.add(fd);
+//        escritorio.moveToFront(fd);
     }//GEN-LAST:event_jMDietaKcalActionPerformed
 
     private void jMDietaAlternativasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMDietaAlternativasActionPerformed
