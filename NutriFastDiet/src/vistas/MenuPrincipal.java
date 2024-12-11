@@ -1,11 +1,26 @@
 package vistas;
-//IMPORT
+
+// Libreria del PDF
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.DocumentException;
+import java.sql.SQLException;
+import java.sql.Statement;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
 import conexion.Conexion;
 import java.awt.event.ActionEvent;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -15,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Pacientes;
 import servicios.PacientesService;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.text.Document;
 import modelo.Alimentos;
 import modelo.Comidas;
 import modelo.MenuDiarios;
@@ -22,6 +38,7 @@ import modelo.RenglonDeMenus;
 import servicios.ComidasService;
 import servicios.MenuDiariosService;
 import servicios.RenglonDeMenusService;
+
 //Formato de TABLE MODEL
 public class MenuPrincipal extends javax.swing.JFrame {
     private DefaultTableModel modeloBorrador= new DefaultTableModel();
@@ -515,6 +532,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtNombreFocusLost(evt);
+            }
+        });
+        jtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNombreActionPerformed(evt);
             }
         });
 
@@ -1213,7 +1235,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSComidas, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jSComidas, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1225,7 +1247,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSComidas, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addComponent(jSComidas, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1691,7 +1713,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPDatos4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPDatos4Layout.createSequentialGroup()
-                        .addComponent(jPanelO6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelO6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLOpcion7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(modSabado, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2221,7 +2243,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jbPaso4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLRPaso4, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                                    .addComponent(jLRPaso4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(69, 69, 69)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jbPaso5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2234,7 +2256,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 2091, Short.MAX_VALUE))
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 2053, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2316,7 +2338,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jSCena, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE))
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE))
         );
 
         jCTipoComida.getAccessibleContext().setAccessibleParent(jtComidas);
@@ -2344,12 +2366,74 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPaso2ActionPerformed
 //EVENTS de JBOTONS PASO3
     private void jbPaso3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaso3ActionPerformed
-
         if(etapa ==4){
             etapa5();            
         }else{
             JOptionPane.showMessageDialog(this,"Paso incorrecto"); 
         }
+        
+        com.itextpdf.text.Document documento = new com.itextpdf.text.Document();
+        
+        try{
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/" + jtNombre.getText().trim() + ".pdf"));
+            
+            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/recursos/nutriFondo.png");
+            header.scaleToFit(650, 1000);
+            header.setAlignment(Chunk.ALIGN_CENTER);
+            
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("Informacion del cliente. \n \n");
+            parrafo.setFont(FontFactory.getFont("Calibri", 14, Font.NORMAL, BaseColor.BLACK));
+            
+            documento.open();
+            documento.add(header);
+            documento.add(parrafo);
+            
+            PdfPTable tablaPaciente = new PdfPTable(5);
+            tablaPaciente.addCell("ID");
+            tablaPaciente.addCell("Nombre");
+            tablaPaciente.addCell("email");
+            tablaPaciente.addCell("Telefono");
+            tablaPaciente.addCell("Direccion");
+            
+            try{
+                Connection con = Conexion.getConexion();
+                PreparedStatement pst = con.prepareStatement("SELECT * FROM recetas WHERE nroPaciente = '" + IDpaciente_update + "'");
+                
+                ResultSet rs = pst.executeQuery();
+                
+                if(rs.next()){
+                    do{                        
+                        tablaPaciente.addCell(rs.getString(1));
+                        tablaPaciente.addCell(rs.getString(2));
+                        tablaPaciente.addCell(rs.getString(3));
+                        tablaPaciente.addCell(rs.getString(4));
+                        tablaPaciente.addCell(rs.getString(5));
+                    }while(rs.next());
+                    documento.add(tablaPaciente);
+                }
+                
+                Paragraph parrafo1 = new Paragraph();
+                parrafo1.setAlignment(Paragraph.ALIGN_CENTER);
+                parrafo1.add("\n \n Recetas registradas \n \n");
+                parrafo1.setFont(FontFactory.getFont("Calibri", 14, Font.NORMAL, BaseColor.BLACK));
+                documento.add(parrafo1);
+                
+                PdfPTable tablaRecetas = new PdfPTable(4);
+                tablaRecetas.addCell("ID");
+                tablaRecetas.addCell("Tipo");
+                tablaRecetas.addCell("marca");
+                tablaRecetas.addCell("status");
+                
+            }catch(SQLException e){
+                System.err.println("Error al obtener datos del paciente." + e);
+            }
+            
+        }catch(Exception e){
+        }
+        
     }//GEN-LAST:event_jbPaso3ActionPerformed
 //EVENTS de JTEXT NOMBRE 
     private void jtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreFocusGained
@@ -2857,6 +2941,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             System.exit(0);
         }    
     }//GEN-LAST:event_jMSalirActionPerformed
+
+    private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNombreActionPerformed
 //MAIN
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
