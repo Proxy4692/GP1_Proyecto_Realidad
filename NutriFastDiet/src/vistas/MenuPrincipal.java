@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Pacientes;
@@ -2944,68 +2945,84 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 MenuDiarios menuJue = menuServ.buscarMenus(4, codDieta);       
                 MenuDiarios menuVie = menuServ.buscarMenus(5, codDieta);       
                 MenuDiarios menuSab = menuServ.buscarMenus(6, codDieta);       
-                MenuDiarios menuDom = menuServ.buscarMenus(7, codDieta);       
-        
+                MenuDiarios menuDom = menuServ.buscarMenus(7, codDieta);               
                 //formato de tabla Dieta
                     //fuentes:
-                Font fontC1 = new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.BLUE));        
-                Font fontC2 = new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.PINK));
-                Font fontC3 = new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.GREEN));
-                Font fontC4 = new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.MAGENTA));
-                Font fontC5 = new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.ORANGE));
-                Font fontC6 = new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.RED));
-                Font fontC7 = new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.LIGHT_GRAY));
+                ArrayList<Font> fontDiaTit = new ArrayList<>();
+                fontDiaTit.add(new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.BLUE)));        
+                fontDiaTit.add(new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.PINK)));
+                fontDiaTit.add(new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.GREEN)));
+                fontDiaTit.add(new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.MAGENTA)));
+                fontDiaTit.add(new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.ORANGE)));
+                fontDiaTit.add(new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.RED)));
+                fontDiaTit.add(new Font(FontFactory.getFont("Tahoma", 9, Font.BOLD,BaseColor.LIGHT_GRAY)));
                 Font fontA4 = new Font(FontFactory.getFont("Tahoma", 7, Font.ITALIC,BaseColor.DARK_GRAY));
-                int cantCol=7;
+                int cantCol=0;
+                ArrayList<MenuDiarios> menDiaSem = new ArrayList<>();
+                ArrayList<Integer> totKcal = new ArrayList<>();
+                ArrayList<String> menDiaDes = new ArrayList<>();
+                ArrayList<String> menDiaAlm = new ArrayList<>();
+                ArrayList<String> menDiaCol = new ArrayList<>();
+                ArrayList<String> menDiaMer = new ArrayList<>();
+                ArrayList<String> menDiaCen = new ArrayList<>();
+                ArrayList<String> menDiaTit = new ArrayList<>();
+                for(int c=1;c<8;c++){
+                    menuActual= menuServ.buscarMenus(c,codDieta);
+                    if(menuActual!=null){
+                        menDiaSem.add(menuActual);
+                        totKcal.add((Integer)menuActual.getKcalTotal());
+                        menDiaDes.add(menuActual.getTxdesayuno());
+                        menDiaAlm.add(menuActual.getTxalmuerzo());
+                        menDiaCol.add(menuActual.getTxcolacion());
+                        menDiaMer.add(menuActual.getTxmerienda());
+                        menDiaCen.add(menuActual.getTxcena());                
+                        cantCol++;
+                        switch(c){ 
+                            case 1:
+                                menDiaTit.add("Lunes");
+                                break;
+                            case 2:
+                                    menDiaTit.add("Martes");
+                                break;
+                            case 3:
+                                    menDiaTit.add("Miércoles");
+                                break;
+                            case 4:
+                                    menDiaTit.add("Jueves");
+                                break;
+                            case 5:
+                                menDiaTit.add("Viernes"); 
+                                break;
+                            case 6:
+                                    menDiaTit.add("Sábado");
+                                break;
+                            case 7:
+                                    menDiaTit.add("Domingo");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
                 PdfPTable tablaDieta = new PdfPTable(cantCol);
-                    //titulos de columnas:
-                tablaDieta.addCell(new PdfPCell(new Phrase("Lunes - "+menuLun.getKcalTotal()+"kc",fontC1)));
-                tablaDieta.addCell(new PdfPCell(new Phrase("Martes - "+menuMar.getKcalTotal()+"kc",fontC2)));
-                tablaDieta.addCell(new PdfPCell(new Phrase("Mièrcoles - "+menuMie.getKcalTotal()+"kc",fontC3)));
-                tablaDieta.addCell(new PdfPCell(new Phrase("Jueves - "+menuJue.getKcalTotal()+"kc",fontC4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase("Viernes - "+menuVie.getKcalTotal()+"kc",fontC5)));
-                tablaDieta.addCell(new PdfPCell(new Phrase("Sàbado - "+menuSab.getKcalTotal()+"kc",fontC6)));
-                tablaDieta.addCell(new PdfPCell(new Phrase("Domingo - "+menuDom.getKcalTotal()+"kc",fontC7)));
-                    //filas:
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuLun.getTxdesayuno(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMar.getTxdesayuno(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMie.getTxdesayuno(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuJue.getTxdesayuno(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuVie.getTxdesayuno(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuSab.getTxdesayuno(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuDom.getTxdesayuno(),fontA4)));
-
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuLun.getTxalmuerzo(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMar.getTxalmuerzo(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMie.getTxalmuerzo(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuJue.getTxalmuerzo(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuVie.getTxalmuerzo(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuSab.getTxalmuerzo(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuDom.getTxalmuerzo(),fontA4)));
-
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuLun.getTxcolacion(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMar.getTxcolacion(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMie.getTxcolacion(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuJue.getTxcolacion(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuVie.getTxcolacion(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuSab.getTxcolacion(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuDom.getTxcolacion(),fontA4)));
-
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuLun.getTxmerienda(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMar.getTxmerienda(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMie.getTxmerienda(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuJue.getTxmerienda(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuVie.getTxmerienda(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuSab.getTxmerienda(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuDom.getTxmerienda(),fontA4)));
-
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuLun.getTxcena(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMar.getTxcena(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuMie.getTxcena(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuJue.getTxcena(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuVie.getTxcena(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuSab.getTxcena(),fontA4)));
-                tablaDieta.addCell(new PdfPCell(new Phrase(menuDom.getTxcena(),fontA4)));
+                for(int c=0;c<cantCol;c++){
+                tablaDieta.addCell(new PdfPCell(new Phrase(menDiaTit.get(c)+" - "+totKcal.get(c)+"kc",fontDiaTit.get(c))));
+                }
+                for(int c=0;c<cantCol;c++){
+                tablaDieta.addCell(new PdfPCell(new Phrase(menDiaDes.get(c),fontA4)));
+                }
+                for(int c=0;c<cantCol;c++){
+                tablaDieta.addCell(new PdfPCell(new Phrase(menDiaAlm.get(c),fontA4)));
+                }
+                for(int c=0;c<cantCol;c++){
+                tablaDieta.addCell(new PdfPCell(new Phrase(menDiaCol.get(c),fontA4)));
+                }
+                for(int c=0;c<cantCol;c++){
+                tablaDieta.addCell(new PdfPCell(new Phrase(menDiaMer.get(c),fontA4)));
+                }
+                for(int c=0;c<cantCol;c++){
+                tablaDieta.addCell(new PdfPCell(new Phrase(menDiaCen.get(c),fontA4)));
+                }
                     //formato de tabla:        
                 tablaDieta.setHorizontalAlignment(1); //alineacion
                 tablaDieta.setTotalWidth(520); //ancho de pagina
@@ -3025,7 +3042,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El informe de la Dieta fue creado correctamente","Información",1);
                 //abrir archivo generado
                 File path = new File(nombreA + ".pdf");
-                Desktop.getDesktop().open(path);                    
+                Desktop.getDesktop().open(path);                        
             }
         }catch(Exception e){
             System.err.println("Error en generar archivo pdf de informe de dieta"+e);
